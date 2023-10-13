@@ -1,0 +1,13 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; color: rgb(230, 230, 230);
+  background: rgb(30, 30, 35); }
+
+mat-icon {
+  font-size: 1.1em!important;
+  height: auto!important;
+  width: auto!important;
+  line-height: 1!important;
+  color: rgb(160,160,160)!important;
+}

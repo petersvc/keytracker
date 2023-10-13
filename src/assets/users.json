@@ -1,0 +1,22 @@
+{
+  "users": [
+    {
+      "_userId": "a1b2c3d4e5f",
+      "_name": "Alice",
+      "_username": "alice123",
+      "_masterPassword": "securePass123"
+    },
+    {
+      "_userId": "x9y8z7w6v5",
+      "_name": "Bob",
+      "_username": "bob456",
+      "_masterPassword": "strongPass456"
+    },
+    {
+      "_userId": "m1n2o3p4q5r",
+      "_name": "Charlie",
+      "_username": "charlie789",
+      "_masterPassword": "safePass789"
+    }
+  ]
+}
