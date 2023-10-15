@@ -1,1 +1,22 @@
-<p>user-registration works!</p>
+<h1 class="login-title">- Registro de usuário -</h1>
+
+<p class="slogan">
+    Vamos criar um usuário para você.
+</p>
+
+<div class="formGroup">
+    <label class="inputLabel" for="name">Nome</label>
+    <input [(ngModel)]="name" id="name">
+
+    <label class="inputLabel" for="username">Apelido</label>
+    <input [(ngModel)]="username" id="username">
+
+    <label class="inputLabel" for="masterPassword">Senha</label>
+    <input [(ngModel)]="masterPassword" id="masterPassword">
+
+    <h1 class="recoverPassword">Esqueceu a senha?</h1>
+
+    <button color="primary" class="login-button" (click)="register()">Cadastrar</button>
+</div>
+
+
