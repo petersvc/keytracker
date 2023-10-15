@@ -1,5 +1,5 @@
-import {Component, Input} from '@angular/core';
-import {User} from "../../shared/models/user";
+import { Component, Input } from '@angular/core';
+import { User } from '../../shared/models/user';
 
 @Component({
   selector: 'app-auth',
@@ -7,6 +7,5 @@ import {User} from "../../shared/models/user";
   styleUrls: ['./auth.component.scss']
 })
 export class AuthComponent {
-  @Input() currentUser!:User
-
+  @Input() currentUser!: User;
 }

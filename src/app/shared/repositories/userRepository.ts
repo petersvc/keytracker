@@ -1,4 +1,4 @@
-import {User} from "../models/user";
+import { User } from '../models/user';
 
 export class UserRepository {
   private _users: Map<string, User> = new Map<string, User>();
@@ -45,7 +45,12 @@ export class UserRepository {
     this._users.delete(name);
   }
 
-  updateUserByName(userName: string, newName: string, newUsername: string, newMasterPassword: string) {
+  updateUserByName(
+    userName: string,
+    newName: string,
+    newUsername: string,
+    newMasterPassword: string
+  ) {
     const user = this.getUserByUserName(userName);
     if (user !== undefined) {
       if (newName !== '' && user.name !== newName) {

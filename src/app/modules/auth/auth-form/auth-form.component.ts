@@ -1,6 +1,6 @@
-import {Component, Input} from '@angular/core';
-import {User} from "../../../shared/models/user";
-import {UserService} from "../../../shared/services/user.service";
+import { Component, Input } from '@angular/core';
+import { User } from '../../../shared/models/user';
+import { UserService } from '../../../shared/services/user.service';
 
 @Component({
   selector: 'app-auth-form',
@@ -8,11 +8,11 @@ import {UserService} from "../../../shared/services/user.service";
   styleUrls: ['./auth-form.component.scss']
 })
 export class AuthFormComponent {
-  @Input() currentUser!:User;
+  @Input() currentUser!: User;
   name!: string;
   username!: string;
   masterPassword!: string;
-  title = '- Login do usuário -'
+  title = '- Login do usuário -';
   passwordTip = 'Esqueceu a senha?';
   switchFormTitle = 'Não tem uma conta?';
   switchFormButton = 'Registrar';
@@ -20,29 +20,31 @@ export class AuthFormComponent {
   callMethod = this.login;
   formGroupButtonText = 'Entrar';
   isLogin = true;
-  
+
   constructor(private readonly userService: UserService) {}
 
   login(): void {
-      this.userService.getUserByUserName(this.username).subscribe(users => {
-        if(users.length > 0) {
-          if(users[0].masterPassword === this.masterPassword) {
-            this.currentUser = users[0];
-            console.log('Usuário logado:', this.currentUser);
-          } else {
-            console.log('Senha incorreta!');
-          }
+    this.userService.getUserByUserName(this.username).subscribe(users => {
+      if (users.length > 0) {
+        if (users[0].masterPassword === this.masterPassword) {
+          this.currentUser = users[0];
+          console.log('Usuário logado:', this.currentUser);
         } else {
-            console.log('Usuário não encontrado!');
+          console.log('Senha incorreta!');
         }
-      })
+      } else {
+        console.log('Usuário não encontrado!');
+      }
+    });
   }
 
   register(): void {
-    this.userService.createUser(this.name, this.username, this.masterPassword).subscribe(response => {
-      console.log('Novo usuário criado:', response);
-      this.currentUser = response;
-    })
+    this.userService
+      .createUser(this.name, this.username, this.masterPassword)
+      .subscribe(response => {
+        console.log('Novo usuário criado:', response);
+        this.currentUser = response;
+      });
   }
 
   callRegistrationComponent(): void {

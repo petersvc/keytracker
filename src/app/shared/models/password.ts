@@ -3,7 +3,7 @@ export class Password {
     private _application: string,
     private _passphrase: string,
     private _description: string,
-    private readonly _userId: string,
+    private readonly _userId: string
   ) {}
 
   get passphrase(): string {

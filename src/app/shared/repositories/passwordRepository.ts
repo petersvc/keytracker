@@ -1,4 +1,4 @@
-import {Password} from "../models/password";
+import { Password } from '../models/password';
 
 export class PasswordRepository {
   private _Passwords: Map<string, Password> = new Map<string, Password>();

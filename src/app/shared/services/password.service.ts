@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import {PasswordRepository} from "../repositories/passwordRepository";
-import {Password} from "../models/password";
+import { PasswordRepository } from '../repositories/passwordRepository';
+import { Password } from '../models/password';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +22,9 @@ export class PasswordService {
 
   addPassword(passphrase: string, application: string, description: string, userId: string) {
     if (this._passwordRepository.getPasswordByApplication(application) === undefined) {
-      this._passwordRepository.addPassword(new Password(application, passphrase, description, userId));
+      this._passwordRepository.addPassword(
+        new Password(application, passphrase, description, userId)
+      );
     } else {
       console.log('Password already exists');
     }
@@ -33,6 +35,10 @@ export class PasswordService {
   }
 
   updatePassword(application: string, newPassphrase: string, newDescription: string) {
-    this._passwordRepository.updatePasswordByApplication(application, newPassphrase, newDescription);
+    this._passwordRepository.updatePasswordByApplication(
+      application,
+      newPassphrase,
+      newDescription
+    );
   }
 }

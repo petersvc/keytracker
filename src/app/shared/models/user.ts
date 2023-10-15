@@ -1,8 +1,8 @@
 export interface User {
-    id: string;
-    name: string;
-    username: string;
-    masterPassword: string;
+  id: string;
+  name: string;
+  username: string;
+  masterPassword: string;
 }
 
 // export class User {
