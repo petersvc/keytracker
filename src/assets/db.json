@@ -1,40 +1,19 @@
 {
   "users": [
     {
-      "id": "a1b2c3d4e5f",
-      "name": "Alice",
-      "username": "alice123",
-      "masterPassword": "securePass123"
+      "id": "teste1",
+      "name": "testonildo",
+      "masterPassword": "senha1"
     },
     {
-      "id": "x9y8z7w6v5",
-      "name": "Bob",
-      "username": "bob456",
-      "masterPassword": "strongPass456"
-    },
-    {
-      "id": "m1n2o3p4q5r",
-      "name": "Charlie",
-      "username": "charlie789",
-      "masterPassword": "safePass789"
-    },
-    {
-      "id": "HfmSr7YlIen",
+      "id": "petersvc",
       "name": "Peter",
-      "username": "petersvc",
-      "masterPassword": "dale"
+      "masterPassword": "senha2"
     },
     {
-      "id": "eWAftG482uf",
-      "name": "ana vitoria",
-      "username": "anavit",
-      "masterPassword": "dale2"
-    },
-    {
-      "id": "Wto4bRimPA7",
-      "name": "ana vitoriana",
-      "username": "anavit2",
-      "masterPassword": "dale3"
+      "id": "1",
+      "name": "1",
+      "masterPassword": "1"
     }
   ],
   "passwords": [

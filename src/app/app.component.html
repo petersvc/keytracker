@@ -1,4 +1,8 @@
-<div class="mainDiv">
-    <app-auth *ngIf="currentUser===undefined" [currentUser]="currentUser"></app-auth>
-</div>
+<!--<app-auth *ngIf="(user | async) === null"></app-auth>-->
+<!--<app-auth *ngIf="!isAuthenticated()"></app-auth>-->
 
+<router-outlet></router-outlet>
+
+<!--<p *ngIf='user | async as user' >{{ user.id }}</p>-->
+<!--<a routerLink="/login">Login</a>-->
+<!--<a routerLink="/preview">Preview</a>-->

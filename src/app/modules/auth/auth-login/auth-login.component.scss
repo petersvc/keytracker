@@ -1,0 +1,37 @@
+:host {
+  display: flex;
+  flex-direction: row;
+  height: 80%;
+  width: 60%;
+  background: rgba(38, 38, 45, 1);
+  //background: rgba(28, 28, 35, 1);
+  border-radius: 20px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  // justify-content: space-between;
+  // padding: 0 4% 0 4%;
+  width: 53%;
+  height: 100%;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  margin-top: 8%;
+  margin-left: 8%;
+}
+
+mat-icon.logo-image {
+  font-size: 2.2em!important;
+}
+
+.logo-typo {
+  margin-left: 10px;
+  font-size: 1.1em;
+  display: none;
+}
+
+

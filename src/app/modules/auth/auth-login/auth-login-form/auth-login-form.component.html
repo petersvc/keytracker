@@ -1,0 +1,22 @@
+<form class="formGroup">
+  <h1 class="welcome">Bem vindo de volta</h1>
+
+  <h2 class="subtitle">
+    preencha suas credenciais para acessar a sua conta
+  </h2>
+
+  <label for="username">Usuário</label>
+  <input #username id="username" placeholder='digite seu usuário'>
+
+  <label for="masterPassword">Senha</label>
+  <input type='password' #masterPassword id="masterPassword" placeholder='min 8 caracteres'>
+
+  <h1 class="passwordTip">Esqueceu a senha?</h1>
+
+  <button type='submit' class="formGroup-button" (click)="login(username.value, masterPassword.value)">Login</button>
+
+  <div class="switchForm">
+    <h1 class="switchForm-title">Não tem uma conta? </h1>
+    <a class="switchForm-button" routerLink='/register'>Registre-se</a>
+  </div>
+</form>

@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { User } from './shared/models/user';
+import { UserService } from './shared/services/user.service';
+import { Observable } from 'rxjs';
+import { AuthService } from './shared/services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -7,9 +10,13 @@ import { User } from './shared/models/user';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'keytracker';
-  currentUser!: User;
-  constructor() {
-    //this.currentUser = new User('Peter', 'peter@gmail.com', '123456');
+  user: Observable<User | null>;
+  constructor(private readonly userService: UserService) {
+    // this.authService.login('teste1', 'senha1');
+    this.user = this.userService.user$;
   }
+
+  // redirectToAuthPage(): void {
+  //   if (!this.isAuthenticated()) this.router.navigate(['/auth']);
+  // }
 }
