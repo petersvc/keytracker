@@ -5,15 +5,18 @@ html, body { height: 100%; width: 100% }
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 1em;
   color: rgb(230, 230, 230);
   background: rgb(30, 30, 35);
   overflow: hidden;
 }
 
 mat-icon {
-  font-size: 1.1em!important;
+  margin: 0!important;
+  padding: 0!important;
+  font-size: 1em!important;
   height: auto!important;
   width: auto!important;
   line-height: 1!important;
-  color: rgb(160,160,160)!important;
+  color: rgba(120, 120, 120, 1)!important;
 }

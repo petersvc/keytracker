@@ -22,7 +22,7 @@ export class AuthService {
         if (user !== null && user.masterPassword === password) {
           this.userService.setUser(user);
           this._isAuthenticated = true;
-          alert('Login realizado com sucesso ' + user.name);
+          // alert('Login realizado com sucesso ' + user.name);
         } else {
           alert('Usuário ou Senha incorreta!');
         }

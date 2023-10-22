@@ -11,12 +11,11 @@ import { AuthService } from './shared/services/auth.service';
 })
 export class AppComponent {
   user: Observable<User | null>;
-  constructor(private readonly userService: UserService) {
-    // this.authService.login('teste1', 'senha1');
+  constructor(
+    private readonly userService: UserService,
+    private readonly authService: AuthService
+  ) {
+    this.authService.login('teste1', 'senha1');
     this.user = this.userService.user$;
   }
-
-  // redirectToAuthPage(): void {
-  //   if (!this.isAuthenticated()) this.router.navigate(['/auth']);
-  // }
 }

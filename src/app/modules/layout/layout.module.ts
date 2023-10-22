@@ -1,19 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SidebarComponent } from './sidebar/sidebar.component';
-import { TopbarComponent } from './topbar/topbar.component';
-import { ContentComponent } from './content/content.component';
-
-
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { TopbarComponent } from './components/topbar/topbar.component';
+import { ContentComponent } from './components/content/content.component';
+import { CoreComponent } from './components/core/core.component';
+import { NavbarComponent } from './components/sidebar/navbar/navbar.component';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
     SidebarComponent,
     TopbarComponent,
-    ContentComponent
+    ContentComponent,
+    CoreComponent,
+    NavbarComponent
   ],
-  imports: [
-    CommonModule
-  ]
+  imports: [CommonModule, MatIconModule]
 })
-export class LayoutModule { }
+export class LayoutModule {}

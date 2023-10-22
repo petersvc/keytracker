@@ -1,0 +1,44 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  width: 13%;
+  height: 100%;
+  background-color: rgb(30, 30, 35);
+  border-right: 2px solid rgba(22, 22, 22, 1);
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  // justify-content: center;
+  height: 8%;
+  border-bottom: 2px solid rgba(22, 22, 22, 1);
+  //background-color: red;
+}
+
+.header h2 {
+  font-size: 2em;
+  color: rgb(120, 120, 120)!important;
+  // margin-left: 7%;
+  margin-right: 10px;
+  display: flex;
+}
+
+.header mat-icon {
+  color: rgba(200, 200, 200, 1)!important;
+}
+
+.header div {
+  margin-left: 10%;
+}
+
+.header h1 {
+  font-size: 1em;
+}
+
+.header h6 {
+  margin-top: 3px;
+  font-size: 0.75em;
+  color: rgb(120,120,120);
+}
