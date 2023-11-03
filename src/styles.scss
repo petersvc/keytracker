@@ -6,7 +6,6 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
   font-size: 1em;
-  color: rgb(230, 230, 230);
   background: rgb(30, 30, 35);
   overflow: hidden;
 }
@@ -19,4 +18,15 @@ mat-icon {
   width: auto!important;
   line-height: 1!important;
   color: rgba(120, 120, 120, 1)!important;
+}
+
+:root {
+  --custom-primary: #2196F3; /* Azul */
+  --custom-accent: #FF4081; /* Rosa */
+  --custom-bgcolor: rgb(30, 30, 35); /* Cinza */
+  --custom-txtcolor: rgb(230, 230, 230); /* Branco */
+}
+
+h1, h2, h3, h4, h5, h6, p, span, a {
+  color: var(--custom-txtcolor);
 }

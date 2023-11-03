@@ -11,18 +11,10 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  // justify-content: center;
+  //justify-content: center;
   height: 8%;
   border-bottom: 2px solid rgba(22, 22, 22, 1);
-  //background-color: red;
-}
-
-.header h2 {
-  font-size: 2em;
-  color: rgb(120, 120, 120)!important;
-  // margin-left: 7%;
-  margin-right: 10px;
-  display: flex;
+  background: var(--custom-bgcolor);
 }
 
 .header mat-icon {
@@ -30,11 +22,12 @@
 }
 
 .header div {
-  margin-left: 10%;
+  // margin-left: 10%;
 }
 
 .header h1 {
-  font-size: 1em;
+  font-size: 0.9em;
+  margin: 0 0 0 3%;
 }
 
 .header h6 {

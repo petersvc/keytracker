@@ -1,74 +1,82 @@
-<ul class='nav-list top-list'>
-  <li>
-    <mat-icon [style.color]="'rgb(255, 255, 255)!important'">shield</mat-icon>
-    <h1>Senhas</h1>
-  </li>
-  <li>
-    <mat-icon [style.color]="'rgb(254, 191, 99)!important'">star</mat-icon>
-    <h1>Favoritas</h1>
-  </li>
-  <li>
-    <mat-icon>history</mat-icon>
-    <h1>Recentes</h1>
-  </li>
-  <li>
-    <mat-icon [style.color]="'rgb(232, 74, 95)!important'">delete</mat-icon>
-    <h1>Lixeira</h1>
-  </li>
-</ul>
+<mat-nav-list class="nav-list top-list">
+  <mat-list-item>
+    <mat-icon matListItemIcon>shield</mat-icon>
+    <h1 matListItemTitle>Senhas</h1>
+  </mat-list-item>
+  <mat-list-item>
+    <mat-icon matListItemIcon style="color: rgb(254, 191, 99)!important">star</mat-icon>
+    <h1 matListItemTitle>Favoritas</h1>
+  </mat-list-item>
+  <mat-list-item>
+    <mat-icon matListItemIcon>history</mat-icon>
+    <h1 matListItemTitle>Recentes</h1>
+  </mat-list-item>
+  <mat-list-item>
+    <mat-icon matListItemIcon style="color: rgb(232, 74, 95)!important">delete</mat-icon>
+    <h1 matListItemTitle>Lixeira</h1>
+  </mat-list-item>
+</mat-nav-list>
 
-<ul class='nav-list bottom-list folders'>
-  <li class='nav-list-header'>
-    <h1>Pastas</h1>
-    <div class='plus-area'>
-      <mat-icon>add</mat-icon>
-    </div>
-    <mat-icon class='expand'>expand_more</mat-icon>
-  </li>
-  <li class='nav-list-item folder'>
-    <mat-icon>folder</mat-icon>
-    <h2>Social</h2>
-  </li>
-  <li class='nav-list-item folder'>
-    <mat-icon>folder</mat-icon>
-    <h2>Finanças</h2>
-  </li>
-  <li class='nav-list-item folder'>
-    <mat-icon>folder</mat-icon>
-    <h2>Trabalho</h2>
-  </li>
-  <li class='nav-list-item folder'>
-    <mat-icon>folder</mat-icon>
-    <h2>Streamings</h2>
-  </li>
-  <li class='nav-list-item folder'>
-    <mat-icon>folder</mat-icon>
-    <h2>Outros</h2>
-  </li>
-</ul>
+<mat-accordion class='folders-accordion'>
+  <mat-expansion-panel class='expansion-panel' (opened)="panelOpenState = true"
+                       (closed)="panelOpenState = false">
+    <mat-expansion-panel-header class='mat-expansion-panel-header'>
+      <mat-panel-title>
+        <span class='nav-list-title'>Pastas</span>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <mat-nav-list class="nav-list bottom-list folders">
+      <mat-list-item class="nav-list-item folder">
+        <mat-icon matListItemIcon>folder</mat-icon>
+        <h2 matListItemTitle>Social</h2>
+      </mat-list-item>
+      <mat-list-item class="nav-list-item folder">
+        <mat-icon matListItemIcon>folder</mat-icon>
+        <h2 matListItemTitle>Finanças</h2>
+      </mat-list-item>
+      <mat-list-item class="nav-list-item folder">
+        <mat-icon matListItemIcon>folder</mat-icon>
+        <h2 matListItemTitle>Trabalho</h2>
+      </mat-list-item>
+      <mat-list-item class="nav-list-item folder">
+        <mat-icon matListItemIcon>folder</mat-icon>
+        <h2 matListItemTitle>Streamings</h2>
+      </mat-list-item>
+      <mat-list-item class="nav-list-item folder">
+        <mat-icon matListItemIcon>folder</mat-icon>
+        <h2 matListItemTitle>Outros</h2>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-expansion-panel>
 
-<ul class='nav-list bottom-list tags'>
-  <li class='nav-list-header'>
-    <h1>Tags</h1>
-    <div class='plus-area'>
-      <mat-icon>add</mat-icon>
-    </div>
-    <mat-icon class='expand'>expand_more</mat-icon>
-  </li>
-  <li class='nav-list-item tag'>
-    <mat-icon>label</mat-icon>
-    <h2>Musica</h2>
-  </li>
-  <li class='nav-list-item tag'>
-    <mat-icon>label</mat-icon>
-    <h2>Video</h2>
-  </li>
-  <li class='nav-list-item tag'>
-    <mat-icon>label</mat-icon>
-    <h2>Games</h2>
-  </li>
-  <li class='nav-list-item tag'>
-    <mat-icon>label</mat-icon>
-    <h2>Redes Sociais</h2>
-  </li>
-</ul>
+</mat-accordion>
+
+<mat-accordion class='tags-accordion'>
+  <mat-expansion-panel class='tags-expansion-panel' (opened)="panelOpenState = true"
+                       (closed)="panelOpenState = false">
+    <mat-expansion-panel-header class='mat-expansion-panel-header'>
+      <mat-panel-title>
+        <span class='nav-list-title'>Tags</span>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <mat-nav-list class="nav-list bottom-list tags">
+      <mat-list-item class="nav-list-item tag">
+        <mat-icon matListItemIcon>tag</mat-icon>
+        <h2 matListItemTitle>Musica</h2>
+      </mat-list-item>
+      <mat-list-item class="nav-list-item tag">
+        <mat-icon matListItemIcon>tag</mat-icon>
+        <h2 matListItemTitle>Video</h2>
+      </mat-list-item>
+      <mat-list-item class="nav-list-item tag">
+        <mat-icon matListItemIcon>tag</mat-icon>
+        <h2 matListItemTitle>Games</h2>
+      </mat-list-item>
+      <mat-list-item class="nav-list-item tag">
+        <mat-icon matListItemIcon>tag</mat-icon>
+        <h2 matListItemTitle>Redes Sociais</h2>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-expansion-panel>
+</mat-accordion>

@@ -6,6 +6,11 @@ import { ContentComponent } from './components/content/content.component';
 import { CoreComponent } from './components/core/core.component';
 import { NavbarComponent } from './components/sidebar/navbar/navbar.component';
 import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatButtonModule } from '@angular/material/button';
+import { MatListModule } from '@angular/material/list';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
   declarations: [
@@ -15,6 +20,14 @@ import { MatIconModule } from '@angular/material/icon';
     CoreComponent,
     NavbarComponent
   ],
-  imports: [CommonModule, MatIconModule]
+  imports: [
+    CommonModule,
+    MatIconModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatButtonModule,
+    MatListModule,
+    MatExpansionModule
+  ]
 })
 export class LayoutModule {}
