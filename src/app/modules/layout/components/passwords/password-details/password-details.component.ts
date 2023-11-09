@@ -11,12 +11,18 @@ import { Password } from '../../../../../shared/models/password';
 export class PasswordDetailsComponent {
   selectedPassword$!: Observable<Password | null>;
   show = false;
+  editing = false;
+
   constructor(private readonly passwordService: PasswordService) {
     this.selectedPassword$ = this.passwordService.selectedPassword$;
   }
 
-  toogleShow() {
+  toggleShow() {
     this.show = !this.show;
+  }
+
+  toggleEdit() {
+    this.editing = !this.editing;
   }
 
   copyPassword(senha: string) {
@@ -29,4 +35,16 @@ export class PasswordDetailsComponent {
   deletePassword(id: string) {
     this.passwordService.deletePassword(id);
   }
+
+  updatePassword(
+    application: string,
+    username: string,
+    password: string,
+    website: string,
+    notes: string
+  ) {
+    this.passwordService.updatePassword(application, username, password, website, notes);
+  }
 }
+
+// 'show ? password$.passphrase : "*******"'

@@ -15,7 +15,7 @@ export class PasswordService {
   private _passwords$: Observable<Password[] | null> = this.passwordsSubject.asObservable();
   private selectedPasswordSubject = new BehaviorSubject<Password | null>(null);
   _selectedPassword$ = this.selectedPasswordSubject.asObservable();
-  private showPasswordFormSubject = new BehaviorSubject<boolean>(true);
+  private showPasswordFormSubject = new BehaviorSubject<boolean>(false);
   _showPasswordFormFlag = this.showPasswordFormSubject.asObservable();
 
   constructor(private http: HttpClient) {}
@@ -103,5 +103,36 @@ export class PasswordService {
   getPasswordsByUserId(userId: string): Observable<Password[] | null> {
     const url = `${this._endpoint}?userId=${userId}`;
     return this.http.get<Password[]>(url);
+  }
+
+  updatePassword(
+    application: string,
+    username: string,
+    passphrase: string,
+    website: string,
+    notes: string
+  ): void {
+    const password = this.selectedPasswordSubject.getValue() as Password;
+    const url = `${this._endpoint}/${password.id}`;
+    this.http
+      .put<Password>(url, {
+        ...password,
+        application,
+        username,
+        passphrase,
+        website,
+        notes
+      })
+      .subscribe(updatedPassword => {
+        const passwords = this.passwordsSubject.getValue() as Password[];
+        const updatedPasswords = passwords.map(password => {
+          if (password.id === updatedPassword.id) {
+            return updatedPassword;
+          }
+          return password;
+        });
+        this.passwordsSubject.next(updatedPasswords);
+        alert('Senha atualizada com sucesso!');
+      });
   }
 }
