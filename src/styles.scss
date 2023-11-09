@@ -1,19 +1,49 @@
 /* You can add global styles to this file, and also import other style files */
 
+@import "theme.scss";
+
 html, body { height: 100%; width: 100% }
 
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
-  color: rgb(230, 230, 230);
-  background: rgb(30, 30, 35);
+  font-size: 1em;
+  background: $darkBg;
   overflow: hidden;
 }
 
 mat-icon {
-  font-size: 1.1em!important;
+  margin: 0!important;
+  padding: 0!important;
+  font-size: 1em!important;
   height: auto!important;
   width: auto!important;
   line-height: 1!important;
-  color: rgb(160,160,160)!important;
+  color: $lightIcon!important;
+}
+
+h1, h2, h3, h4, h5, h6, p, span, a, label {
+  color: $lightText;
+}
+
+::-webkit-scrollbar {
+  width: 1px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: black;
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: $darkBg;
+}
+
+/* Estilo para navegadores baseados em Firefox */
+/* Note que o Firefox não suporta a personalização total da barra de rolagem com CSS puro. */
+/* As seguintes regras de estilo se aplicarão à barra de rolagem do Firefox apenas em sistemas macOS. */
+/* Você pode ajustar esses valores conforme necessário. */
+* {
+  scrollbar-color: black black;
+  scrollbar-width: thin;
 }

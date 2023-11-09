@@ -17,6 +17,11 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src"
+              ]
+            },
             "outputPath": "dist/keytracker",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -30,7 +35,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/normalize.scss",
+              "src/theme.scss",
               "src/styles.scss"
             ],
             "scripts": []

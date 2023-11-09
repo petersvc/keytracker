@@ -1,0 +1,13 @@
+$primary: rgb(21, 32, 190);  /* Azul */ //rgb(81, 1, 155); // roxo
+$accent: rgb(23, 93, 220); /* Azul */
+$darkBg: rgb(29, 29, 32); // rgb(30, 30, 35); /* Preto */
+$darkContext: rgb(45, 43, 47); /* Preto */
+$lightText: rgb(230,230,230); /* Branco */
+$darkText: rgba(0, 0, 0, 0.87); /* Preto */
+$lightIcon: rgba(200, 200, 200, 1); /* Cinza */
+$unfocusedIcon: rgba(150, 150, 150, 1); /* Cinza */
+$lightBorder: rgba(50, 50, 50, 1); /* Cinza */
+
+@use '@angular/material' as mat;
+
+@include mat.core();

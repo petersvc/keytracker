@@ -1,19 +1,58 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { SidebarComponent } from './sidebar/sidebar.component';
-import { TopbarComponent } from './topbar/topbar.component';
-import { ContentComponent } from './content/content.component';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { TopbarComponent } from './components/topbar/topbar.component';
+import { PasswordsComponent } from './components/passwords/passwords.component';
+import { PasswordsListComponent } from './components/passwords/passwords-list/passwords-list.component';
+import { PasswordDetailsComponent } from './components/passwords/password-details/password-details.component';
+import { NavbarComponent } from './components/sidebar/navbar/navbar.component';
+import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatButtonModule } from '@angular/material/button';
+import { MatListModule } from '@angular/material/list';
+import { MatExpansionModule } from '@angular/material/expansion';
 
+import { AddPasswordFormComponent } from './components/sidebar/add-password-form/add-password-form.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 
+import { MatInputModule } from '@angular/material/input';
+import { MatOptionModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatChipsModule } from '@angular/material/chips';
+import { NewPasswordFormComponent } from './components/passwords/new-password-form/new-password-form.component';
 
 @NgModule({
   declarations: [
     SidebarComponent,
     TopbarComponent,
-    ContentComponent
+    PasswordsComponent,
+    PasswordsListComponent,
+    PasswordDetailsComponent,
+    NavbarComponent,
+    AddPasswordFormComponent,
+    NewPasswordFormComponent
   ],
+  exports: [SidebarComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    MatIconModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatButtonModule,
+    MatListModule,
+    MatExpansionModule,
+    NgOptimizedImage,
+    FormsModule,
+    ReactiveFormsModule,
+    RouterLink,
+    MatSelectModule,
+    MatOptionModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatChipsModule
   ]
 })
-export class LayoutModule { }
+export class LayoutModule {}

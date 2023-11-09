@@ -1,57 +1,291 @@
 {
   "users": [
     {
-      "id": "teste1",
-      "name": "testonildo",
-      "masterPassword": "senha1"
-    },
-    {
-      "id": "petersvc",
-      "name": "Peter",
-      "masterPassword": "senha2"
-    },
-    {
       "id": "1",
-      "name": "1",
-      "masterPassword": "1"
+      "name": "testonildo",
+      "masterPassword": "hashedMasterPass1",
+      "salt": "uniqueSalt1"
+    },
+    {
+      "id": "2",
+      "name": "Peter Costa",
+      "masterPassword": "hashedMasterPass2",
+      "salt": "uniqueSalt2"
     }
   ],
   "passwords": [
     {
+      "id": "1",
       "application": "Gmail",
+      "username": "petersvcosta@gmail.com",
       "passphrase": "gmailPass123",
-      "description": "Password for Gmail",
-      "userId": "a1b2c3d4e5f"
+      "website": "google.com",
+      "notes": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+      "userId": "2",
+      "folder": "Outros",
+      "tags": [
+        "Pessoal"
+      ]
     },
     {
+      "id": "2",
       "application": "Facebook",
+      "username": "petersvcosta@gmail.com",
       "passphrase": "fbSecure456",
-      "description": "Password for Facebook",
-      "userId": "x9y8z7w6v5"
+      "website": "google.com",
+      "notes": "Password for Facebook",
+      "userId": "2",
+      "folder": "Social",
+      "tags": [
+        "Rede Social"
+      ]
     },
     {
+      "id": "3",
       "application": "Twitter",
+      "username": "petersvcosta@gmail.com",
       "passphrase": "twitStrong789",
-      "description": "Password for Twitter",
-      "userId": "m1n2o3p4q5r"
+      "website": "google.com",
+      "notes": "Password for Twitter",
+      "userId": "2",
+      "folder": "Social",
+      "tags": [
+        "Rede Social"
+      ]
     },
     {
+      "id": "4",
       "application": "Instagram",
+      "username": "petersvcosta@gmail.com",
       "passphrase": "instaPassphrase456",
-      "description": "Password for Instagram",
-      "userId": "a1b2c3d4e5f"
+      "website": "google.com",
+      "notes": "Password for Instagram",
+      "userId": "2",
+      "folder": "Social",
+      "tags": [
+        "Rede Social"
+      ]
     },
     {
+      "id": "5",
       "application": "LinkedIn",
+      "username": "petersvcosta@gmail.com",
       "passphrase": "linkedInPass123",
-      "description": "Password for LinkedIn",
-      "userId": "x9y8z7w6v5"
+      "website": "google.com",
+      "notes": "Password for LinkedIn",
+      "userId": "2",
+      "folder": "Trabalho",
+      "tags": [
+        "Rede Social",
+        "Trabalho"
+      ]
     },
     {
+      "id": "6",
       "application": "Netflix",
+      "username": "petersvcosta@gmail.com",
       "passphrase": "netflixSafe789",
-      "description": "Password for Netflix",
-      "userId": "m1n2o3p4q5r"
+      "website": "google.com",
+      "notes": "Password for Netflix",
+      "userId": "2",
+      "folder": "Streamings",
+      "tags": [
+        "Vídeo",
+        "Streaming"
+      ]
+    },
+    {
+      "id": "7",
+      "application": "B3",
+      "username": "petersvcosta@gmail.com",
+      "passphrase": "b3123",
+      "website": "google.com",
+      "notes": "Password for B3",
+      "userId": "2",
+      "folder": "Finanças",
+      "tags": [
+        "Pessoal"
+      ]
+    },
+    {
+      "id": "8",
+      "application": "Facebook",
+      "username": "user123",
+      "passphrase": "fbpass456",
+      "website": "facebook.com",
+      "notes": "Password for Facebook",
+      "userId": "2",
+      "folder": "Social",
+      "tags": [
+        "Rede Social"
+      ]
+    },
+    {
+      "id": "9",
+      "application": "Twitter",
+      "username": "twit_user",
+      "passphrase": "twitterPass789",
+      "website": "twitter.com",
+      "notes": "Password for Twitter",
+      "userId": "2",
+      "folder": "Social",
+      "tags": [
+        "Rede Social"
+      ]
+    },
+    {
+      "id": "10",
+      "application": "LinkedIn",
+      "username": "linkedin_user",
+      "passphrase": "linkedinPass123",
+      "website": "linkedin.com",
+      "notes": "Password for LinkedIn",
+      "userId": "2",
+      "folder": "Trabalho",
+      "tags": [
+        "Profissional"
+      ]
+    },
+    {
+      "id": "11",
+      "application": "Netflix",
+      "username": "netflix_user",
+      "passphrase": "netflixPass456",
+      "website": "netflix.com",
+      "notes": "Password for Netflix",
+      "userId": "2",
+      "folder": "Entretenimento",
+      "tags": [
+        "Streaming"
+      ]
+    },
+    {
+      "id": "12",
+      "application": "Amazon",
+      "username": "amazon_user",
+      "passphrase": "amazonPass789",
+      "website": "amazon.com",
+      "notes": "Password for Amazon",
+      "userId": "2",
+      "folder": "Compras",
+      "tags": [
+        "E-commerce"
+      ]
+    },
+    {
+      "id": "13",
+      "application": "WhatsApp",
+      "username": "whatsapp_user",
+      "passphrase": "whatsappPass123",
+      "website": "whatsapp.com",
+      "notes": "Password for WhatsApp",
+      "userId": "2",
+      "folder": "Comunicação",
+      "tags": [
+        "Mensagens"
+      ]
+    },
+    {
+      "id": "14",
+      "application": "Instagram",
+      "username": "insta_user",
+      "passphrase": "instaPass456",
+      "website": "instagram.com",
+      "notes": "Password for Instagram",
+      "userId": "2",
+      "folder": "Social",
+      "tags": [
+        "Rede Social"
+      ]
+    },
+    {
+      "id": "15",
+      "application": "Google Drive",
+      "username": "drive_user",
+      "passphrase": "drivePass789",
+      "website": "drive.google.com",
+      "notes": "Password for Google Drive",
+      "userId": "2",
+      "folder": "Trabalho",
+      "tags": [
+        "Produtividade"
+      ]
+    },
+    {
+      "id": "16",
+      "application": "Spotify",
+      "username": "spotify_user",
+      "passphrase": "spotifyPass123",
+      "website": "spotify.com",
+      "notes": "Password for Spotify",
+      "userId": "2",
+      "folder": "Entretenimento",
+      "tags": [
+        "Streaming"
+      ]
+    },
+    {
+      "id": "17",
+      "application": "Gmail",
+      "username": "gmail_user",
+      "passphrase": "gmailPass456",
+      "website": "mail.google.com",
+      "notes": "Password for Gmail",
+      "userId": "2",
+      "folder": "Comunicação",
+      "tags": [
+        "Email"
+      ]
+    },
+    {
+      "id": "18",
+      "application": "Twitch",
+      "username": "twitch_user",
+      "passphrase": "twitchPass789",
+      "website": "twitch.tv",
+      "notes": "Password for Twitch",
+      "userId": "2",
+      "folder": "Entretenimento",
+      "tags": [
+        "Streaming"
+      ]
+    },
+    {
+      "id": "19",
+      "application": "Snapchat",
+      "username": "snap_user",
+      "passphrase": "snapPass123",
+      "website": "snapchat.com",
+      "notes": "Password for Snapchat",
+      "userId": "2",
+      "folder": "Social",
+      "tags": [
+        "Rede Social"
+      ]
+    },
+    {
+      "id": "20",
+      "application": "Microsoft Teams",
+      "username": "teams_user",
+      "passphrase": "teamsPass456",
+      "website": "teams.microsoft.com",
+      "notes": "Password for Microsoft Teams",
+      "userId": "2",
+      "folder": "Trabalho",
+      "tags": [
+        "Colaboração"
+      ]
+    },
+    {
+      "id": "448",
+      "application": "dribble",
+      "username": "petersvc@gmail.com",
+      "passphrase": "12345@dribble",
+      "website": "dribbble.com",
+      "notes": "Senha para o site dribble, um repositório de projetos de designers gráficos",
+      "userId": "2",
+      "folder": [],
+      "tags": []
     }
   ]
 }

@@ -1,3 +1,38 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$keytracker-primary: mat.define-palette(mat.$indigo-palette);
+$keytracker-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$keytracker-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$keytracker-theme: mat.define-light-theme((
+  color: (
+    primary: $keytracker-primary,
+    accent: $keytracker-accent,
+    warn: $keytracker-warn,
+  )
+));
+
+// Include theme styles for passwords and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($keytracker-theme);
+
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 
 /* Document
@@ -19,7 +54,7 @@ html {
  * Remove the margin in all browsers.
  */
 
-body {
+:host body {
   margin: 0;
 }
 
@@ -27,7 +62,7 @@ body {
  * Render the `main` element consistently in IE.
  */
 
-main {
+:host main {
   display: block;
 }
 
@@ -40,7 +75,7 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0;
 }
 
-/* Grouping content
+/* Grouping passwords-list
    ========================================================================== */
 
 /**
@@ -48,7 +83,7 @@ h1, h2, h3, h4, h5, h6 {
  * 2. Show the overflow in Edge and IE.
  */
 
-hr {
+:host hr {
   box-sizing: content-box; /* 1 */
   height: 0; /* 1 */
   overflow: visible; /* 2 */
@@ -59,7 +94,7 @@ hr {
  * 2. Correct the odd `em` font sizing in all browsers.
  */
 
-pre {
+:host pre {
   font-family: monospace, monospace; /* 1 */
   font-size: 1em; /* 2 */
 }
@@ -71,7 +106,7 @@ pre {
  * Remove the gray background on active links in IE 10.
  */
 
-a {
+:host a {
   background-color: transparent;
 }
 
@@ -80,7 +115,7 @@ a {
  * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
  */
 
-abbr[title] {
+:host abbr[title] {
   border-bottom: none; /* 1 */
   text-decoration: underline; /* 2 */
   text-decoration: underline dotted; /* 2 */
@@ -91,7 +126,7 @@ abbr[title] {
  */
 
 b,
-strong {
+:host strong {
   font-weight: bolder;
 }
 
@@ -100,7 +135,7 @@ strong {
  * 2. Correct the odd `em` font sizing in all browsers.
  */
 
-code,
+:host code,
 kbd,
 samp {
   font-family: monospace, monospace; /* 1 */
@@ -111,7 +146,7 @@ samp {
  * Add the correct font size in all browsers.
  */
 
-small {
+:host small {
   font-size: 80%;
 }
 
@@ -120,7 +155,7 @@ small {
  * all browsers.
  */
 
-sub,
+:host sub,
 sup {
   font-size: 75%;
   line-height: 0;
@@ -128,22 +163,22 @@ sup {
   vertical-align: baseline;
 }
 
-sub {
+:host sub {
   bottom: -0.25em;
 }
 
-sup {
+:host sup {
   top: -0.5em;
 }
 
-/* Embedded content
+/* Embedded passwords-list
    ========================================================================== */
 
 /**
  * Remove the border on images inside links in IE 10.
  */
 
-img {
+:host img {
   border-style: none;
 }
 
@@ -155,7 +190,7 @@ img {
  * 2. Remove the margin in Firefox and Safari.
  */
 
-button,
+:host button,
 input,
 optgroup,
 select,

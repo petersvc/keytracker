@@ -1,44 +1,107 @@
 import { Injectable } from '@angular/core';
-import { PasswordRepository } from '../repositories/passwordRepository';
 import { Password } from '../models/password';
+import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PasswordService {
-  private _passwordRepository: PasswordRepository;
+  private readonly _endpoint: string = `${environment.API}/passwords`;
+  private passwordsSubject: BehaviorSubject<Password[] | null> = new BehaviorSubject<
+    Password[] | null
+  >(null);
+  private _passwords$: Observable<Password[] | null> = this.passwordsSubject.asObservable();
+  private selectedPasswordSubject = new BehaviorSubject<Password | null>(null);
+  _selectedPassword$ = this.selectedPasswordSubject.asObservable();
+  private showPasswordFormSubject = new BehaviorSubject<boolean>(true);
+  _showPasswordFormFlag = this.showPasswordFormSubject.asObservable();
 
-  constructor() {
-    this._passwordRepository = new PasswordRepository();
+  constructor(private http: HttpClient) {}
+
+  get selectedPassword$(): Observable<Password | null> {
+    return this._selectedPassword$;
   }
 
-  getAllPasswords(): Map<string, Password> | undefined {
-    return this._passwordRepository.getAllPasswords();
+  set selectedPassword$(password: Password) {
+    this.selectedPasswordSubject.next(password);
   }
 
-  getPasswordByApplication(application: string): Password | undefined {
-    return this._passwordRepository.getPasswordByApplication(application);
+  setFirstSelectedPassword() {
+    this.passwords$.subscribe(passwords => {
+      const firstPassword = passwords ? passwords[0] : null;
+      this.selectedPassword$ = firstPassword as Password;
+    });
   }
 
-  addPassword(passphrase: string, application: string, description: string, userId: string) {
-    if (this._passwordRepository.getPasswordByApplication(application) === undefined) {
-      this._passwordRepository.addPassword(
-        new Password(application, passphrase, description, userId)
-      );
-    } else {
-      console.log('Password already exists');
-    }
+  get showPasswordFormFlag(): Observable<boolean> {
+    return this._showPasswordFormFlag;
   }
 
-  deletePassword(application: string) {
-    this._passwordRepository.deletePasswordByApplication(application);
+  togglePasswordFormFlag() {
+    const flag = !this.showPasswordFormSubject.getValue();
+    this.showPasswordFormSubject.next(flag);
   }
 
-  updatePassword(application: string, newPassphrase: string, newDescription: string) {
-    this._passwordRepository.updatePasswordByApplication(
-      application,
-      newPassphrase,
-      newDescription
-    );
+  get passwords$(): Observable<Password[] | null> {
+    return this._passwords$;
+  }
+
+  setPasswords(userId: string): void {
+    this.getPasswordsByUserId(userId).subscribe(passwords => {
+      this.passwordsSubject.next(passwords);
+    });
+  }
+
+  createPassword(
+    application: string,
+    username: string,
+    passphrase: string,
+    website: string,
+    notes: string,
+    userId: string
+  ): void {
+    this.http
+      .post<Password>(this._endpoint, {
+        id: this.generateId(),
+        application,
+        username,
+        passphrase,
+        website,
+        notes,
+        userId,
+        folder: [],
+        tags: []
+      })
+      .subscribe(password => {
+        //this.setPassword(password);
+        this.passwordsSubject.next([...(this.passwordsSubject.getValue() as Password[]), password]);
+        alert(`Senha criada com sucesso!`);
+      });
+  }
+
+  deletePassword(passwordId: string): void {
+    const url = `${this._endpoint}/${passwordId}`;
+    this.http.delete(url).subscribe(() => {
+      const passwords = this.passwordsSubject.getValue() as Password[];
+      const updatedPasswords = passwords.filter(password => password.id !== passwordId);
+      this.passwordsSubject.next(updatedPasswords);
+      alert('Senha deletada com sucesso!');
+    });
+  }
+
+  generateId(): string {
+    return Math.floor(Math.random() * 10000).toString();
+  }
+
+  getPasswordByPasswordId(id: string): Observable<Password> {
+    const url = `${this._endpoint}/${id}`;
+    return this.http.get<Password>(url);
+  }
+
+  getPasswordsByUserId(userId: string): Observable<Password[] | null> {
+    const url = `${this._endpoint}?userId=${userId}`;
+    return this.http.get<Password[]>(url);
   }
 }
