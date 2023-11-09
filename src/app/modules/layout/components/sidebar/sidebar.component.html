@@ -1,5 +1,28 @@
-<mat-toolbar class='header'>
-    <h1 class='logotype'>Keytracker.</h1>
-</mat-toolbar>
+<div class='container'>
+    <mat-toolbar class='header'>
+        <div class='header-logo'>
+            <mat-icon class='header-logo-icon'>fingerprint</mat-icon>
+        </div>
+        <h1 class='logotype'>Keytracker.</h1>
+    </mat-toolbar>
 
-<app-navbar />
+    <div class="searchbar">
+        <mat-icon class='searchbar-icon' matPrefix>search</mat-icon>
+        <input class='searchbar-input' matInput placeholder="Pesquisar" (keyup.enter)="realizarPesquisa($event)" />
+    </div>
+
+
+    <app-navbar />
+
+    <button mat-raised-button class='addPasswordButton' (click)='toggleNewPasswordForm()'>Nova Senha +</button>
+
+    <app-new-password-form *ngIf='showPasswordFormFlag | async' />
+
+    <mat-toolbar class='sidebar-footer' *ngIf='user$ | async as user'>
+        <div class='user-profile'>
+            <img src="assets/eu.jpg" alt="avatarImg"/>
+            <span>{{user.name}}</span>
+        </div>
+        <mat-icon>settings</mat-icon>
+    </mat-toolbar>
+</div>

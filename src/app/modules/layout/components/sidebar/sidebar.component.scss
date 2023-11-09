@@ -1,20 +1,35 @@
+@import "theme.scss";
+
 :host {
   display: flex;
   flex-direction: column;
-  width: 13%;
+  width: 18%;
   height: 100%;
-  background-color: rgb(30, 30, 35);
-  border-right: 2px solid rgba(22, 22, 22, 1);
+  // border-right: 1px solid $lightBorder; // rgba(22, 22, 22, 1);
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  box-shadow: black 0 0 3px 0;
+  padding: 0;
+  margin: 0 0 0 0!important;
+  // background: $darkContext;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  margin: 8% 0 8% 0;
+  padding: 0;
+  width: 100%;
+  height: 94%;
+  //background: blue;
 }
 
 .header {
   display: flex;
   flex-direction: row;
   align-items: center;
-  //justify-content: center;
-  height: 8%;
-  border-bottom: 2px solid rgba(22, 22, 22, 1);
-  background: var(--custom-bgcolor);
+  padding: 0;
+  margin: 0 7%
 }
 
 .header mat-icon {
@@ -22,16 +37,86 @@
 }
 
 .header div {
-  // margin-left: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // margin: 5% 0 0 2%;
+  padding: 6%;
+  border-radius: 5px;
+  background: $primary;
 }
 
 .header h1 {
-  font-size: 0.9em;
-  margin: 0 0 0 3%;
+  margin: 0 0 0 5%;
+  font-weight: bold;
+  font-size: 1.1em;
 }
 
-.header h6 {
-  margin-top: 3px;
-  font-size: 0.75em;
-  color: rgb(120,120,120);
+.searchbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10% 7% 0 7%;
+  padding: 2% 0 2% 3%;
+  flex-direction: row;
+  width: 84%;
+  background: $darkContext;
+  // border: 1px solid $lightBorder;
+  box-shadow: black 0 0 1px 0;
+  border-radius: 8px;
+}
+
+.searchbar-icon {
+  font-size: 1.4em!important;
+  color: $unfocusedIcon;
+  z-index: 20;
+}
+.searchbar-input {
+  //text-indent: 20%;
+  margin-left: 5%;
+  width: 100%;
+  height: 100%;
+  color: $lightText;
+  background: transparent;
+  font-size: 0.9em;
+  border: none;
+  outline: none;
+  z-index: 1;
+}
+
+.addPasswordButton{
+  margin: auto 7% 0 7%!important;
+  background: $accent!important;
+  font-weight: bold;
+  font-size: 0.9em;
+  padding: 20px!important;
+  border-radius: 10px;
+  // display: none;
+}
+
+
+
+.sidebar-footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0;
+  margin: auto 7% 0 7%!important;
+  width: 86%;
+  align-items: center;
+  // background: red;
+}
+
+.user-profile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.8em;
+}
+
+.user-profile img {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  margin-right: 10px;
 }

@@ -1,52 +1,66 @@
+@import "theme.scss";
+
 :host {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  margin: 0 0 0 7%;
+  width: 93%;
+  height: 70%;
+  // background: black;
+  overflow-y: scroll;
 }
 
 mat-accordion{
   height: auto;
-  line-height: 1;
-  margin-top: 5%;
+  margin-top: -5%;
+  margin-bottom: 6%;
+  width: 93%;
 }
 
 mat-expansion-panel {
-  background-color: transparent;
-  padding: 0!important;
+  padding: 0 0 0 2%!important;
+  width: 97%;
   box-shadow: none!important;
   border-radius: 0!important;
 }
 
 mat-expansion-panel-header{
+  display: flex;
+  padding: 3% 0 3% 4.5%;
+}
+
+.nav-list-title {
+  align-self: center;
+  font-size: 0.9em;
+}
+
+mat-expansion-panel-header mat-icon {
+  align-self: center;
+  color: $unfocusedIcon!important;
+}
+
+mat-expansion-panel-header.mat-expanded {
   margin-bottom: 0;
   margin-top: 0;
-  padding: 5%;
-  height: 0;
-}
-mat-expansion-panel-header.mat-expanded {
-  margin-bottom: 3%;
-  margin-top: 0;
-  height: 0;
 }
 
 ::ng-deep mat-expansion-panel-header .mat-expansion-indicator:after {
-  color: rgb(150,150,150);
+  margin-top: -70%;
+  color: $unfocusedIcon;
+  height: 0.1px;
+  width: 0.1px;
 }
 
 ::ng-deep {
   mat-expansion-panel {
     .mat-expansion-panel-body {
-      padding: 0 5% 0 5%;
+      padding: 4% 0 0 0;
     }
   }
 }
 
 .top-list {
-  margin-top: 10%;
-  padding-left: 5%;
-  padding-right: 5%;
-  width: 90%;
-  height: 100%;
+  margin-top: 6%;
 }
 
 .bottom-list {
@@ -54,32 +68,25 @@ mat-expansion-panel-header.mat-expanded {
   margin: 0!important;
 }
 
-mat-accordion {
-  padding: 0 2% 0 2%;
-}
-
 .nav-list mat-list-item {
   padding: 0 0 0 3%;
-  margin-bottom: 2%;
+  margin-bottom: 6%;
   width: 100%;
   height: auto;
 }
 
 .nav-list h1, h2 {
-  font-size: 1.1em;
-  color: rgba(220,220,220);
+  font-size: 0.9em;
   font-weight: 500;
   margin: 0 0 0 10px;
 }
 
-.nav-list mat-icon {
-  font-size: 1.4em !important;
+.nav-list a {
+  text-decoration: none;
 }
 
-.nav-list-title {
-  margin: 0!important;
-  padding: 0!important;
-  color: rgb(150,150,150);
+.nav-list mat-icon {
+  font-size: 1.4em !important;
 }
 
 .nav-list-header button {
@@ -91,11 +98,13 @@ mat-accordion {
   padding: 0;
 }
 
-.add {
-  margin-right: 5px!important;
+.folder mat-icon, .tag mat-icon {
+  font-size: 1em!important;
+  color: $unfocusedIcon!important;
+  margin-left: 12%!important;
 }
 
-.expand {
-  margin-left: 20px!important;
-  margin-right: 15px;
+.folder h2, .tag h2 {
+  margin-left: 6%;
+  color: $unfocusedIcon!important
 }

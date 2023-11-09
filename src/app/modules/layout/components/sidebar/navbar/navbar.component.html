@@ -1,10 +1,10 @@
 <mat-nav-list class="nav-list top-list">
   <mat-list-item>
-    <mat-icon matListItemIcon>shield</mat-icon>
-    <h1 matListItemTitle>Senhas</h1>
+    <mat-icon class="material-icons-outlined" matListItemIcon>shield</mat-icon>
+    <a routerLink='/passwords' matListItemTitle><h1>Senhas</h1></a>
   </mat-list-item>
   <mat-list-item>
-    <mat-icon matListItemIcon style="color: rgb(254, 191, 99)!important">star</mat-icon>
+    <mat-icon matListItemIcon style="color: rgb(254, 191, 99)!important">star_outline</mat-icon>
     <h1 matListItemTitle>Favoritas</h1>
   </mat-list-item>
   <mat-list-item>
@@ -12,71 +12,47 @@
     <h1 matListItemTitle>Recentes</h1>
   </mat-list-item>
   <mat-list-item>
-    <mat-icon matListItemIcon style="color: rgb(232, 74, 95)!important">delete</mat-icon>
+    <mat-icon matListItemIcon style="color: rgb(232, 74, 95)!important">delete_outline</mat-icon>
     <h1 matListItemTitle>Lixeira</h1>
   </mat-list-item>
 </mat-nav-list>
 
-<mat-accordion class='folders-accordion'>
-  <mat-expansion-panel class='expansion-panel' (opened)="panelOpenState = true"
-                       (closed)="panelOpenState = false">
+<mat-accordion class='folders-accordion' [togglePosition]="'before'">
+  <mat-expansion-panel class='expansion-panel' (opened)="panelOpenState=true"
+                       (closed)="panelOpenState=false" expanded>
     <mat-expansion-panel-header class='mat-expansion-panel-header'>
       <mat-panel-title>
         <span class='nav-list-title'>Pastas</span>
       </mat-panel-title>
+      <mat-icon class="material-icons-outlined">add</mat-icon>
     </mat-expansion-panel-header>
     <mat-nav-list class="nav-list bottom-list folders">
-      <mat-list-item class="nav-list-item folder">
-        <mat-icon matListItemIcon>folder</mat-icon>
-        <h2 matListItemTitle>Social</h2>
-      </mat-list-item>
-      <mat-list-item class="nav-list-item folder">
-        <mat-icon matListItemIcon>folder</mat-icon>
-        <h2 matListItemTitle>Finanças</h2>
-      </mat-list-item>
-      <mat-list-item class="nav-list-item folder">
-        <mat-icon matListItemIcon>folder</mat-icon>
-        <h2 matListItemTitle>Trabalho</h2>
-      </mat-list-item>
-      <mat-list-item class="nav-list-item folder">
-        <mat-icon matListItemIcon>folder</mat-icon>
-        <h2 matListItemTitle>Streamings</h2>
-      </mat-list-item>
-      <mat-list-item class="nav-list-item folder">
-        <mat-icon matListItemIcon>folder</mat-icon>
-        <h2 matListItemTitle>Outros</h2>
+      <mat-list-item class="nav-list-item folder" *ngFor='let folder of folders'>
+        <mat-icon class="material-icons" matListItemIcon>folder</mat-icon>
+        <h2 matListItemTitle>{{folder}}</h2>
       </mat-list-item>
     </mat-nav-list>
   </mat-expansion-panel>
-
 </mat-accordion>
 
-<mat-accordion class='tags-accordion'>
+<mat-accordion class='tags-accordion' [togglePosition]="'before'">
   <mat-expansion-panel class='tags-expansion-panel' (opened)="panelOpenState = true"
-                       (closed)="panelOpenState = false">
+                       (closed)="panelOpenState = false" expanded>
     <mat-expansion-panel-header class='mat-expansion-panel-header'>
       <mat-panel-title>
         <span class='nav-list-title'>Tags</span>
       </mat-panel-title>
+      <mat-icon class="material-icons-outlined">add</mat-icon>
     </mat-expansion-panel-header>
 
     <mat-nav-list class="nav-list bottom-list tags">
-      <mat-list-item class="nav-list-item tag">
+      <mat-list-item class="nav-list-item tag" *ngFor='let tag of tags' >
         <mat-icon matListItemIcon>tag</mat-icon>
-        <h2 matListItemTitle>Musica</h2>
+        <h2 matListItemTitle>{{tag}}</h2>
       </mat-list-item>
-      <mat-list-item class="nav-list-item tag">
-        <mat-icon matListItemIcon>tag</mat-icon>
-        <h2 matListItemTitle>Video</h2>
-      </mat-list-item>
-      <mat-list-item class="nav-list-item tag">
-        <mat-icon matListItemIcon>tag</mat-icon>
-        <h2 matListItemTitle>Games</h2>
-      </mat-list-item>
-      <mat-list-item class="nav-list-item tag">
-        <mat-icon matListItemIcon>tag</mat-icon>
-        <h2 matListItemTitle>Redes Sociais</h2>
-      </mat-list-item>
+
     </mat-nav-list>
   </mat-expansion-panel>
 </mat-accordion>
+
+
