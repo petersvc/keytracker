@@ -31,5 +31,12 @@ export class PasswordsListComponent {
   selectPassword(password: Password) {
     this.passwordService.selectedPassword$ = password;
   }
+
+  copyPassword(senha: string) {
+    navigator.clipboard.writeText(senha).then(
+      () => console.log('Texto copiado com sucesso!'),
+      err => console.error('Erro ao copiar texto: ', err)
+    );
+  }
 }
 //  || i === 0 && (selectedPassword$ | async) === null
