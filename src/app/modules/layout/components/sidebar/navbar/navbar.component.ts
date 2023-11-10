@@ -14,7 +14,15 @@ export class NavbarComponent {
   constructor(private readonly passwordService: PasswordService) {
     this.passwordService.passwords$.subscribe(passwords => {
       this.folders = new Set(passwords?.map(password => password.folder));
-      this.tags = new Set(passwords?.flatMap(password => password.tags));
+      const allTags: string[] = [];
+
+      passwords?.forEach(password => {
+        password.tags.forEach(tag => {
+          allTags.push(tag);
+        });
+      });
+
+      this.tags = new Set(allTags?.map(tag => tag));
     });
   }
 }
