@@ -15,7 +15,7 @@ export class AppComponent {
   selected = 'A-Z';
   constructor(
     private readonly userService: UserService,
-    private readonly authService: AuthService //private readonly passwordService: PasswordService
+    private readonly authService: AuthService
   ) {
     this.authService.login('2', 'hashedMasterPass2');
     this.user = this.userService.user$;

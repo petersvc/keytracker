@@ -13,8 +13,10 @@ export class PasswordService {
     Password[] | null
   >(null);
   private _passwords$: Observable<Password[] | null> = this.passwordsSubject.asObservable();
+
   private selectedPasswordSubject = new BehaviorSubject<Password | null>(null);
   _selectedPassword$ = this.selectedPasswordSubject.asObservable();
+
   private showPasswordFormSubject = new BehaviorSubject<boolean>(false);
   _showPasswordFormFlag = this.showPasswordFormSubject.asObservable();
 
@@ -48,8 +50,9 @@ export class PasswordService {
     return this._passwords$;
   }
 
-  setPasswords(userId: string): void {
-    this.getPasswordsByUserId(userId).subscribe(passwords => {
+  fetchPasswords(userId: string): void {
+    const url = `${this._endpoint}?userId=${userId}`;
+    this.http.get<Password[]>(url).subscribe(passwords => {
       this.passwordsSubject.next(passwords);
     });
   }

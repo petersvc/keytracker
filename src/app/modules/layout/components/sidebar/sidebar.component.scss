@@ -8,7 +8,7 @@
   // border-right: 1px solid $lightBorder; // rgba(22, 22, 22, 1);
   // border-top-right-radius: 20px;
   // border-bottom-right-radius: 20px;
-  box-shadow: black 0 0 3px 0;
+  // box-shadow: black 0 0 3px 0;
   padding: 0;
   margin: 0 0 0 0!important;
   // background: $darkContext;
@@ -20,7 +20,7 @@
   margin: 8% 0 8% 0;
   padding: 0;
   width: 100%;
-  height: 94%;
+  height: 100%;
   //background: blue;
 }
 
@@ -28,8 +28,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 0;
-  margin: 0 7%
+  padding: 0 0 0 7%;
 }
 
 .header mat-icon {
@@ -42,7 +41,7 @@
   align-items: center;
   // margin: 5% 0 0 2%;
   padding: 5%;
-  border-radius: 5px;
+  border-radius: 6px;
   background: $primary;
 }
 
@@ -72,10 +71,10 @@
   padding: 2% 0 2% 3%;
   flex-direction: row;
   width: 84%;
-  background: $darkContext;
+  background: $darkerBg;
   // border: 1px solid $lightBorder;
-  box-shadow: black 0 0 1px 0;
-  border-radius: 8px;
+  //box-shadow: rgb(20,20,20) 0 1px 0 0;
+  border-radius: 6px;
 }
 
 .searchbar-icon {
@@ -102,7 +101,7 @@
   font-weight: bold;
   font-size: 0.9em;
   padding: 20px!important;
-  border-radius: 10px;
+  border-radius: 6px;
   // display: none;
 }
 

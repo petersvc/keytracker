@@ -23,7 +23,7 @@ export class AuthService {
       next: user => {
         if (user !== null && user.masterPassword === password) {
           this.userService.setUser(user);
-          this.passwordService.setPasswords(user.id);
+          this.passwordService.fetchPasswords(user.id);
           this._isAuthenticated = true;
           // alert('Login realizado com sucesso ' + user.name);
         } else {

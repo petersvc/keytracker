@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { PasswordService } from '../../../../../shared/services/password.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -11,7 +12,10 @@ export class NavbarComponent {
   folders: Set<string> | undefined;
   tags: Set<string> | undefined;
 
-  constructor(private readonly passwordService: PasswordService) {
+  constructor(
+    private readonly passwordService: PasswordService,
+    private readonly router: Router
+  ) {
     this.passwordService.passwords$.subscribe(passwords => {
       this.folders = new Set(passwords?.map(password => password.folder));
       const allTags: string[] = [];
@@ -24,5 +28,10 @@ export class NavbarComponent {
 
       this.tags = new Set(allTags?.map(tag => tag));
     });
+  }
+
+  isTheActiveRoute(route: string): boolean {
+    console.log(this.router.url === route);
+    return this.router.url === route;
   }
 }
