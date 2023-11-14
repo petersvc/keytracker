@@ -28,11 +28,12 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 0 0 0 7%;
+  padding: 3% 0 0 7%;
 }
 
 .header mat-icon {
-  color: rgba(200, 200, 200, 1)!important;
+  color: $lightText!important;
+  font-size: 1.7em!important;
 }
 
 .header-logo {
@@ -40,14 +41,15 @@
   justify-content: center;
   align-items: center;
   // margin: 5% 0 0 2%;
-  padding: 5%;
+  padding: 0; //4%;
   border-radius: 6px;
-  background: $primary;
+  // background: $darkBg;
+  //border: 1px solid $primary;
 }
 
 .header h1 {
-  font-weight: bold;
-  font-size: 1.1em;
+  font-weight: normal;
+  font-size: 1.3em;
 }
 
 .header__typo {
@@ -58,9 +60,10 @@
 }
 
 .description {
-  margin-top: 3px;
-  font-size: 0.8em;
-  color: $unfocusedIcon;
+  margin-top: 4px;
+  font-size: 0.75em;
+  color: $dimmed;
+  display: none;
 }
 
 .searchbar {
@@ -68,18 +71,18 @@
   align-items: center;
   justify-content: center;
   margin: 10% 7% 0 7%;
-  padding: 2% 0 2% 3%;
+  padding: 2% 0 2% 4%;
   flex-direction: row;
-  width: 84%;
-  background: $darkerBg;
-  // border: 1px solid $lightBorder;
-  //box-shadow: rgb(20,20,20) 0 1px 0 0;
-  border-radius: 6px;
+  width: 80%;
+  // background: $darkerBg;
+  background: $darkBg;
+  border: 1px solid $lightBorder!important;
+  border-radius: 100px;
 }
 
 .searchbar-icon {
   font-size: 1.4em!important;
-  color: $unfocusedIcon;
+  color: $dimmed;
   z-index: 20;
 }
 .searchbar-input {
@@ -97,15 +100,18 @@
 
 .addPasswordButton{
   margin: auto 7% 0 7%!important;
-  background: $accent!important;
+  // background: $accent!important;
   font-weight: bold;
   font-size: 0.9em;
   padding: 20px!important;
-  border-radius: 6px;
+  border-radius: 60px;
+  border: 1px solid $primary;
   // display: none;
 }
 
-
+.addPasswordButton span {
+  color: $primary!important;
+}
 
 .sidebar-footer {
   display: flex;
@@ -130,4 +136,8 @@
   height: 35px;
   border-radius: 50%;
   margin-right: 10px;
+}
+
+.user-profile span {
+  color: $lightText;
 }

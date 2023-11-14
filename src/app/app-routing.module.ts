@@ -4,6 +4,7 @@ import { authGuard } from './modules/auth/auth.guard';
 import { LoginComponent } from './modules/auth/components/login/login.component';
 import { RegisterComponent } from './modules/auth/components/register/register.component';
 import { PasswordsComponent } from './modules/layout/components/passwords/passwords.component';
+import { PasswordDetailsComponent } from './modules/layout/components/passwords/password-details/password-details.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,11 @@ const routes: Routes = [
   },
   {
     path: 'passwords',
+    canActivate: [authGuard],
+    component: PasswordsComponent
+  },
+  {
+    path: 'passwords/:id', // Rota dinâmica com um parâmetro de ID
     canActivate: [authGuard],
     component: PasswordsComponent
   }

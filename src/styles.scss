@@ -27,9 +27,10 @@ fa-icon {
   font-size: 1.2em;
 }
 
-h1, h2, h3, h4, h5, h6, p, span, a, label, input, textarea {
+h1, h2, h3, h4, h5, h6, p, a, label, input, textarea {
   font-family: Roboto, "Helvetica Neue", sans-serif;
   color: $lightText;
+  text-decoration: none;
 }
 
 ::-webkit-scrollbar {

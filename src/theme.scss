@@ -1,15 +1,17 @@
-$primary: rgb(21, 32, 190);  /* Azul */ //rgb(81, 1, 155); // roxo
-$accent: rgb(23, 93, 220); /* Azul */
-$darkestBg: rgb(33, 33, 36); // rgb(30, 30, 35); /* Preto */
-$darkerBg: rgb(39, 39, 43); // rgb(30, 30, 35); /* Preto */
-$darkBg: rgb(45, 45, 49); // rgb(30, 30, 35); /* Preto */
+$primary: rgb(138, 180, 248); // rgb(21, 32, 190);  /* Azul */ //rgb(81, 1, 155); // roxo
+$accent: $primary; // rgb(23, 93, 220); /* Azul */
+$darkestBg: rgb(38, 38, 42); // rgb(30, 30, 35); /* Preto */
+$darkerBg: rgb(43, 43, 47); // rgb(30, 30, 35); /* Preto */
+$darkBg: rgb(48, 48, 52); // rgb(30, 30, 35); /* Preto */
 $darkContext: rgb(55, 53, 57); /* Preto */
+$activeBg: rgb(65, 70, 89);
 //$darkContext: rgb(45, 43, 47); /* Preto */
 $lightText: rgb(230,230,230); /* Branco */
 $darkText: rgba(0, 0, 0, 0.87); /* Preto */
-$lightIcon: rgba(200, 200, 200, 1); /* Cinza */
-$unfocusedIcon: rgba(150, 150, 150, 1); /* Cinza */
-$lightBorder: rgba(50, 50, 50, 1); /* Cinza */
+$activeText: rgb(50,50,50); //
+$lightIcon: rgb(250, 250, 250); /* Cinza */
+$dimmed: rgb(154, 160, 166); /* Cinza */
+$lightBorder: rgba(60, 60, 60, 1); /* Cinza */
 
 @use '@angular/material' as mat;
 

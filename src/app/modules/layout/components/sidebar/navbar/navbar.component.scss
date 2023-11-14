@@ -12,7 +12,6 @@
 mat-accordion{
   height: auto;
   margin-top: -1%;
-  margin-bottom: 6%;
   width: 100%;
   overflow-y: scroll;
   // background: black;
@@ -27,17 +26,20 @@ mat-expansion-panel {
 
 mat-expansion-panel-header{
   display: flex;
-  padding: 3% 5% 3% 4.5%;
+  padding: 3% 12% 3% 6%;
 }
 
 .nav-list-title {
   align-self: center;
   font-size: 0.9em;
+  margin: -3px 0 0 0;
+  font-weight: normal;
+  padding: 0;
 }
 
 mat-expansion-panel-header mat-icon {
   align-self: center;
-  color: $unfocusedIcon!important;
+  // color: $unfocusedIcon!important;
 }
 
 mat-expansion-panel-header.mat-expanded {
@@ -47,7 +49,7 @@ mat-expansion-panel-header.mat-expanded {
 
 ::ng-deep mat-expansion-panel-header .mat-expansion-indicator:after {
   margin-top: -70%;
-  color: $unfocusedIcon;
+  color: $lightIcon;
   height: 0.1px;
   width: 0.1px;
 }
@@ -55,7 +57,7 @@ mat-expansion-panel-header.mat-expanded {
 ::ng-deep {
   mat-expansion-panel {
     .mat-expansion-panel-body {
-      padding: 4% 0 0 0;
+      padding: 3% 0 0 0;
     }
   }
 }
@@ -65,7 +67,7 @@ mat-expansion-panel-header.mat-expanded {
 }
 
 .top-list {
-  margin-top: 6%;
+  margin-top: 10%;
 }
 
 .bottom-list {
@@ -74,12 +76,11 @@ mat-expansion-panel-header.mat-expanded {
 }
 
 .nav-list mat-list-item {
-  padding: 3% 0 3% 3%;
+  padding: 3% 5% 3% 5%;
   margin-bottom: 2px;
-  width: 100%;
+  width: 91%;
   height: auto;
-  border-top-left-radius: 6px;
-  border-bottom-left-radius: 6px;
+  border-radius: 100px;
 }
 
 .nav-list h1, h2 {
@@ -107,17 +108,17 @@ mat-expansion-panel-header.mat-expanded {
 
 .folder mat-icon, .tag mat-icon {
   font-size: 1em!important;
-  color: $unfocusedIcon!important;
+  color: $dimmed !important;
   margin-left: 12%!important;
 }
 
 .folder h2, .tag h2 {
   margin-left: 6%;
-  color: $unfocusedIcon!important
+  color: $dimmed;
 }
 
 .selected {
-  background-color: $darkerBg !important;
+  background-color: $activeBg !important;
   // box-shadow: rgb(20,20,20) 0 1px 0 0;
   transition: 0.35s all linear;
 }

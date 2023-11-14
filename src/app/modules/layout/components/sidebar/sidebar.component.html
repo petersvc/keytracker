@@ -18,7 +18,7 @@
 
     <app-navbar />
 
-    <button mat-raised-button class='addPasswordButton' (click)='toggleNewPasswordForm()'>Nova Senha +</button>
+    <button mat-raised-button class='addPasswordButton' (click)='toggleNewPasswordForm()'><span>Nova Senha +</span></button>
 
     <app-new-password-form *ngIf='showPasswordFormFlag | async' />
 

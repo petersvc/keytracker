@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent {
   panelOpenState = false;
-  folders: Set<string> | undefined;
+  // folders: Set<string> | undefined;
   tags: Set<string> | undefined;
 
   constructor(
@@ -17,7 +17,7 @@ export class NavbarComponent {
     private readonly router: Router
   ) {
     this.passwordService.passwords$.subscribe(passwords => {
-      this.folders = new Set(passwords?.map(password => password.folder));
+      // this.folders = new Set(passwords?.map(password => password.folder));
       const allTags: string[] = [];
 
       passwords?.forEach(password => {
@@ -31,7 +31,9 @@ export class NavbarComponent {
   }
 
   isTheActiveRoute(route: string): boolean {
-    console.log(this.router.url === route);
-    return this.router.url === route;
+    // console.log(this.router.url === route);
+    // router.url contains route
+
+    return this.router.url.includes(route);
   }
 }

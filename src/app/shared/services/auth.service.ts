@@ -25,15 +25,20 @@ export class AuthService {
           this.userService.setUser(user);
           this.passwordService.fetchPasswords(user.id);
           this._isAuthenticated = true;
-          // alert('Login realizado com sucesso ' + user.name);
         } else {
           alert('Usuário ou Senha incorreta!');
         }
       },
       error: err => console.log(err),
       complete: () => {
-        console.log('Login Complete: ' + this.isAuthenticated());
-        this.router.navigate(['passwords']).then(() => console.log('Redirecting...'));
+        console.log(this.isAuthenticated() ? 'Usuário autenticado' : 'Usuário não autenticado');
+        this.passwordService.passwords$.subscribe(passwords => {
+          let route = 'passwords/';
+          if (passwords) {
+            route += passwords[0].id;
+            this.router.navigate([route]).then(() => console.log('Redirecting...'));
+          }
+        });
       }
     });
   }

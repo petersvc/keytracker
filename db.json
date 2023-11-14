@@ -54,47 +54,6 @@
       ]
     },
     {
-      "id": "4",
-      "application": "Instagram",
-      "username": "petersvcosta@gmail.com",
-      "passphrase": "instaPassphrase456",
-      "website": "google.com",
-      "notes": "Password for Instagram",
-      "userId": "2",
-      "folder": "Social",
-      "tags": [
-        "Rede Social"
-      ]
-    },
-    {
-      "id": "5",
-      "application": "LinkedIn",
-      "username": "petersvcosta@gmail.com",
-      "passphrase": "linkedInPass123",
-      "website": "google.com",
-      "notes": "Password for LinkedIn",
-      "userId": "2",
-      "folder": "Trabalho",
-      "tags": [
-        "Rede Social",
-        "Trabalho"
-      ]
-    },
-    {
-      "id": "6",
-      "application": "Netflix",
-      "username": "petersvcosta@gmail.com",
-      "passphrase": "netflixSafe789",
-      "website": "google.com",
-      "notes": "Password for Netflix",
-      "userId": "2",
-      "folder": "Streamings",
-      "tags": [
-        "Vídeo",
-        "Streaming"
-      ]
-    },
-    {
       "id": "7",
       "application": "B3",
       "username": "petersvcosta@gmail.com",
@@ -105,32 +64,6 @@
       "folder": "Finanças",
       "tags": [
         "Pessoal"
-      ]
-    },
-    {
-      "id": "8",
-      "application": "Facebook",
-      "username": "user123",
-      "passphrase": "fbpass456",
-      "website": "facebook.com",
-      "notes": "Password for Facebook",
-      "userId": "2",
-      "folder": "Social",
-      "tags": [
-        "Rede Social"
-      ]
-    },
-    {
-      "id": "9",
-      "application": "Twitter",
-      "username": "twit_user",
-      "passphrase": "twitterPass789",
-      "website": "twitter.com",
-      "notes": "Password for Twitter",
-      "userId": "2",
-      "folder": "Social",
-      "tags": [
-        "Rede Social"
       ]
     },
     {
@@ -162,8 +95,8 @@
     {
       "id": "12",
       "application": "Amazon",
-      "username": "amazon_user",
-      "passphrase": "amazonPass789",
+      "username": "amazon@user",
+      "passphrase": "*************",
       "website": "amazon.com",
       "notes": "Password for Amazon",
       "userId": "2",
@@ -225,19 +158,6 @@
       ]
     },
     {
-      "id": "17",
-      "application": "Gmail",
-      "username": "gmail_user",
-      "passphrase": "gmailPass456",
-      "website": "mail.google.com",
-      "notes": "Password for Gmail",
-      "userId": "2",
-      "folder": "Comunicação",
-      "tags": [
-        "Email"
-      ]
-    },
-    {
       "id": "18",
       "application": "Twitch",
       "username": "twitch_user",
@@ -278,9 +198,9 @@
     },
     {
       "id": "448",
-      "application": "dribble",
+      "application": "Dribble",
       "username": "petersvcosta@gmail.com",
-      "passphrase": "ddd12@dribble",
+      "passphrase": "*************",
       "website": "dribbble.com",
       "notes": "Senha para o site dribble, um repositório de projetos de designers gráficos",
       "userId": "2",

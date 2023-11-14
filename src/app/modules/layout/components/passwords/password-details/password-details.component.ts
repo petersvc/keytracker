@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { PasswordService } from '../../../../../shared/services/password.service';
-import { Observable } from 'rxjs';
 import { Password } from '../../../../../shared/models/password';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-password-details',
@@ -9,12 +9,24 @@ import { Password } from '../../../../../shared/models/password';
   styleUrls: ['./password-details.component.scss']
 })
 export class PasswordDetailsComponent {
-  selectedPassword$!: Observable<Password | null>;
+  password$!: Password | undefined;
   show = false;
   editing = false;
 
-  constructor(private readonly passwordService: PasswordService) {
-    this.selectedPassword$ = this.passwordService.selectedPassword$;
+  constructor(
+    private readonly passwordService: PasswordService,
+    private readonly currentRoute: ActivatedRoute
+  ) {
+    this.getPassword();
+  }
+
+  getPassword(): void {
+    this.currentRoute.paramMap.subscribe(params => {
+      const passwordId = params.get('id');
+      if (passwordId) {
+        this.password$ = this.passwordService.getPasswordById(passwordId);
+      }
+    });
   }
 
   toggleShow() {
@@ -44,6 +56,7 @@ export class PasswordDetailsComponent {
     notes: string
   ) {
     this.passwordService.updatePassword(application, username, password, website, notes);
+    this.editing = false;
   }
 }
 

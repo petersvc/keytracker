@@ -54,7 +54,22 @@ export class PasswordService {
     const url = `${this._endpoint}?userId=${userId}`;
     this.http.get<Password[]>(url).subscribe(passwords => {
       this.passwordsSubject.next(passwords);
+      this.sortPasswordsByName();
     });
+  }
+
+  sortPasswordsByName(): void {
+    const passwords = this.passwordsSubject.getValue() as Password[];
+    const sortedPasswords = passwords.sort((a, b) => {
+      if (a.application < b.application) {
+        return -1;
+      }
+      if (a.application > b.application) {
+        return 1;
+      }
+      return 0;
+    });
+    this.passwordsSubject.next(sortedPasswords);
   }
 
   createPassword(
@@ -137,5 +152,9 @@ export class PasswordService {
         this.passwordsSubject.next(updatedPasswords);
         alert('Senha atualizada com sucesso!');
       });
+  }
+
+  getPasswordById(passwordId: string) {
+    return this.passwordsSubject.getValue()?.filter(password => password.id === passwordId)[0];
   }
 }

@@ -11,15 +11,19 @@ import { fab } from '@fortawesome/free-brands-svg-icons';
 })
 export class PasswordsListComponent {
   passwords$!: Observable<Password[] | null>;
-  selectedPassword$: Observable<Password | null>;
+  selectedPassword$: string | undefined;
   sortOptions = ['A-Z', 'Recente', 'Antigo'];
   selectedSortOption = 'A-Z';
-  protected readonly icons = fab;
+  readonly icons = fab;
 
   constructor(private readonly passwordService: PasswordService) {
     this.passwords$ = this.passwordService.passwords$;
     this.passwordService.setFirstSelectedPassword();
-    this.selectedPassword$ = this.passwordService.selectedPassword$;
+    this.passwords$.subscribe(passwords => {
+      if (passwords) {
+        this.selectedPassword$ = passwords[0].id;
+      }
+    });
   }
 
   findClosestIcon(applicationName: string): string {
@@ -41,8 +45,8 @@ export class PasswordsListComponent {
     this.selectedSortOption = option;
   }
 
-  selectPassword(password: Password) {
-    this.passwordService.selectedPassword$ = password;
+  selectPassword(passwordId: string) {
+    this.selectedPassword$ = passwordId;
   }
 
   copyPassword(senha: string) {
