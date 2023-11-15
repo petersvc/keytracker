@@ -1,9 +1,11 @@
 $primary: rgb(138, 180, 248); // rgb(21, 32, 190);  /* Azul */ //rgb(81, 1, 155); // roxo
-$accent: $primary; // rgb(23, 93, 220); /* Azul */
+$accent: rgb(140, 164, 134); // rgb(23, 93, 220); /* Azul */
 $darkestBg: rgb(38, 38, 42); // rgb(30, 30, 35); /* Preto */
 $darkerBg: rgb(43, 43, 47); // rgb(30, 30, 35); /* Preto */
 $darkBg: rgb(48, 48, 52); // rgb(30, 30, 35); /* Preto */
-$darkContext: rgb(55, 53, 57); /* Preto */
+$darkestContext: rgb(54, 54, 59); /* Preto */
+$darkerContext: rgb(59, 59, 64);
+$darkContext: rgb(62, 62, 67);
 $activeBg: rgb(65, 70, 89);
 //$darkContext: rgb(45, 43, 47); /* Preto */
 $lightText: rgb(230,230,230); /* Branco */
@@ -12,6 +14,7 @@ $activeText: rgb(50,50,50); //
 $lightIcon: rgb(250, 250, 250); /* Cinza */
 $dimmed: rgb(154, 160, 166); /* Cinza */
 $lightBorder: rgba(60, 60, 60, 1); /* Cinza */
+$lighterBorder: rgba(75, 75, 75, 1); /* Cinza */
 
 @use '@angular/material' as mat;
 

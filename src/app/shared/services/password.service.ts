@@ -157,4 +157,6 @@ export class PasswordService {
   getPasswordById(passwordId: string) {
     return this.passwordsSubject.getValue()?.filter(password => password.id === passwordId)[0];
   }
+
+  removeTag(password: Password, tag: string) {}
 }
