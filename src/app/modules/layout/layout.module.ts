@@ -22,7 +22,9 @@ import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatChipsModule } from '@angular/material/chips';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NewPasswordFormComponent } from './components/passwords/new-password-form/new-password-form.component';
+import { MatBadgeModule } from '@angular/material/badge';
 
 @NgModule({
   declarations: [
@@ -52,7 +54,9 @@ import { NewPasswordFormComponent } from './components/passwords/new-password-fo
     MatOptionModule,
     MatInputModule,
     MatFormFieldModule,
-    MatChipsModule
+    MatChipsModule,
+    FontAwesomeModule,
+    MatBadgeModule
   ]
 })
 export class LayoutModule {}

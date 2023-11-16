@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Password } from '../models/password';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, map, Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 
 @Injectable({
@@ -13,9 +13,11 @@ export class PasswordService {
     Password[] | null
   >(null);
   private _passwords$: Observable<Password[] | null> = this.passwordsSubject.asObservable();
+
   private selectedPasswordSubject = new BehaviorSubject<Password | null>(null);
   _selectedPassword$ = this.selectedPasswordSubject.asObservable();
-  private showPasswordFormSubject = new BehaviorSubject<boolean>(true);
+
+  private showPasswordFormSubject = new BehaviorSubject<boolean>(false);
   _showPasswordFormFlag = this.showPasswordFormSubject.asObservable();
 
   constructor(private http: HttpClient) {}
@@ -48,10 +50,26 @@ export class PasswordService {
     return this._passwords$;
   }
 
-  setPasswords(userId: string): void {
-    this.getPasswordsByUserId(userId).subscribe(passwords => {
+  fetchPasswords(userId: string): void {
+    const url = `${this._endpoint}?userId=${userId}`;
+    this.http.get<Password[]>(url).subscribe(passwords => {
       this.passwordsSubject.next(passwords);
+      this.sortPasswordsByName();
     });
+  }
+
+  sortPasswordsByName(): void {
+    const passwords = this.passwordsSubject.getValue() as Password[];
+    const sortedPasswords = passwords.sort((a, b) => {
+      if (a.application < b.application) {
+        return -1;
+      }
+      if (a.application > b.application) {
+        return 1;
+      }
+      return 0;
+    });
+    this.passwordsSubject.next(sortedPasswords);
   }
 
   createPassword(
@@ -59,6 +77,7 @@ export class PasswordService {
     username: string,
     passphrase: string,
     website: string,
+    tags: string[],
     notes: string,
     userId: string
   ): void {
@@ -69,14 +88,15 @@ export class PasswordService {
         username,
         passphrase,
         website,
+        tags,
         notes,
         userId,
-        folder: [],
-        tags: []
+        folder: []
       })
       .subscribe(password => {
-        //this.setPassword(password);
+        //this.setPassword(password$);
         this.passwordsSubject.next([...(this.passwordsSubject.getValue() as Password[]), password]);
+        this.sortPasswordsByName();
         alert(`Senha criada com sucesso!`);
       });
   }
@@ -103,5 +123,58 @@ export class PasswordService {
   getPasswordsByUserId(userId: string): Observable<Password[] | null> {
     const url = `${this._endpoint}?userId=${userId}`;
     return this.http.get<Password[]>(url);
+  }
+
+  updatePassword(
+    application: string,
+    username: string,
+    passphrase: string,
+    website: string,
+    tags: string[],
+    favorite: boolean,
+    notes: string
+  ): void {
+    const password = this.selectedPasswordSubject.getValue() as Password;
+    const url = `${this._endpoint}/${password.id}`;
+    this.http
+      .put<Password>(url, {
+        ...password,
+        application,
+        username,
+        passphrase,
+        website,
+        tags,
+        favorite,
+        notes
+      })
+      .subscribe(updatedPassword => {
+        const passwords = this.passwordsSubject.getValue() as Password[];
+        const updatedPasswords = passwords.map(password => {
+          if (password.id === updatedPassword.id) {
+            return updatedPassword;
+          }
+          return password;
+        });
+        this.passwordsSubject.next(updatedPasswords);
+        alert('Senha atualizada com sucesso!');
+      });
+  }
+
+  getPasswordById(passwordId: string): Observable<Password> {
+    return this._passwords$.pipe(
+      map(passwords => {
+        if (!passwords) {
+          throw new Error('Passwords not available');
+        }
+
+        const password = passwords.find(p => p.id === passwordId);
+
+        if (!password) {
+          throw new Error(`Password with ID ${passwordId} not found`);
+        }
+
+        return password;
+      })
+    );
   }
 }
