@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Password } from '../models/password';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, map, Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 
 @Injectable({
@@ -77,6 +77,7 @@ export class PasswordService {
     username: string,
     passphrase: string,
     website: string,
+    tags: string[],
     notes: string,
     userId: string
   ): void {
@@ -87,14 +88,15 @@ export class PasswordService {
         username,
         passphrase,
         website,
+        tags,
         notes,
         userId,
-        folder: [],
-        tags: []
+        folder: []
       })
       .subscribe(password => {
-        //this.setPassword(password);
+        //this.setPassword(password$);
         this.passwordsSubject.next([...(this.passwordsSubject.getValue() as Password[]), password]);
+        this.sortPasswordsByName();
         alert(`Senha criada com sucesso!`);
       });
   }
@@ -128,6 +130,8 @@ export class PasswordService {
     username: string,
     passphrase: string,
     website: string,
+    tags: string[],
+    favorite: boolean,
     notes: string
   ): void {
     const password = this.selectedPasswordSubject.getValue() as Password;
@@ -139,6 +143,8 @@ export class PasswordService {
         username,
         passphrase,
         website,
+        tags,
+        favorite,
         notes
       })
       .subscribe(updatedPassword => {
@@ -154,9 +160,21 @@ export class PasswordService {
       });
   }
 
-  getPasswordById(passwordId: string) {
-    return this.passwordsSubject.getValue()?.filter(password => password.id === passwordId)[0];
-  }
+  getPasswordById(passwordId: string): Observable<Password> {
+    return this._passwords$.pipe(
+      map(passwords => {
+        if (!passwords) {
+          throw new Error('Passwords not available');
+        }
 
-  removeTag(password: Password, tag: string) {}
+        const password = passwords.find(p => p.id === passwordId);
+
+        if (!password) {
+          throw new Error(`Password with ID ${passwordId} not found`);
+        }
+
+        return password;
+      })
+    );
+  }
 }

@@ -8,5 +8,8 @@ export interface Password {
   userId: string;
   folder: string;
   tags: string[];
+  favorite: boolean;
+  inBin: boolean;
+  createdAt: Date;
   iconName: string;
 }

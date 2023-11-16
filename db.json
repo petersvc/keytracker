@@ -102,8 +102,10 @@
       "userId": "2",
       "folder": "Compras",
       "tags": [
-        "E-commerce"
-      ]
+        "E-commerce",
+        "compras"
+      ],
+      "favorite": true
     },
     {
       "id": "13",
@@ -217,6 +219,19 @@
       "userId": "2",
       "folder": [],
       "tags": []
+    },
+    {
+      "id": "9427",
+      "application": "Tarisland",
+      "username": "tarislandio02",
+      "passphrase": "senhadotarisland",
+      "website": "tarisland.com",
+      "tags": [
+        "game"
+      ],
+      "notes": "",
+      "userId": "2",
+      "folder": []
     }
   ]
 }

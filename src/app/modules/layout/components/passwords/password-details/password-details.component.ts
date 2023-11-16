@@ -1,11 +1,11 @@
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { PasswordService } from '../../../../../shared/services/password.service';
 import { Password } from '../../../../../shared/models/password';
 import { ActivatedRoute } from '@angular/router';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 
-import { MatChipEditedEvent, MatChipInputEvent } from '@angular/material/chips';
-import { LiveAnnouncer } from '@angular/cdk/a11y';
+import { MatChipInputEvent } from '@angular/material/chips';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-password-details',
@@ -13,27 +13,36 @@ import { LiveAnnouncer } from '@angular/cdk/a11y';
   styleUrls: ['./password-details.component.scss']
 })
 export class PasswordDetailsComponent {
-  password!: Password | undefined;
+  password$!: Observable<Password>;
   show = false;
   editing = false;
-  addOnBlur = true;
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
-  toRemoveTags = new Set<string>();
+  temporaryTags: string[] = [];
+  favorite!: boolean;
 
   constructor(
     private readonly passwordService: PasswordService,
     private readonly currentRoute: ActivatedRoute
   ) {
-    this.getPassword();
+    this.start();
   }
 
-  getPassword(): void {
+  start(): void {
     this.currentRoute.paramMap.subscribe(params => {
       const passwordId = params.get('id');
       if (passwordId) {
-        this.password = this.passwordService.getPasswordById(passwordId);
+        this.password$ = this.passwordService.getPasswordById(passwordId);
+        this.editing = false;
+        this.generateTemporaryTags();
+        this.password$.subscribe(password => {
+          this.favorite = password.favorite;
+        });
       }
     });
+  }
+
+  toggleFavorite() {
+    this.favorite = !this.favorite;
   }
 
   toggleShow() {
@@ -60,39 +69,41 @@ export class PasswordDetailsComponent {
     username: string,
     password: string,
     website: string,
+    tags: string[],
+    favorite: boolean,
     notes: string
   ) {
-    this.passwordService.updatePassword(application, username, password, website, notes);
+    this.passwordService.updatePassword(
+      application,
+      username,
+      password,
+      website,
+      tags,
+      favorite,
+      notes
+    );
     this.editing = false;
   }
 
-  announcer = inject(LiveAnnouncer);
+  add(event: MatChipInputEvent): void {
+    const value = (event.value || '').trim();
 
-  // add(event: MatChipInputEvent): void {
-  //   const value = (event.value || '').trim();
-  //
-  //   // Add our fruit
-  //   if (value) {
-  //     this.fruits.push({ name: value });
-  //   }
-  //
-  //   // Clear the input value
-  //   event.chipInput!.clear();
-  // }
+    // Add our fruit
+    if (value) {
+      this.temporaryTags.push(value);
+    }
 
-  remove(tag: string): void {
-    this.passwordService.removeTag(this.password as Password, tag);
-    this.password?.tags.splice(this.password?.tags.indexOf(tag), 1);
+    // Clear the input value
+    event.chipInput.clear();
   }
 
-  selectTagToRemove(tag: string) {
-    if (this.toRemoveTags.has(tag)) {
-      this.toRemoveTags.delete(tag);
-    } else {
-      this.toRemoveTags.add(tag);
-    }
-    console.log(this.toRemoveTags);
+  removeTag(tag: string) {
+    this.temporaryTags.splice(this.temporaryTags.indexOf(tag), 1);
+  }
+
+  generateTemporaryTags() {
+    this.password$.subscribe(password => {
+      this.temporaryTags = [...password.tags];
+    });
   }
 }
-
-// 'show ? password$.passphrase : "*******"'

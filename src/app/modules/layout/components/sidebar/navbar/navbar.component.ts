@@ -17,7 +17,7 @@ export class NavbarComponent {
     private readonly router: Router
   ) {
     this.passwordService.passwords$.subscribe(passwords => {
-      // this.folders = new Set(passwords?.map(password => password.folder));
+      // this.folders = new Set(passwords?.map(password$ => password$.folder));
       const allTags: string[] = [];
 
       passwords?.forEach(password => {
