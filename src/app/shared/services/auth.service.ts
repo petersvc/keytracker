@@ -19,9 +19,11 @@ export class AuthService {
   }
 
   login(username: string, password: string): void {
-    this.userService.getUserByUserId(username).subscribe({
+    console.log(`Tentando logar com ${username} e ${password}`);
+    this.userService.getUserByUsername(username).subscribe({
       next: user => {
-        if (user !== null && user.masterPassword === password) {
+        console.log(user.username + '---' + user.masterPassword);
+        if (user.masterPassword === password) {
           this.userService.setUser(user);
           this.passwordService.fetchPasswords(user.id);
           this._isAuthenticated = true;

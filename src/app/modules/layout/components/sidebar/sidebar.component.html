@@ -1,4 +1,4 @@
-<div class='container'>
+<div *ngIf='user$ | async' class='container'>
     <mat-toolbar class='header'>
         <div class='header-logo'>
             <mat-icon class='header-logo-icon'>fingerprint</mat-icon>

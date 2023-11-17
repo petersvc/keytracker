@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { UserService } from '../../../../../shared/services/user.service';
+import { AuthService } from '../../../../../shared/services/auth.service';
 
 @Component({
   selector: 'app-register-form',
@@ -7,9 +8,14 @@ import { UserService } from '../../../../../shared/services/user.service';
   styleUrls: ['./register-form.component.scss']
 })
 export class RegisterFormComponent {
-  constructor(private readonly userService: UserService) {}
+  constructor(
+    private readonly userService: UserService,
+    private readonly authService: AuthService
+  ) {}
 
-  register(id: string, name: string, masterPassword: string): void {
-    this.userService.createUser(id, name, masterPassword);
+  register(name: string, username: string, masterPassword: string): void {
+    this.userService.createUser(name, username, masterPassword);
+    console.log('autenticando usuário...');
+    this.authService.login(username, masterPassword);
   }
 }

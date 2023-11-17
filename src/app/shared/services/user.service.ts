@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { User } from '../models/user';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, catchError, map, Observable, throwError } from 'rxjs';
 import { environment } from '../../../environments/environment';
 
 @Injectable({
@@ -22,16 +22,17 @@ export class UserService {
     this.userSubject.next(user);
   }
 
-  createUser(id: string, name: string, masterPassword: string): void {
+  createUser(name: string, username: string, masterPassword: string): void {
     this.http
       .post<User>(this._endpoint, {
-        id,
+        id: this.generateId(),
         name,
+        username,
         masterPassword
       })
       .subscribe(user => {
-        this.setUser(user);
-        alert(`Usuário ${user.id} criado com sucesso!`);
+        // this.setUser(user);
+        alert(`Usuário ${user.username} criado com sucesso!`);
       });
   }
   // deleteUser(id: string) {
@@ -75,5 +76,33 @@ export class UserService {
 
   getUserByUserId(id: string): Observable<User> {
     return this.http.get<User>(`${this._endpoint}/${id}`);
+  }
+
+  getUserByUsername(username: string): Observable<User> {
+    const url = `${this._endpoint}?username=${username}`;
+    console.log(username);
+    return this.http.get<User[]>(url).pipe(
+      map(users => {
+        console.log(users);
+        console.log(users.length);
+        console.log(users[0]);
+        if (users && users.length > 0) {
+          // Se houver usuários com o nome de usuário fornecido, retorna o primeiro usuário encontrado
+          return users[0];
+        } else {
+          // Se nenhum usuário for encontrado, emite um erro
+          throw new Error('Usuário não encontrado');
+        }
+      }),
+      catchError(error => {
+        // Trata erros da solicitação HTTP
+        console.error('Erro na solicitação HTTP:', error);
+        return throwError('Erro ao buscar usuário');
+      })
+    );
+  }
+
+  generateId(): string {
+    return Math.floor(Math.random() * 10000).toString();
   }
 }

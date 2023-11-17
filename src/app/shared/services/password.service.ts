@@ -91,7 +91,10 @@ export class PasswordService {
         tags,
         notes,
         userId,
-        folder: []
+        folder: [],
+        favorite: false,
+        inBin: false,
+        createdAt: new Date()
       })
       .subscribe(password => {
         this.passwordsSubject.next([...(this.passwordsSubject.getValue() as Password[]), password]);
