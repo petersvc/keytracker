@@ -26,14 +26,14 @@ export class PasswordService {
     return this._selectedPassword$;
   }
 
-  set selectedPassword$(password: Password) {
+  setSelectedPassword$(password: Password) {
     this.selectedPasswordSubject.next(password);
   }
 
   setFirstSelectedPassword() {
     this.passwords$.subscribe(passwords => {
       const firstPassword = passwords ? passwords[0] : null;
-      this.selectedPassword$ = firstPassword as Password;
+      this.setSelectedPassword$(firstPassword as Password);
     });
   }
 
@@ -94,7 +94,6 @@ export class PasswordService {
         folder: []
       })
       .subscribe(password => {
-        //this.setPassword(password$);
         this.passwordsSubject.next([...(this.passwordsSubject.getValue() as Password[]), password]);
         this.sortPasswordsByName();
         alert(`Senha criada com sucesso!`);
@@ -115,17 +114,8 @@ export class PasswordService {
     return Math.floor(Math.random() * 10000).toString();
   }
 
-  getPasswordByPasswordId(id: string): Observable<Password> {
-    const url = `${this._endpoint}/${id}`;
-    return this.http.get<Password>(url);
-  }
-
-  getPasswordsByUserId(userId: string): Observable<Password[] | null> {
-    const url = `${this._endpoint}?userId=${userId}`;
-    return this.http.get<Password[]>(url);
-  }
-
   updatePassword(
+    id: string,
     application: string,
     username: string,
     passphrase: string,
@@ -134,30 +124,30 @@ export class PasswordService {
     favorite: boolean,
     notes: string
   ): void {
-    const password = this.selectedPasswordSubject.getValue() as Password;
-    const url = `${this._endpoint}/${password.id}`;
-    this.http
-      .put<Password>(url, {
-        ...password,
-        application,
-        username,
-        passphrase,
-        website,
-        tags,
-        favorite,
-        notes
-      })
-      .subscribe(updatedPassword => {
-        const passwords = this.passwordsSubject.getValue() as Password[];
-        const updatedPasswords = passwords.map(password => {
-          if (password.id === updatedPassword.id) {
-            return updatedPassword;
-          }
-          return password;
-        });
-        this.passwordsSubject.next(updatedPasswords);
-        alert('Senha atualizada com sucesso!');
-      });
+    const url = `${this._endpoint}/${id}`;
+    this.getPasswordById(id).subscribe(password => {
+      if (!password) {
+        throw new Error(`Password with ID ${id} not found`);
+      } else {
+        this.http
+          .put<Password>(url, {
+            ...password,
+            application,
+            username,
+            passphrase,
+            website,
+            tags,
+            favorite,
+            notes
+          })
+          .subscribe(updatedPassword => {
+            const passwords = this.passwordsSubject.getValue() as Password[];
+            const index = passwords.indexOf(password);
+            passwords[index] = updatedPassword;
+            alert('Senha atualizada com sucesso!');
+          });
+      }
+    });
   }
 
   getPasswordById(passwordId: string): Observable<Password> {
@@ -166,13 +156,10 @@ export class PasswordService {
         if (!passwords) {
           throw new Error('Passwords not available');
         }
-
         const password = passwords.find(p => p.id === passwordId);
-
         if (!password) {
           throw new Error(`Password with ID ${passwordId} not found`);
         }
-
         return password;
       })
     );

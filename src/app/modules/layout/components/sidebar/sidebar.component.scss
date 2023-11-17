@@ -5,30 +5,26 @@
   flex-direction: column;
   width: 20%;
   height: 100%;
-  // border-right: 1px solid $lightBorder; // rgba(22, 22, 22, 1);
-  // border-top-right-radius: 20px;
-  // border-bottom-right-radius: 20px;
-  // box-shadow: black 0 0 3px 0;
   padding: 0;
-  margin: 0 0 0 0!important;
-  // background: $darkContext;
+  margin: 0 0 0 0;
+  // background: blue;
 }
 
 .container {
   display: flex;
   flex-direction: column;
-  margin: 8% 0 8% 0;
+  margin: 0;
   padding: 0;
   width: 100%;
   height: 100%;
-  //background: blue;
+  // background: blue;
 }
 
 .header {
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 2% 0 0 7%;
+  padding: 10% 0 0 7%;
 }
 
 .header mat-icon {
@@ -117,8 +113,9 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-self: flex-end;
   padding: 0;
-  margin: 9% 7% 2% 7%!important;
+  margin: 7% 7% 7% 7%!important;
   width: 86%;
   align-items: center;
   // background: red;

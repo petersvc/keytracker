@@ -47,6 +47,7 @@ export class PasswordsListComponent {
 
   selectPassword(passwordId: string) {
     this.selectedPassword$ = passwordId;
+    console.log(this.selectedPassword$);
   }
 
   copyPassword(senha: string) {

@@ -3,10 +3,10 @@
 :host {
   display: flex;
   flex-direction: column;
-  margin: 0 0 0 7%;
+  margin: 0 0 9% 7%;
   width: 93%;
-  height: 76%;
-  // background: $darkBgContent;
+  height: 70%;
+  // background: red;
 }
 
 mat-accordion{
@@ -67,7 +67,7 @@ mat-expansion-panel-header.mat-expanded {
 }
 
 .top-list {
-  margin-top: 10%;
+  margin-top: 8%;
 }
 
 .bottom-list {
