@@ -36,6 +36,7 @@ export class PasswordDetailsComponent {
         this.generateTemporaryTags();
         this.password$.subscribe(password => {
           this.favorite = password.favorite;
+          console.log(password);
         });
       }
     });
@@ -49,8 +50,9 @@ export class PasswordDetailsComponent {
     this.show = !this.show;
   }
 
-  toggleEdit() {
+  toggleEdit(password: Password) {
     this.editing = !this.editing;
+    console.log(password);
   }
 
   copyPassword(senha: string) {
@@ -65,6 +67,7 @@ export class PasswordDetailsComponent {
   }
 
   updatePassword(
+    id: string,
     application: string,
     username: string,
     password: string,
@@ -74,6 +77,7 @@ export class PasswordDetailsComponent {
     notes: string
   ) {
     this.passwordService.updatePassword(
+      id,
       application,
       username,
       password,
