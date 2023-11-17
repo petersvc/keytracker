@@ -1,3 +1,5 @@
+@import "theme.scss";
+
 :host {
   display: flex;
   align-self: center;
@@ -36,14 +38,15 @@
 :host input {
   border-radius: 25px;
   height: 40px;
-  background: rgb(47, 47, 53);
-  color: rgb(240,240,240);
+  background: $darkContext;
+  color: $lightText;
   text-indent: 13px;
   border: 1px solid rgb(47, 47, 53);
 }
 
 input::placeholder {
   font-size: 0.9em;
+  color: $dimmed;
 }
 
 :host input:focus {

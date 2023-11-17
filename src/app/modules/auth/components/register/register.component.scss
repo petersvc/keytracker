@@ -1,11 +1,13 @@
+@import "theme.scss";
+
 :host {
   display: flex;
   flex-direction: row;
   height: 80%;
   width: 60%;
-  background: rgba(38, 38, 45, 1);
-  //background: rgba(28, 28, 35, 1);
+  background: $darkBg;
   border-radius: 20px;
+  align-self: center;
 }
 
 .container {

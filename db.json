@@ -2,14 +2,16 @@
   "users": [
     {
       "id": "1",
-      "name": "testonildo",
-      "masterPassword": "hashedMasterPass1",
+      "name": "Wagner",
+      "username": "wgr",
+      "masterPassword": "@senhawagner",
       "salt": "uniqueSalt1"
     },
     {
       "id": "2",
-      "name": "Peter Costa",
-      "masterPassword": "hashedMasterPass2",
+      "name": "Peter",
+      "username": "petersvc",
+      "masterPassword": "@senhapeter",
       "salt": "uniqueSalt2"
     }
   ],
@@ -18,9 +20,9 @@
       "id": "12",
       "application": "Amazon",
       "username": "amazon@user",
-      "passphrase": "@senhaamazon",
+      "passphrase": "************",
       "website": "amazon.com",
-      "notes": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+      "notes": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariat.",
       "userId": "2",
       "folder": "Compras",
       "tags": [
@@ -85,8 +87,8 @@
       "id": "21",
       "application": "GitHub",
       "username": "github@user",
-      "passphrase": "@senhagithub",
-      "website": "github.com",
+      "passphrase": "************",
+      "website": "github.com.br",
       "notes": "Some notes about GitHub.",
       "userId": "2",
       "folder": "Development",
@@ -204,7 +206,7 @@
       "id": "26",
       "application": "Airbnb",
       "username": "airbnb@user",
-      "passphrase": "@senhaairbnb",
+      "passphrase": "************",
       "website": "airbnb.com",
       "notes": "Some notes about Airbnb.",
       "userId": "2",
@@ -213,7 +215,7 @@
         "Accommodation",
         "Vacation"
       ],
-      "favorite": false,
+      "favorite": true,
       "inBin": false,
       "creationDate": "2023-11-15T09:00:00Z"
     },
@@ -280,7 +282,27 @@
       ],
       "notes": "",
       "userId": "2",
-      "folder": []
+      "folder": [],
+      "favorite": false,
+      "inBin": false,
+      "createdAt": "2023-11-17T13:22:26.435Z"
+    },
+    {
+      "id": "7726",
+      "application": "teste3",
+      "username": "teste@user",
+      "passphrase": "******",
+      "website": "teste.com",
+      "tags": [
+        "test",
+        "example"
+      ],
+      "notes": "Apenas uma senha teste, para verificar se está tudo ok.",
+      "userId": "2",
+      "folder": [],
+      "favorite": false,
+      "inBin": false,
+      "createdAt": "2023-11-17T13:22:26.435Z"
     }
   ]
 }
