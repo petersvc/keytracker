@@ -21,7 +21,7 @@
   </a>
 </mat-nav-list>
 
-<mat-accordion class='tags-accordion' [togglePosition]="'before'">
+<mat-accordion *ngIf="tags$ | async as tags" class='tags-accordion' [togglePosition]="'before'">
   <mat-expansion-panel class='tags-expansion-panel' (opened)="panelOpenState = true"
                        (closed)="panelOpenState = false" expanded>
     <mat-expansion-panel-header class='mat-expansion-panel-header'>

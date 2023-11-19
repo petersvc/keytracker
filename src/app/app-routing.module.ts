@@ -28,12 +28,12 @@ const routes: Routes = [
     path: 'passwords',
     canActivate: [authGuard],
     component: PasswordsComponent
-  },
-  {
-    path: 'passwords/:id', // Rota dinâmica com um parâmetro de ID
-    canActivate: [authGuard],
-    component: PasswordsComponent
   }
+  // {
+  //   path: 'passwords/:id', // Rota dinâmica com um parâmetro de ID
+  //   canActivate: [authGuard],
+  //   component: PasswordsComponent
+  // }
 ];
 
 @NgModule({

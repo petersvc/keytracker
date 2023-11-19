@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from '../../../../shared/models/user';
 import { UserService } from '../../../../shared/services/user.service';
 import { PasswordService } from '../../../../shared/services/password.service';
@@ -10,19 +10,19 @@ import { PasswordService } from '../../../../shared/services/password.service';
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent {
-  user$: Observable<User | null>;
+  user$: BehaviorSubject<User>;
   showPasswordFormFlag: Observable<boolean>;
 
   constructor(
     private readonly userService: UserService,
     private readonly passwordService: PasswordService
   ) {
-    this.user$ = this.userService.user$;
+    this.user$ = this.userService.user;
     this.showPasswordFormFlag = passwordService.showPasswordFormFlag;
   }
 
   realizarPesquisa($event: any) {
-    console.log($event.target.value);
+    console.log(($event.target as HTMLInputElement).value);
   }
 
   toggleNewPasswordForm() {

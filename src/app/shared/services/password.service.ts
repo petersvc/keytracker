@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Password } from '../models/password';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, map, Observable } from 'rxjs';
+import { BehaviorSubject, catchError, EMPTY, map, Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 
 @Injectable({
@@ -9,32 +9,20 @@ import { environment } from '../../../environments/environment';
 })
 export class PasswordService {
   private readonly _endpoint: string = `${environment.API}/passwords`;
-  private passwordsSubject: BehaviorSubject<Password[] | null> = new BehaviorSubject<
-    Password[] | null
-  >(null);
-  private _passwords$: Observable<Password[] | null> = this.passwordsSubject.asObservable();
-
-  private selectedPasswordSubject = new BehaviorSubject<Password | null>(null);
-  _selectedPassword$ = this.selectedPasswordSubject.asObservable();
+  public _passwords = new BehaviorSubject<Password[]>([]);
+  private _selectedPassword = new BehaviorSubject<Password>({} as Password);
 
   private showPasswordFormSubject = new BehaviorSubject<boolean>(false);
   _showPasswordFormFlag = this.showPasswordFormSubject.asObservable();
 
   constructor(private http: HttpClient) {}
 
-  get selectedPassword$(): Observable<Password | null> {
-    return this._selectedPassword$;
+  get selectedPassword(): BehaviorSubject<Password> {
+    return this._selectedPassword;
   }
 
-  setSelectedPassword$(password: Password) {
-    this.selectedPasswordSubject.next(password);
-  }
-
-  setFirstSelectedPassword() {
-    this.passwords$.subscribe(passwords => {
-      const firstPassword = passwords ? passwords[0] : null;
-      this.setSelectedPassword$(firstPassword as Password);
-    });
+  set selectedPassword(value: BehaviorSubject<Password>) {
+    this._selectedPassword = value;
   }
 
   get showPasswordFormFlag(): Observable<boolean> {
@@ -46,30 +34,25 @@ export class PasswordService {
     this.showPasswordFormSubject.next(flag);
   }
 
-  get passwords$(): Observable<Password[] | null> {
-    return this._passwords$;
+  get passwords(): BehaviorSubject<Password[]> {
+    return this._passwords;
   }
 
-  fetchPasswords(userId: string): void {
+  fetchPasswords(userId: string): Observable<Password[]> {
     const url = `${this._endpoint}?userId=${userId}`;
-    this.http.get<Password[]>(url).subscribe(passwords => {
-      this.passwordsSubject.next(passwords);
-      this.sortPasswordsByName();
-    });
+    return this.http.get<Password[]>(url).pipe(
+      // map(passwords => passwords),
+      catchError(err => {
+        console.log(err);
+        return EMPTY;
+      })
+    );
   }
 
   sortPasswordsByName(): void {
-    const passwords = this.passwordsSubject.getValue() as Password[];
-    const sortedPasswords = passwords.sort((a, b) => {
-      if (a.application < b.application) {
-        return -1;
-      }
-      if (a.application > b.application) {
-        return 1;
-      }
-      return 0;
-    });
-    this.passwordsSubject.next(sortedPasswords);
+    this._passwords.pipe(
+      map(passwords => passwords.sort((a, b) => a.application.localeCompare(b.application)))
+    );
   }
 
   createPassword(
@@ -97,7 +80,8 @@ export class PasswordService {
         createdAt: new Date()
       })
       .subscribe(password => {
-        this.passwordsSubject.next([...(this.passwordsSubject.getValue() as Password[]), password]);
+        const oldPasswords = this._passwords.getValue();
+        this._passwords.next([...oldPasswords, password]);
         this.sortPasswordsByName();
         alert(`Senha criada com sucesso!`);
       });
@@ -106,9 +90,11 @@ export class PasswordService {
   deletePassword(passwordId: string): void {
     const url = `${this._endpoint}/${passwordId}`;
     this.http.delete(url).subscribe(() => {
-      const passwords = this.passwordsSubject.getValue() as Password[];
-      const updatedPasswords = passwords.filter(password => password.id !== passwordId);
-      this.passwordsSubject.next(updatedPasswords);
+      const passwords = this._passwords.getValue();
+      const passwordToDelete = passwords.find(password => password.id === passwordId);
+      const indexToRemove = passwords.indexOf(passwordToDelete as Password);
+      passwords.splice(indexToRemove, 1);
+      this._passwords.next(passwords);
       alert('Senha deletada com sucesso!');
     });
   }
@@ -128,43 +114,43 @@ export class PasswordService {
     notes: string
   ): void {
     const url = `${this._endpoint}/${id}`;
-    this.getPasswordById(id).subscribe(password => {
-      if (!password) {
-        throw new Error(`Password with ID ${id} not found`);
-      } else {
-        this.http
-          .put<Password>(url, {
-            ...password,
-            application,
-            username,
-            passphrase,
-            website,
-            tags,
-            favorite,
-            notes
-          })
-          .subscribe(updatedPassword => {
-            const passwords = this.passwordsSubject.getValue() as Password[];
-            const index = passwords.indexOf(password);
-            passwords[index] = updatedPassword;
-            alert('Senha atualizada com sucesso!');
-          });
-      }
-    });
+    const passwordToUpdate = this.getPasswordById(id);
+    if (!passwordToUpdate) {
+      throw new Error(`Password with ID ${id} not found`);
+    } else {
+      this.http
+        .put<Password>(url, {
+          ...passwordToUpdate,
+          application,
+          username,
+          passphrase,
+          website,
+          tags,
+          favorite,
+          notes
+        })
+        .subscribe(updatedPassword => {
+          const passwords = this._passwords.getValue();
+          const index = passwords.indexOf(passwordToUpdate);
+          passwords[index] = updatedPassword;
+          this._passwords.next(passwords);
+          alert('Senha atualizada com sucesso!');
+        });
+    }
   }
 
-  getPasswordById(passwordId: string): Observable<Password> {
-    return this._passwords$.pipe(
-      map(passwords => {
-        if (!passwords) {
-          throw new Error('Passwords not available');
-        }
-        const password = passwords.find(p => p.id === passwordId);
-        if (!password) {
-          throw new Error(`Password with ID ${passwordId} not found`);
-        }
-        return password;
-      })
-    );
+  getPasswordById(passwordId: string): Password {
+    const oldPasswords = this._passwords.getValue();
+    const password = oldPasswords.find(password => password.id === passwordId);
+    if (password) {
+      return password;
+    } else {
+      throw new Error(`Password with ID ${passwordId} not found`);
+    }
   }
 }
+// .subscribe(updatedPassword => {
+//   const index = this._passwords.indexOf(password);
+//   this._passwords[index] = updatedPassword;
+//   alert('Senha atualizada com sucesso!');
+// });

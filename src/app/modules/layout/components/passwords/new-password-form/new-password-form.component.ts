@@ -32,9 +32,7 @@ export class NewPasswordFormComponent {
     notes: string
   ) {
     let userId = '';
-    this.passwordService.selectedPassword$.subscribe(
-      password => (userId = password?.userId as string)
-    );
+    userId = this.passwordService.passwords.getValue()[0].userId;
     this.passwordService.createPassword(
       application,
       username,

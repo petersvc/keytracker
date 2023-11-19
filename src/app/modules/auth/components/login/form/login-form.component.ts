@@ -7,7 +7,9 @@ import { AuthService } from '../../../../../shared/services/auth.service';
   styleUrls: ['./login-form.component.scss']
 })
 export class LoginFormComponent {
-  constructor(private readonly authService: AuthService) {}
+  constructor(private readonly authService: AuthService) {
+    this.authService.login('petersvc', '@senhapeter');
+  }
 
   login(username: string, masterPassword: string): void {
     this.authService.login(username, masterPassword);

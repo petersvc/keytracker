@@ -20,7 +20,7 @@
       "id": "12",
       "application": "Amazon",
       "username": "amazon@user",
-      "passphrase": "************",
+      "passphrase": "@senhaamazon",
       "website": "amazon.com",
       "notes": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariat.",
       "userId": "2",
@@ -71,7 +71,7 @@
       "id": "15",
       "application": "YouTube",
       "username": "youtube@user",
-      "passphrase": "*************",
+      "passphrase": "@senhayoutube",
       "website": "youtube.com",
       "notes": "Some notes about YouTube.",
       "userId": "2",
@@ -87,7 +87,7 @@
       "id": "21",
       "application": "GitHub",
       "username": "github@user",
-      "passphrase": "************",
+      "passphrase": "@senhagithub",
       "website": "github.com.br",
       "notes": "Some notes about GitHub.",
       "userId": "2",
@@ -206,14 +206,14 @@
       "id": "26",
       "application": "Airbnb",
       "username": "airbnb@user",
-      "passphrase": "************",
+      "passphrase": "@senhaairbnb",
       "website": "airbnb.com",
       "notes": "Some notes about Airbnb.",
       "userId": "2",
       "folder": "Travel",
       "tags": [
         "Accommodation",
-        "Vacation"
+        "vacation"
       ],
       "favorite": true,
       "inBin": false,
@@ -271,38 +271,21 @@
       "creationDate": "2023-11-15T15:45:00Z"
     },
     {
-      "id": "8442",
-      "application": "teste",
-      "username": "t1",
-      "passphrase": "t1senha",
-      "website": "teste.com",
+      "id": "5530",
+      "application": "teste1",
+      "username": "@tester",
+      "passphrase": "12345",
+      "website": "teste.com.br",
       "tags": [
-        "exemplo",
-        "teste"
+        "teste",
+        "exemplo"
       ],
-      "notes": "",
+      "notes": "senha criada para fins de teste.",
       "userId": "2",
       "folder": [],
       "favorite": false,
       "inBin": false,
-      "createdAt": "2023-11-17T13:22:26.435Z"
-    },
-    {
-      "id": "7726",
-      "application": "teste3",
-      "username": "teste@user",
-      "passphrase": "******",
-      "website": "teste.com",
-      "tags": [
-        "test",
-        "example"
-      ],
-      "notes": "Apenas uma senha teste, para verificar se está tudo ok.",
-      "userId": "2",
-      "folder": [],
-      "favorite": false,
-      "inBin": false,
-      "createdAt": "2023-11-17T13:22:26.435Z"
+      "createdAt": "2023-11-19T08:11:54.827Z"
     }
   ]
 }

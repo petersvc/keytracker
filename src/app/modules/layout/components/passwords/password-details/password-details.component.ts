@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 import { PasswordService } from '../../../../../shared/services/password.service';
 import { Password } from '../../../../../shared/models/password';
-import { ActivatedRoute } from '@angular/router';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 
 import { MatChipInputEvent } from '@angular/material/chips';
-import { Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-password-details',
@@ -13,32 +12,24 @@ import { Observable } from 'rxjs';
   styleUrls: ['./password-details.component.scss']
 })
 export class PasswordDetailsComponent {
-  password$!: Observable<Password>;
-  show = false;
+  password$ = new BehaviorSubject<Password>({} as Password);
+  isPasswordVisible = false;
   editing = false;
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
   temporaryTags: string[] = [];
   favorite!: boolean;
 
-  constructor(
-    private readonly passwordService: PasswordService,
-    private readonly currentRoute: ActivatedRoute
-  ) {
+  constructor(private readonly passwordService: PasswordService) {
     this.start();
   }
 
   start(): void {
-    this.currentRoute.paramMap.subscribe(params => {
-      const passwordId = params.get('id');
-      if (passwordId) {
-        this.password$ = this.passwordService.getPasswordById(passwordId);
-        this.editing = false;
-        this.generateTemporaryTags();
-        this.password$.subscribe(password => {
-          this.favorite = password.favorite;
-          console.log(password);
-        });
-      }
+    this.passwordService.selectedPassword.subscribe(password => {
+      this.isPasswordVisible = false;
+      this.editing = false;
+      this.password$.next(password);
+      this.generateTemporaryTags();
+      this.favorite = password.favorite;
     });
   }
 
@@ -47,12 +38,11 @@ export class PasswordDetailsComponent {
   }
 
   toggleShow() {
-    this.show = !this.show;
+    this.isPasswordVisible = !this.isPasswordVisible;
   }
 
-  toggleEdit(password: Password) {
+  toggleEdit() {
     this.editing = !this.editing;
-    console.log(password);
   }
 
   copyPassword(senha: string) {
@@ -106,8 +96,6 @@ export class PasswordDetailsComponent {
   }
 
   generateTemporaryTags() {
-    this.password$.subscribe(password => {
-      this.temporaryTags = [...password.tags];
-    });
+    this.temporaryTags = [...this.password$.getValue().tags];
   }
 }

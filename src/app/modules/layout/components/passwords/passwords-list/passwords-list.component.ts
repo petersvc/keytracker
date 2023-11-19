@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Password } from '../../../../../shared/models/password';
-import { Observable } from 'rxjs';
 import { PasswordService } from '../../../../../shared/services/password.service';
 import { fab } from '@fortawesome/free-brands-svg-icons';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-passwords-list',
@@ -10,20 +10,15 @@ import { fab } from '@fortawesome/free-brands-svg-icons';
   styleUrls: ['./passwords-list.component.scss']
 })
 export class PasswordsListComponent {
-  passwords$!: Observable<Password[] | null>;
-  selectedPassword$: string | undefined;
+  passwords$: BehaviorSubject<Password[]>;
+  selectedPassword = new BehaviorSubject<Password>({} as Password);
   sortOptions = ['A-Z', 'Recente', 'Antigo'];
   selectedSortOption = 'A-Z';
   readonly icons = fab;
 
   constructor(private readonly passwordService: PasswordService) {
-    this.passwords$ = this.passwordService.passwords$;
-    this.passwordService.setFirstSelectedPassword();
-    this.passwords$.subscribe(passwords => {
-      if (passwords) {
-        this.selectedPassword$ = passwords[0].id;
-      }
-    });
+    this.passwords$ = this.passwordService.passwords;
+    this.selectedPassword = this.passwordService.selectedPassword;
   }
 
   findClosestIcon(applicationName: string): string {
@@ -45,9 +40,8 @@ export class PasswordsListComponent {
     this.selectedSortOption = option;
   }
 
-  selectPassword(passwordId: string) {
-    this.selectedPassword$ = passwordId;
-    console.log(this.selectedPassword$);
+  selectPassword(password: Password) {
+    this.passwordService.selectedPassword.next(password);
   }
 
   copyPassword(senha: string) {
@@ -109,4 +103,3 @@ export class PasswordsListComponent {
     );
   }
 }
-//  || i === 0 && (selectedPassword$ | async) === null

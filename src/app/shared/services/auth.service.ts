@@ -19,29 +19,38 @@ export class AuthService {
   }
 
   login(username: string, password: string): void {
-    console.log(`Tentando logar com ${username} e ${password}`);
-    this.userService.getUserByUsername(username).subscribe({
-      next: user => {
-        console.log(user.username + '---' + user.masterPassword);
-        if (user.masterPassword === password) {
-          this.userService.setUser(user);
-          this.passwordService.fetchPasswords(user.id);
-          this._isAuthenticated = true;
-        } else {
-          alert('Usuário ou Senha incorreta!');
-        }
-      },
-      error: err => console.log(err),
-      complete: () => {
-        console.log(this.isAuthenticated() ? 'Usuário autenticado' : 'Usuário não autenticado');
-        this.passwordService.passwords$.subscribe(passwords => {
-          let route = 'passwords/';
-          if (passwords) {
-            route += passwords[0].id;
-            this.router.navigate([route]).then(() => console.log('Redirecting...'));
-          }
+    this.userService.fetchUser(username).subscribe(user => {
+      if (user.masterPassword === password) {
+        this._isAuthenticated = true;
+        this.userService.user.next(user);
+        this.passwordService.fetchPasswords(user.id).subscribe(passwords => {
+          this.passwordService.passwords.next(passwords);
+          this.passwordService.selectedPassword.next(passwords[0]);
+          const route = 'passwords/';
+          this.router.navigate([route]).then(() => console.log('Redirecting...'));
         });
       }
     });
+    //   next: user => {
+    //     console.log(user.username + '---' + user.masterPassword);
+    //     if (user.masterPassword === password) {
+    //       this._isAuthenticated = true;
+    //       this.userService.user.next(user);
+    //       this.passwordService.fetchPasswords(user.id).subscribe(passwords => {
+    //         let route = 'passwords/';
+    //         if (passwords) {
+    //           route += passwords[0].id;
+    //         }
+    //         this.router.navigate([route]).then(() => console.log('Redirecting...'));
+    //       });
+    //     } else {
+    //       alert('Usuário ou Senha incorreta!');
+    //     }
+    //   },
+    //   error: err => console.log(err),
+    //   complete: () => {
+    //     console.log(this.isAuthenticated() ? 'Usuário autenticado' : 'Usuário não autenticado');
+    //   }
+    // });
   }
 }

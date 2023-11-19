@@ -6,7 +6,6 @@
   margin: 0 0 9% 7%;
   width: 93%;
   height: 70%;
-  // background: red;
 }
 
 mat-accordion{
@@ -14,7 +13,6 @@ mat-accordion{
   margin-top: -1%;
   width: 100%;
   overflow-y: scroll;
-  // background: black;
 }
 
 mat-expansion-panel {
@@ -39,7 +37,6 @@ mat-expansion-panel-header{
 
 mat-expansion-panel-header mat-icon {
   align-self: center;
-  // color: $unfocusedIcon!important;
 }
 
 mat-expansion-panel-header.mat-expanded {
@@ -52,6 +49,7 @@ mat-expansion-panel-header.mat-expanded {
   color: $lightIcon;
   height: 0.1px;
   width: 0.1px;
+
 }
 
 ::ng-deep {
@@ -119,6 +117,5 @@ mat-expansion-panel-header.mat-expanded {
 
 .selected {
   background-color: $activeBg !important;
-  // box-shadow: rgb(20,20,20) 0 1px 0 0;
   transition: 0.35s all linear;
 }

@@ -1,7 +1,4 @@
 import { Component } from '@angular/core';
-import { User } from './shared/models/user';
-import { UserService } from './shared/services/user.service';
-import { Observable } from 'rxjs';
 import { AuthService } from './shared/services/auth.service';
 
 @Component({
@@ -10,13 +7,5 @@ import { AuthService } from './shared/services/auth.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  user!: Observable<User | null>;
-  selected = 'A-Z';
-  constructor(
-    private readonly userService: UserService,
-    private readonly authService: AuthService
-  ) {
-    this.authService.login('petersvc', '@senhapeter');
-    this.user = this.userService.user$;
-  }
+  constructor(public readonly authService: AuthService) {}
 }

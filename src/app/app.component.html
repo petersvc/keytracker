@@ -1,2 +1,2 @@
-<app-sidebar />
+<app-sidebar *ngIf="authService.isAuthenticated()" />
 <router-outlet></router-outlet>
