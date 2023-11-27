@@ -1,13 +1,13 @@
 export const environment = {
   production: true,
-  API: 'http://localhost:3000',
-  useFirestore: true,
+  API: import.meta.env.NG_APP_REST_API,
+  useFirestore: import.meta.env.NG_APP_USE_FIRESTORE,
   firebaseConfig: {
-    apiKey: 'AIzaSyC0oasFnvmCLwMgnxRlZidTT-f6eKl2nZ4',
-    authDomain: 'keytracker-cf33b.firebaseapp.com',
-    projectId: 'keytracker-cf33b',
-    storageBucket: 'keytracker-cf33b.appspot.com',
-    messagingSenderId: '379337613945',
-    appId: '1:379337613945:web:3da6ea9feb2b8712c56aa8'
+    apiKey: import.meta.env.NG_APP_FIREBASE_API_KEY,
+    authDomain: import.meta.env.NG_APP_FIREBASE_AUTH_DOMAIN,
+    projectId: import.meta.env.NG_APP_FIREBASE_PROJECT_ID,
+    storageBucket: import.meta.env.NG_APP_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: import.meta.env.NG_APP_FIREBASE_MESSAGING_SENDER_ID,
+    appId: import.meta.env.NG_APP_FIREBASE_APP_ID
   }
 };

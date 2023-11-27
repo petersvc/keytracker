@@ -18,6 +18,8 @@ import { PasswordService } from './shared/models/PasswordService';
 import { FirestorePasswordService } from './shared/services/firestore-password.service';
 import { RestPasswordService } from './shared/services/rest-password.service';
 
+console.log('environment', environment);
+
 @NgModule({
   declarations: [AppComponent],
   imports: [

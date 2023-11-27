@@ -4,10 +4,10 @@ import { BehaviorSubject, Observable } from 'rxjs';
 // classe usada para implementar o padrão de projeto Strategy
 // no appModule é definido qual estratégia será usada através do provider
 export abstract class UserService {
-  #user$ = new BehaviorSubject<User>({} as User);
+  private _user$ = new BehaviorSubject<User>({} as User);
 
   get user(): BehaviorSubject<User> {
-    return this.#user$;
+    return this._user$;
   }
 
   generateId(): string {

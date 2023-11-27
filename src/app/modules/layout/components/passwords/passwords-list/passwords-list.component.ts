@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { Password } from '../../../../../shared/interfaces/password';
-import { PasswordService } from '../../../../../shared/models/PasswordService';
+import { Password } from 'src/app/shared/interfaces/password';
+import { PasswordService } from 'src/app/shared/models/PasswordService';
 import { fab } from '@fortawesome/free-brands-svg-icons';
 import { BehaviorSubject } from 'rxjs';
 

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Password } from '../interfaces/password';
 import { HttpClient } from '@angular/common/http';
 import { catchError, EMPTY, map, Observable, tap } from 'rxjs';
-import { environment } from '../../../environments/environment';
+import { environment } from 'src/environments/environment';
 import { FeedbackService } from './feedback.service';
 import { PasswordService } from '../models/PasswordService';
 

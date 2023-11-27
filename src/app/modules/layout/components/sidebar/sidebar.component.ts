@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { User } from '../../../../shared/interfaces/user';
-import { UserService } from '../../../../shared/models/UserService';
-import { PasswordService } from '../../../../shared/models/PasswordService';
+import { User } from 'src/app/shared/interfaces/user';
+import { UserService } from 'src/app/shared/models/UserService';
+import { PasswordService } from 'src/app/shared/models/PasswordService';
 
 @Component({
   selector: 'app-sidebar',

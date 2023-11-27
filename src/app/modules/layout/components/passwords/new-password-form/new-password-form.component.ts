@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { PasswordService } from '../../../../../shared/models/PasswordService';
+import { PasswordService } from 'src/app/shared/models/PasswordService';
 import { Observable } from 'rxjs';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';

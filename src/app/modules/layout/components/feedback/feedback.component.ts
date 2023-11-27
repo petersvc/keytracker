@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FeedbackService } from '../../../../shared/services/feedback.service';
+import { FeedbackService } from 'src/app/shared/services/feedback.service';
 
 @Component({
   selector: 'app-feedback',

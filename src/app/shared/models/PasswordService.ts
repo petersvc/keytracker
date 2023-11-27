@@ -1,6 +1,8 @@
 import { Password } from '../interfaces/password';
 import { BehaviorSubject, map, Observable } from 'rxjs';
 
+// classe usada para implementar o padrão de projeto Strategy
+// no appModule é definido qual estratégia será usada através do provider
 export abstract class PasswordService {
   public passwords = new BehaviorSubject<Password[]>([] as Password[]);
   public selectedPassword = new BehaviorSubject<Password>({} as Password);

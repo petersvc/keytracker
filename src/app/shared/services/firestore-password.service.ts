@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { PasswordService } from '../models/PasswordService';
+import { FeedbackService } from './feedback.service';
 import { Password } from '../interfaces/password';
 import { catchError, EMPTY, from, map, Observable, tap } from 'rxjs';
 import {
@@ -15,7 +16,6 @@ import {
   updateDoc,
   where
 } from '@angular/fire/firestore';
-import { FeedbackService } from './feedback.service';
 
 @Injectable({
   providedIn: 'root'

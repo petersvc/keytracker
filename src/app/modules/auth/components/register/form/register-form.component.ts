@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { FirestoreUserService } from '../../../../../shared/services/firestore-user.service';
-import { AuthService } from '../../../../../shared/services/auth.service';
+import { FirestoreUserService } from 'src/app/shared/services/firestore-user.service';
+import { AuthService } from 'src/app/shared/services/auth.service';
 
 @Component({
   selector: 'app-register-form',

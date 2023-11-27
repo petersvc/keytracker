@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import { PasswordService } from '../../../../../shared/models/PasswordService';
-import { Password } from '../../../../../shared/interfaces/password';
+import { PasswordService } from 'src/app/shared/models/PasswordService';
+import { Password } from 'src/app/shared/interfaces/password';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 
 import { MatChipInputEvent } from '@angular/material/chips';
 import { BehaviorSubject } from 'rxjs';
-import { FeedbackService } from '../../../../../shared/services/feedback.service';
-import { environment } from '../../../../../../environments/environment';
+import { FeedbackService } from 'src/app/shared/services/feedback.service';
+import { environment } from 'src/environments/environment';
 
 // import * as passwords from 'src/passwordsjson';
 
@@ -71,7 +71,6 @@ export class PasswordDetailsComponent {
   }
 
   deletePassword(id: string) {
-    // console.log(this.password$.getValue()['Id']);
     this.passwordService.delete(id);
   }
 
@@ -107,12 +106,10 @@ export class PasswordDetailsComponent {
   add(event: MatChipInputEvent): void {
     const value = (event.value || '').trim();
 
-    // Add our fruit
     if (value) {
       this.temporaryTags.push(value);
     }
 
-    // Clear the input value
     event.chipInput.clear();
   }
 
