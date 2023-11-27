@@ -1,13 +1,11 @@
-@import "../../../../../theme";
-
 .container {
   position: absolute;
   bottom: 2%;
   right: 1%;
   padding: 6px 14px;
-  border: 1px solid $lighterBorder;
+  border: 1px solid var(--lighterBorder);
   box-shadow: rgb(35,35,35) 0 2px 5px 0;
-  background: $activeBg;
+  background: var(--activeBackground);
   border-radius: 20px;
   animation-name: slideLeft;
   animation-duration: 4s;
@@ -49,7 +47,7 @@
 
 .feedbackDiv mat-icon {
   font-size: 1.6em!important;
-  color: $accent!important;
+  color: var(--accent)!important;
 }
 
 .feedbackDiv__message {
@@ -62,14 +60,14 @@
 .feedbackDiv__message h2 {
   font-size: 1em;
   font-weight: 500;
-  color: $lightText;
+  color: var(--white);
 }
 
 .feedbackDiv__message p {
     margin-top: 5px;
     font-size: 0.9em;
     font-weight: 400;
-    color: $dimmed;
+    color: var(--dimmed);
 }
 
 

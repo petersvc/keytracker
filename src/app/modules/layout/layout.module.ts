@@ -12,7 +12,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 import { MatExpansionModule } from '@angular/material/expansion';
 
-import { AddPasswordFormComponent } from './components/sidebar/add-password-form/add-password-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 
@@ -33,7 +32,6 @@ import { FeedbackComponent } from './components/feedback/feedback.component';
     PasswordsListComponent,
     PasswordDetailsComponent,
     NavbarComponent,
-    AddPasswordFormComponent,
     NewPasswordFormComponent,
     FeedbackComponent
   ],

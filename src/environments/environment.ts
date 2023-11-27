@@ -1,7 +1,7 @@
 export const environment = {
   production: false,
   API: 'http://localhost:3000',
-  useFirestore: true,
+  useFirestore: false,
   firebaseConfig: {
     apiKey: 'AIzaSyC0oasFnvmCLwMgnxRlZidTT-f6eKl2nZ4',
     authDomain: 'keytracker-cf33b.firebaseapp.com',

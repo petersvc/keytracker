@@ -1,13 +1,10 @@
-@import "theme.scss";
-
 :host {
   display: flex;
   flex-direction: column;
   width: 20%;
   height: 100%;
   padding: 0;
-  margin: 0 0 0 0;
-  // background: blue;
+  margin: 0;
 }
 
 .container {
@@ -27,11 +24,11 @@
 }
 
 .header mat-icon {
-  color: $activeContent!important;
+  color: var(--activeContent)!important;
   font-size: 1.7em!important;
   padding: 10px!important;
-  background: $activeBg;
-  border: 1px solid $lighterBorder!important;
+  background: var(--activeBackground);
+  border: 1px solid var(--ultraDimmed)!important;
   border-radius: 10px;
 }
 
@@ -39,11 +36,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  // margin: 5% 0 0 2%;
-  padding: 0; //4%;
+  padding: 0;
   border-radius: 6px;
-  // background: $darkBg;
-  //border: 1px solid $primary;
 }
 
 .header__typo {
@@ -56,69 +50,29 @@
 .header__typo h1 {
   font-weight: normal;
   font-size: 1.1em;
-  color: $activeContent;
+  color: var(--activeContent);
 }
 
 .description {
   margin-top: 4px;
   font-size: 0.65em;
-  color: $dimmed2;
+  color: var(--dimmed);
+  opacity: 0.5;
   text-transform: uppercase;
 }
-
-//.searchbar {
-//  display: flex;
-//  align-items: center;
-//  justify-content: center;
-//  margin: 8% 7% 0 7%;
-//  padding: 7px 0 7px 15px;
-//  flex-direction: row;
-//  width: 80%;
-//  border-radius: $radiusMd;
-//  background: $activeBg!important;
-//  border: 1px solid $lighterBorder!important;
-//  // display: none;
-//}
-//
-//.searchbar-icon {
-//  font-size: 1.4em!important;
-//  color: $dimmed;
-//  z-index: 20;
-//}
-//.searchbar-input {
-//  //text-indent: 20%;
-//  margin-left: 9px;
-//  width: 100%;
-//  height: 100%;
-//  color: $lightText;
-//  background: transparent;
-//  font-size: 0.9em;
-//  border: none;
-//  outline: none;
-//  z-index: 1;
-//}
-//
-//.searchbar-input::placeholder {
-//  color: $dimmed;
-//}
 
 .addPasswordButton{
   margin: auto 7% 0 7%!important;
   font-weight: bold;
   font-size: 0.9em;
-  padding: 18px 0!important;
-  border-radius: $radiusMd;
-  background: $activeBg2!important;
-  border: 1px solid $buttonBorder!important;
-  // display: none;
+  padding: 18px 0 !important;
+  border-radius: var(--radiusMd);
+  background: var(--activeBackground2) !important;
+  border: 1px solid var(--activeBorder) !important;
 }
 
 .addPasswordButton span {
-  color: $lightText!important;
-}
-
-.addPasswordButton span span{
-  color: $primary!important;
+  color: var(--white)!important;
 }
 
 .sidebar-footer {
@@ -130,7 +84,6 @@
   margin: 7% 7% 7% 7%!important;
   width: 86%;
   align-items: center;
-  // background: red;
 }
 
 .user-profile {
@@ -148,5 +101,5 @@
 }
 
 .user-profile span {
-  color: $lightText;
+  color: var(--white);
 }

@@ -1,6 +1,29 @@
 /* You can add global styles to this file, and also import other style files */
 
-@import "theme.scss";
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+:root {
+  --primary: rgb(0, 127, 255);
+  --accent: rgb(140, 164, 134);
+  --black: rgb(27, 29, 34);
+  --softBlack: rgb(36, 41, 46);
+  --white: rgb(220,220,235);
+  --activeContent: rgb(76, 147, 219);
+  --activeBackground: rgb(31, 36, 41);
+  --activeBackground2: rgb(22, 36, 50);
+  --activeBorder: rgb(1, 58, 109);
+  --dimmed: rgb(149, 155, 168);
+  --ultraDimmed: rgb(42, 51, 60);
+  --lightBorder: rgb(35, 42, 51);
+  --lighterBorder: rgb(42, 51, 60);
+  --radiusXl: 20px;
+  --radiusLg: 16px;
+  --radiusMd: 12px;
+  --radiusSm: 8px;
+}
+
 
 html, body { height: 100%; width: 100% }
 
@@ -8,7 +31,7 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
   font-size: 0.95em;
-  background: $darkBg;
+  background: var(--black);
   overflow: hidden;
 }
 
@@ -19,17 +42,17 @@ mat-icon {
   height: auto!important;
   width: auto!important;
   line-height: 1!important;
-  color: $lightIcon!important;
+  color: var(--white)!important;
 }
 
 fa-icon {
-  color: $lightIcon;
+  color: var(--white);
   font-size: 1.2em;
 }
 
 h1, h2, h3, h4, h5, h6, p, a, label, input, textarea {
   font-family: Roboto, "Helvetica Neue", sans-serif;
-  color: $lightText;
+  color: var(--white);
   text-decoration: none;
 }
 

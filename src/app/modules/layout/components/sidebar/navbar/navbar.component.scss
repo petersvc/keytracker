@@ -1,12 +1,9 @@
-@import "theme.scss";
-
 :host {
   display: flex;
   flex-direction: column;
   margin: 0 0 3% 7%;
   width: 93%;
   height: 77%;
-  // background: red;
 }
 
 mat-accordion{
@@ -38,7 +35,6 @@ mat-expansion-panel-header{
 
 mat-expansion-panel-header mat-icon {
   align-self: center;
-  //color: $primary!important;
 }
 
 mat-expansion-panel-header.mat-expanded {
@@ -48,10 +44,9 @@ mat-expansion-panel-header.mat-expanded {
 
 ::ng-deep mat-expansion-panel-header .mat-expansion-indicator:after {
   margin-top: -70%;
-  color: $lightIcon!important;
+  color: var(--white)!important;
   height: 0.1px;
   width: 0.1px;
-  //transform: scale(0.6);
 }
 
 ::ng-deep {
@@ -80,14 +75,14 @@ mat-expansion-panel-header.mat-expanded {
   margin-bottom: 2px;
   width: 91%;
   height: auto;
-  border-radius: $radiusMd;
+  border-radius: var(--radiusMd);
 }
 
 .nav-list h1, h2 {
   font-size: 0.9em;
   font-weight: 500;
   margin: 0 0 0 10px;
-  color: $lightText;
+  color: var(--white);
 }
 
 .nav-list a {
@@ -109,28 +104,25 @@ mat-expansion-panel-header.mat-expanded {
 
 .folder mat-icon, .tag mat-icon {
   font-size: 1em!important;
-  color: $dimmed !important;
+  color: var(--dimmed) !important;
   margin-left: 12%!important;
 }
 
 .folder h2, .tag h2 {
   margin-left: 6%;
-  color: $dimmed;
+  color: var(--dimmed);
   font-size: 0.9em;
 }
 
 .selected {
-  background-color: $activeBg !important;
-  // border: 1px solid $lighterBorder;
-  // border-left: 1px solid $primary;
-  // border-right: 1px solid $primary;
+  background-color: var(--activeBackground) !important;
   transition: 0.35s all linear;
 }
 
 .selected mat-icon {
-    color: $activeContent !important;
+    color: var(--activeContent) !important;
 }
 
 .selected h1 {
-  color: $activeContent !important;
+  color: var(--activeContent) !important;
 }
