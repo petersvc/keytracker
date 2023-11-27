@@ -1,2 +1,3 @@
 <app-sidebar *ngIf="authService.isAuthenticated()" />
 <router-outlet></router-outlet>
+<app-feedback *ngIf="this.feedbackService.show"/>

@@ -1,10 +1,14 @@
 import { Component } from '@angular/core';
-import { PasswordService } from '../../../../../shared/services/password.service';
-import { Password } from '../../../../../shared/models/password';
+import { PasswordService } from '../../../../../shared/models/PasswordService';
+import { Password } from '../../../../../shared/interfaces/password';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 
 import { MatChipInputEvent } from '@angular/material/chips';
 import { BehaviorSubject } from 'rxjs';
+import { FeedbackService } from '../../../../../shared/services/feedback.service';
+import { environment } from '../../../../../../environments/environment';
+
+// import * as passwords from 'src/passwordsjson';
 
 @Component({
   selector: 'app-password-details',
@@ -18,8 +22,12 @@ export class PasswordDetailsComponent {
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
   temporaryTags: string[] = [];
   favorite!: boolean;
+  showFeedback!: boolean;
 
-  constructor(private readonly passwordService: PasswordService) {
+  constructor(
+    private readonly passwordService: PasswordService,
+    private readonly feedbackService: FeedbackService
+  ) {
     this.start();
   }
 
@@ -30,6 +38,7 @@ export class PasswordDetailsComponent {
       this.password$.next(password);
       this.generateTemporaryTags();
       this.favorite = password.favorite;
+      this.showFeedback = false;
     });
   }
 
@@ -43,39 +52,55 @@ export class PasswordDetailsComponent {
 
   toggleEdit() {
     this.editing = !this.editing;
+    // passwords.passwords.passwords.forEach(password => {
+    //   this.passwordService.create(password);
+    // });
   }
 
-  copyPassword(senha: string) {
-    navigator.clipboard.writeText(senha).then(
-      () => console.log('Texto copiado com sucesso!'),
+  copyPassword(button: HTMLButtonElement) {
+    navigator.clipboard.writeText(this.password$.getValue().passphrase).then(
+      () => {
+        console.log('Texto copiado com sucesso!');
+        button.classList.add('active');
+        setTimeout(() => {
+          button.classList.remove('active');
+        }, 1000);
+      },
       err => console.error('Erro ao copiar texto: ', err)
     );
   }
 
   deletePassword(id: string) {
-    this.passwordService.deletePassword(id);
+    // console.log(this.password$.getValue()['Id']);
+    this.passwordService.delete(id);
   }
 
   updatePassword(
-    id: string,
+    oldPassword: Password,
     application: string,
     username: string,
-    password: string,
+    passphrase: string,
     website: string,
     tags: string[],
     favorite: boolean,
     notes: string
   ) {
-    this.passwordService.updatePassword(
-      id,
+    const updatedPassword = {
+      ...oldPassword,
       application,
       username,
-      password,
+      passphrase,
       website,
       tags,
       favorite,
       notes
-    );
+    };
+    if (environment.useFirestore) {
+      this.passwordService.update(updatedPassword);
+    } else {
+      this.passwordService.update(oldPassword, updatedPassword);
+    }
+
     this.editing = false;
   }
 

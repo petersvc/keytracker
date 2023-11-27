@@ -1,0 +1,76 @@
+@import "../../../../../theme";
+
+.container {
+  position: absolute;
+  bottom: 2%;
+  right: 1%;
+  padding: 6px 14px;
+  border: 1px solid $lighterBorder;
+  box-shadow: rgb(35,35,35) 0 2px 5px 0;
+  background: $activeBg;
+  border-radius: 20px;
+  animation-name: slideLeft;
+  animation-duration: 4s;
+  animation-fill-mode: both;
+  animation-play-state: paused;
+  h2, p {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.container.animate {
+  animation-play-state: running;
+}
+
+@keyframes slideLeft {
+  0% {
+    transform: translateX(100%);
+  }
+  8% {
+    transform: translateX(0);
+  }
+  92% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+.feedbackDiv {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.feedbackDiv mat-icon {
+  font-size: 1.6em!important;
+  color: $accent!important;
+}
+
+.feedbackDiv__message {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 12px 14px;
+}
+
+.feedbackDiv__message h2 {
+  font-size: 1em;
+  font-weight: 500;
+  color: $lightText;
+}
+
+.feedbackDiv__message p {
+    margin-top: 5px;
+    font-size: 0.9em;
+    font-weight: 400;
+    color: $dimmed;
+}
+
+
+

@@ -2,17 +2,17 @@
   "users": [
     {
       "id": "1",
-      "name": "Wagner",
-      "username": "wgr",
-      "masterPassword": "@senhawagner",
-      "salt": "uniqueSalt1"
-    },
-    {
-      "id": "2",
       "name": "Peter",
       "username": "petersvc",
       "masterPassword": "@senhapeter",
       "salt": "uniqueSalt2"
+    },
+    {
+      "id": "2",
+      "name": "Wagner",
+      "username": "wgr",
+      "masterPassword": "@senhawagner",
+      "salt": "uniqueSalt1"
     }
   ],
   "passwords": [
@@ -20,18 +20,18 @@
       "id": "12",
       "application": "Amazon",
       "username": "amazon@user",
-      "passphrase": "@senhaamazon",
+      "passphrase": "************",
       "website": "amazon.com",
       "notes": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariat.",
-      "userId": "2",
+      "userId": "1",
       "folder": "Compras",
       "tags": [
         "E-commerce",
         "compras"
       ],
-      "favorite": true,
+      "favorite": false,
       "inBin": false,
-      "creationDate": "2023-11-15T12:30:00Z"
+      "createdAt": "2023-11-15T12:30:00Z"
     },
     {
       "id": "13",
@@ -40,7 +40,7 @@
       "passphrase": "@senhagoogle",
       "website": "google.com",
       "notes": "Some notes about Google.",
-      "userId": "2",
+      "userId": "1",
       "folder": "Search",
       "tags": [
         "Search Engine",
@@ -48,7 +48,7 @@
       ],
       "favorite": false,
       "inBin": false,
-      "creationDate": "2023-11-15T12:30:00Z"
+      "createdAt": "2023-11-15T12:30:00Z"
     },
     {
       "id": "14",
@@ -57,7 +57,7 @@
       "passphrase": "@senhatwitter",
       "website": "twitter.com",
       "notes": "Some notes about Twitter.",
-      "userId": "2",
+      "userId": "1",
       "folder": "Social Media",
       "tags": [
         "Social Networking",
@@ -65,7 +65,7 @@
       ],
       "favorite": true,
       "inBin": false,
-      "creationDate": "2023-11-15T09:15:00Z"
+      "createdAt": "2023-11-15T09:15:00Z"
     },
     {
       "id": "15",
@@ -74,14 +74,14 @@
       "passphrase": "@senhayoutube",
       "website": "youtube.com",
       "notes": "Some notes about YouTube.",
-      "userId": "2",
+      "userId": "1",
       "folder": "Video",
       "tags": [
         "streaming"
       ],
       "favorite": true,
       "inBin": false,
-      "creationDate": "2023-11-15T10:00:00Z"
+      "createdAt": "2023-11-15T10:00:00Z"
     },
     {
       "id": "21",
@@ -90,7 +90,7 @@
       "passphrase": "@senhagithub",
       "website": "github.com.br",
       "notes": "Some notes about GitHub.",
-      "userId": "2",
+      "userId": "1",
       "folder": "Development",
       "tags": [
         "Version Control",
@@ -98,7 +98,7 @@
       ],
       "favorite": true,
       "inBin": false,
-      "creationDate": "2023-11-15T09:45:00Z"
+      "createdAt": "2023-11-15T09:45:00Z"
     },
     {
       "id": "19",
@@ -107,7 +107,7 @@
       "passphrase": "@senhainstagram",
       "website": "instagram.com",
       "notes": "Some notes about Instagram.",
-      "userId": "2",
+      "userId": "1",
       "folder": "Social Media",
       "tags": [
         "Photo Sharing",
@@ -115,7 +115,7 @@
       ],
       "favorite": true,
       "inBin": false,
-      "creationDate": "2023-11-15T08:15:00Z"
+      "createdAt": "2023-11-15T08:15:00Z"
     },
     {
       "id": "18",
@@ -124,7 +124,7 @@
       "passphrase": "@senhaspotify",
       "website": "spotify.com",
       "notes": "Some notes about Spotify.",
-      "userId": "2",
+      "userId": "1",
       "folder": "Music",
       "tags": [
         "Streaming",
@@ -132,7 +132,7 @@
       ],
       "favorite": false,
       "inBin": false,
-      "creationDate": "2023-11-15T11:45:00Z"
+      "createdAt": "2023-11-15T11:45:00Z"
     },
     {
       "id": "24",
@@ -141,7 +141,7 @@
       "passphrase": "@senhareddit",
       "website": "reddit.com",
       "notes": "Some notes about Reddit.",
-      "userId": "2",
+      "userId": "1",
       "folder": "Social Media",
       "tags": [
         "Discussion",
@@ -149,7 +149,7 @@
       ],
       "favorite": false,
       "inBin": false,
-      "creationDate": "2023-11-15T11:00:00Z"
+      "createdAt": "2023-11-15T11:00:00Z"
     },
     {
       "id": "22",
@@ -158,7 +158,7 @@
       "passphrase": "@senhalinkedin",
       "website": "linkedin.com",
       "notes": "Some notes about LinkedIn.",
-      "userId": "2",
+      "userId": "1",
       "folder": "Professional",
       "tags": [
         "Networking",
@@ -166,7 +166,7 @@
       ],
       "favorite": false,
       "inBin": false,
-      "creationDate": "2023-11-15T15:15:00Z"
+      "createdAt": "2023-11-15T15:15:00Z"
     },
     {
       "id": "25",
@@ -175,7 +175,7 @@
       "passphrase": "@senhasnapchat",
       "website": "snapchat.com",
       "notes": "Some notes about Snapchat.",
-      "userId": "2",
+      "userId": "1",
       "folder": "Social Media",
       "tags": [
         "Photo Sharing",
@@ -183,7 +183,7 @@
       ],
       "favorite": true,
       "inBin": false,
-      "creationDate": "2023-11-15T12:45:00Z"
+      "createdAt": "2023-11-15T12:45:00Z"
     },
     {
       "id": "27",
@@ -192,7 +192,7 @@
       "passphrase": "@senhatwitch",
       "website": "twitch.tv",
       "notes": "Some notes about Twitch.",
-      "userId": "2",
+      "userId": "1",
       "folder": "Streaming",
       "tags": [
         "Gaming",
@@ -200,7 +200,7 @@
       ],
       "favorite": true,
       "inBin": false,
-      "creationDate": "2023-11-15T13:30:00Z"
+      "createdAt": "2023-11-15T13:30:00Z"
     },
     {
       "id": "26",
@@ -209,7 +209,7 @@
       "passphrase": "@senhaairbnb",
       "website": "airbnb.com",
       "notes": "Some notes about Airbnb.",
-      "userId": "2",
+      "userId": "1",
       "folder": "Travel",
       "tags": [
         "Accommodation",
@@ -217,7 +217,7 @@
       ],
       "favorite": true,
       "inBin": false,
-      "creationDate": "2023-11-15T09:00:00Z"
+      "createdAt": "2023-11-15T09:00:00Z"
     },
     {
       "id": "32",
@@ -226,7 +226,7 @@
       "passphrase": "@senhateams",
       "website": "teams.microsoft.com",
       "notes": "Some notes about Microsoft Teams.",
-      "userId": "2",
+      "userId": "1",
       "folder": "Collaboration",
       "tags": [
         "Business",
@@ -234,7 +234,7 @@
       ],
       "favorite": false,
       "inBin": false,
-      "creationDate": "2023-11-15T16:30:00Z"
+      "createdAt": "2023-11-15T16:30:00Z"
     },
     {
       "id": "31",
@@ -243,7 +243,7 @@
       "passphrase": "@senhapinterest",
       "website": "pinterest.com",
       "notes": "Some notes about Pinterest.",
-      "userId": "2",
+      "userId": "1",
       "folder": "Inspiration",
       "tags": [
         "Social Media",
@@ -251,7 +251,7 @@
       ],
       "favorite": true,
       "inBin": false,
-      "creationDate": "2023-11-15T16:00:00Z"
+      "createdAt": "2023-11-15T16:00:00Z"
     },
     {
       "id": "30",
@@ -260,7 +260,7 @@
       "passphrase": "@senhadiscord",
       "website": "discord.com",
       "notes": "Some notes about Discord.",
-      "userId": "2",
+      "userId": "1",
       "folder": "Communication",
       "tags": [
         "Chat",
@@ -268,7 +268,7 @@
       ],
       "favorite": false,
       "inBin": false,
-      "creationDate": "2023-11-15T15:45:00Z"
+      "createdAt": "2023-11-15T15:45:00Z"
     },
     {
       "id": "5530",
@@ -286,6 +286,22 @@
       "favorite": false,
       "inBin": false,
       "createdAt": "2023-11-19T08:11:54.827Z"
+    },
+    {
+      "id": "3685",
+      "userId": "1",
+      "application": "teste",
+      "favorite": false,
+      "username": "teste",
+      "passphrase": "teste",
+      "website": "teste",
+      "tags": [
+        "teste"
+      ],
+      "notes": "",
+      "inBin": false,
+      "createdAt": "2023-11-26T11:01:57.003Z",
+      "iconName": ""
     }
   ]
 }

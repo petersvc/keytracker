@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { User } from '../../../../shared/models/user';
-import { UserService } from '../../../../shared/services/user.service';
-import { PasswordService } from '../../../../shared/services/password.service';
+import { User } from '../../../../shared/interfaces/user';
+import { UserService } from '../../../../shared/models/UserService';
+import { PasswordService } from '../../../../shared/models/PasswordService';
 
 @Component({
   selector: 'app-sidebar',
@@ -19,10 +19,6 @@ export class SidebarComponent {
   ) {
     this.user$ = this.userService.user;
     this.showPasswordFormFlag = passwordService.showPasswordFormFlag;
-  }
-
-  realizarPesquisa($event: any) {
-    console.log(($event.target as HTMLInputElement).value);
   }
 
   toggleNewPasswordForm() {

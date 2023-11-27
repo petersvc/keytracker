@@ -10,15 +10,20 @@
 
     </mat-toolbar>
 
-    <div class="searchbar">
-        <mat-icon class='searchbar-icon' matPrefix>search</mat-icon>
-        <input class='searchbar-input' matInput placeholder="Pesquisar" (keyup.enter)="realizarPesquisa($event)" />
-    </div>
+<!--    <div class="searchbar">-->
+<!--        <mat-icon class='searchbar-icon' matPrefix>search</mat-icon>-->
+<!--        <input class='searchbar-input' matInput placeholder="Pesquisar" (keyup.enter)="realizarPesquisa($event)" />-->
+<!--    </div>-->
 
 
     <app-navbar />
 
-    <button mat-raised-button class='addPasswordButton' (click)='toggleNewPasswordForm()'><span>Nova Senha +</span></button>
+    <button mat-raised-button class='addPasswordButton' (click)='toggleNewPasswordForm()'>
+        <span>
+            Nova Senha
+            <span>+</span>
+        </span>
+    </button>
 
     <app-new-password-form *ngIf='showPasswordFormFlag | async' />
 

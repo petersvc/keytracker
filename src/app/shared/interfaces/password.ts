@@ -1,15 +1,14 @@
 export interface Password {
   id: string;
+  userId: string;
   application: string;
+  favorite: boolean;
   username: string;
   passphrase: string;
   website: string;
-  notes: string;
-  userId: string;
-  folder: string;
   tags: string[];
-  favorite: boolean;
+  notes: string;
   inBin: boolean;
-  createdAt: Date;
+  createdAt: string;
   iconName: string;
 }

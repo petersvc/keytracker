@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from './shared/services/auth.service';
+import { FeedbackService } from './shared/services/feedback.service';
 
 @Component({
   selector: 'app-root',
@@ -7,5 +8,8 @@ import { AuthService } from './shared/services/auth.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  constructor(public readonly authService: AuthService) {}
+  constructor(
+    public readonly authService: AuthService,
+    public readonly feedbackService: FeedbackService
+  ) {}
 }

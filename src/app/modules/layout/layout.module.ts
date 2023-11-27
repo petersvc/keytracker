@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
-import { TopbarComponent } from './components/topbar/topbar.component';
 import { PasswordsComponent } from './components/passwords/passwords.component';
 import { PasswordsListComponent } from './components/passwords/passwords-list/passwords-list.component';
 import { PasswordDetailsComponent } from './components/passwords/password-details/password-details.component';
@@ -25,19 +24,20 @@ import { MatChipsModule } from '@angular/material/chips';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NewPasswordFormComponent } from './components/passwords/new-password-form/new-password-form.component';
 import { MatBadgeModule } from '@angular/material/badge';
+import { FeedbackComponent } from './components/feedback/feedback.component';
 
 @NgModule({
   declarations: [
     SidebarComponent,
-    TopbarComponent,
     PasswordsComponent,
     PasswordsListComponent,
     PasswordDetailsComponent,
     NavbarComponent,
     AddPasswordFormComponent,
-    NewPasswordFormComponent
+    NewPasswordFormComponent,
+    FeedbackComponent
   ],
-  exports: [SidebarComponent],
+  exports: [SidebarComponent, FeedbackComponent],
   imports: [
     CommonModule,
     MatIconModule,

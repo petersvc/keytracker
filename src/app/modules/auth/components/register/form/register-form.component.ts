@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UserService } from '../../../../../shared/services/user.service';
+import { FirestoreUserService } from '../../../../../shared/services/firestore-user.service';
 import { AuthService } from '../../../../../shared/services/auth.service';
 
 @Component({
@@ -9,12 +9,13 @@ import { AuthService } from '../../../../../shared/services/auth.service';
 })
 export class RegisterFormComponent {
   constructor(
-    private readonly userService: UserService,
+    private readonly userService: FirestoreUserService,
     private readonly authService: AuthService
   ) {}
 
   register(name: string, username: string, masterPassword: string): void {
-    this.userService.createUser(name, username, masterPassword);
+    const data = { id: '', name, username, email: '', masterPassword };
+    this.userService.create(data);
     console.log('autenticando usuário...');
     this.authService.login(username, masterPassword);
   }

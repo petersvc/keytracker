@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { PasswordService } from '../../../../../shared/services/password.service';
+import { PasswordService } from '../../../../../shared/models/PasswordService';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 

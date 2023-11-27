@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { Password } from '../../../../../shared/models/password';
-import { PasswordService } from '../../../../../shared/services/password.service';
+import { Password } from '../../../../../shared/interfaces/password';
+import { PasswordService } from '../../../../../shared/models/PasswordService';
 import { fab } from '@fortawesome/free-brands-svg-icons';
 import { BehaviorSubject } from 'rxjs';
 
@@ -102,4 +102,6 @@ export class PasswordsListComponent {
       3
     );
   }
+
+  search(value: string) {}
 }

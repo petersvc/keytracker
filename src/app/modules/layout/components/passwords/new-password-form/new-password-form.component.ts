@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { PasswordService } from '../../../../../shared/services/password.service';
+import { PasswordService } from '../../../../../shared/models/PasswordService';
 import { Observable } from 'rxjs';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
@@ -26,22 +26,27 @@ export class NewPasswordFormComponent {
   createPassword(
     application: string,
     username: string,
-    password: string,
+    passphrase: string,
     website: string,
     tags: string[],
     notes: string
   ) {
-    let userId = '';
-    userId = this.passwordService.passwords.getValue()[0].userId;
-    this.passwordService.createPassword(
+    const userId = this.passwordService.passwords.getValue()[0].userId;
+    const newPassword = {
+      id: '',
+      userId,
       application,
+      favorite: false,
       username,
-      password,
+      passphrase,
       website,
       tags,
       notes,
-      userId
-    );
+      inBin: false,
+      createdAt: String(new Date()),
+      iconName: ''
+    };
+    this.passwordService.create(newPassword);
   }
 
   add(event: MatChipInputEvent): void {
