@@ -94,7 +94,7 @@ export class PasswordDetailsComponent {
       favorite,
       notes
     };
-    if (environment.useFirestore) {
+    if (environment.SERVICE_TYPE === 'firestore') {
       this.passwordService.update(updatedPassword);
     } else {
       this.passwordService.update(oldPassword, updatedPassword);
