@@ -2,7 +2,7 @@
   "users": [
     {
       "id": "1",
-      "name": "Peter",
+      "name": "Peter Costa",
       "username": "petersvc",
       "masterPassword": "@senhapeter",
       "salt": "uniqueSalt2"
@@ -20,7 +20,7 @@
       "id": "12",
       "application": "Amazon",
       "username": "amazon@user",
-      "passphrase": "************",
+      "passphrase": "@senhaamazon",
       "website": "amazon.com",
       "notes": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariat.",
       "userId": "1",

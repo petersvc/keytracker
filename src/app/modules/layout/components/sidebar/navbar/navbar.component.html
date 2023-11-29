@@ -2,21 +2,21 @@
   <a routerLink='/passwords'>
     <mat-list-item [ngClass]="{'selected': isTheActiveRoute('/passwords')}">
       <mat-icon class="material-icons-outlined" matListItemIcon>shield</mat-icon>
-      <h1 matListItemTitle>Senhas</h1>
+      <h2 matListItemTitle>Senhas</h2>
     </mat-list-item>
   </a>
 
   <a routerLink='/passwords'>
     <mat-list-item [ngClass]="{'selected': isTheActiveRoute('/favorites')}">
       <mat-icon matListItemIcon>star_outline</mat-icon>
-      <h1 matListItemTitle>Favoritas</h1>
+      <h2 matListItemTitle>Favoritas</h2>
     </mat-list-item>
   </a>
 
   <a routerLink='/passwords'>
     <mat-list-item [ngClass]="{'selected': isTheActiveRoute('/trash')}">
       <mat-icon matListItemIcon>delete_outline</mat-icon>
-      <h1 matListItemTitle>Lixeira</h1>
+      <h2 matListItemTitle>Lixeira</h2>
     </mat-list-item>
   </a>
 </mat-nav-list>
@@ -26,17 +26,20 @@
                        (closed)="panelOpenState = false" expanded>
     <mat-expansion-panel-header class='mat-expansion-panel-header'>
       <mat-panel-title>
-        <h1 class='nav-list-title'>Tags</h1>
+        <h2 class='nav-list-title'>Tags</h2>
       </mat-panel-title>
-      <mat-icon class="material-icons-outlined">add</mat-icon>
+<!--      <mat-icon class="material-icons-outlined">add</mat-icon>-->
     </mat-expansion-panel-header>
 
     <mat-nav-list class="nav-list bottom-list tags">
-      <mat-list-item class="nav-list-item tag" *ngFor='let tag of tags' >
-        <mat-icon matListItemIcon>tag</mat-icon>
-        <h2 matListItemTitle>{{tag}}</h2>
+      <mat-list-item class="nav-list-item tag" *ngFor='let tag of tags'>
+        <div class="mat-list-item-content">
+          <div class="line"></div>
+          <h2>{{tag | titlecase}}</h2>
+        </div>
       </mat-list-item>
     </mat-nav-list>
+
   </mat-expansion-panel>
 </mat-accordion>
 

@@ -84,6 +84,12 @@ export class PasswordDetailsComponent {
     favorite: boolean,
     notes: string
   ) {
+    const checkPassphrase = Array.from(passphrase).some(char => char !== '*');
+
+    if (!checkPassphrase) {
+      passphrase = oldPassword.passphrase;
+    }
+
     const updatedPassword = {
       ...oldPassword,
       application,
@@ -94,6 +100,7 @@ export class PasswordDetailsComponent {
       favorite,
       notes
     };
+
     if (environment.SERVICE_TYPE === 'firestore') {
       this.passwordService.update(updatedPassword);
     } else {
