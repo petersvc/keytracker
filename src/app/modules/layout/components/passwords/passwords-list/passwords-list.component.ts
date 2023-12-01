@@ -12,13 +12,38 @@ import { BehaviorSubject } from 'rxjs';
 export class PasswordsListComponent {
   passwords$: BehaviorSubject<Password[]>;
   selectedPassword = new BehaviorSubject<Password>({} as Password);
+  displayedColumns: string[] = [
+    'favorite',
+    'application',
+    'username',
+    'passphrase',
+    'tags',
+    'more'
+  ];
+  readonly icons = fab;
+
   sortOptions = ['A-Z', 'Recente', 'Antigo'];
   selectedSortOption = 'A-Z';
-  readonly icons = fab;
 
   constructor(private readonly passwordService: PasswordService) {
     this.passwords$ = this.passwordService.passwords;
     this.selectedPassword = this.passwordService.selectedPassword;
+  }
+
+  onSortOptionChange(option: string) {
+    this.selectedSortOption = option;
+  }
+
+  search(value: string) {}
+
+  togglePasswordVisibility(td: HTMLElement, passphrase: string) {
+    const tdValue = td.textContent as string;
+    const checkPassphrase = Array.from(tdValue).some(char => char !== '*');
+    if (checkPassphrase) {
+      td.textContent = tdValue.replace(/./g, '*');
+    } else {
+      td.textContent = passphrase;
+    }
   }
 
   findClosestIcon(applicationName: string): string {
@@ -36,12 +61,25 @@ export class PasswordsListComponent {
     return closestIcon;
   }
 
-  onSortOptionChange(option: string) {
-    this.selectedSortOption = option;
+  selectPassword(password: Password, item: HTMLElement) {
+    this.passwordService.selectedPassword.next(password);
+
+    // Elements ref
   }
 
-  selectPassword(password: Password) {
-    this.passwordService.selectedPassword.next(password);
+  getBoundingBoxCoordinates(element: HTMLElement): {
+    top: number;
+    left: number;
+    width: number;
+    height: number;
+  } {
+    const boundingBox = element.getBoundingClientRect();
+    return {
+      top: boundingBox.top + window.scrollY,
+      left: boundingBox.left + window.scrollX,
+      width: boundingBox.width,
+      height: boundingBox.height
+    };
   }
 
   copyPassword(senha: string) {
@@ -102,6 +140,4 @@ export class PasswordsListComponent {
       3
     );
   }
-
-  search(value: string) {}
 }

@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { User } from 'src/app/shared/interfaces/user';
-import { UserService } from 'src/app/shared/models/UserService';
+import { Observable } from 'rxjs';
 import { PasswordService } from 'src/app/shared/models/PasswordService';
 
 @Component({
@@ -10,14 +8,9 @@ import { PasswordService } from 'src/app/shared/models/PasswordService';
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent {
-  user$: BehaviorSubject<User>;
   showPasswordFormFlag: Observable<boolean>;
 
-  constructor(
-    private readonly userService: UserService,
-    private readonly passwordService: PasswordService
-  ) {
-    this.user$ = this.userService.user;
+  constructor(private readonly passwordService: PasswordService) {
     this.showPasswordFormFlag = passwordService.showPasswordFormFlag;
   }
 

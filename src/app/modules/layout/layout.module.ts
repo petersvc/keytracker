@@ -24,6 +24,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NewPasswordFormComponent } from './components/passwords/new-password-form/new-password-form.component';
 import { MatBadgeModule } from '@angular/material/badge';
 import { FeedbackComponent } from './components/feedback/feedback.component';
+import { PasswordsHeaderComponent } from './components/passwords/passwords-header/passwords-header.component';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -33,7 +36,8 @@ import { FeedbackComponent } from './components/feedback/feedback.component';
     PasswordDetailsComponent,
     NavbarComponent,
     NewPasswordFormComponent,
-    FeedbackComponent
+    FeedbackComponent,
+    PasswordsHeaderComponent
   ],
   exports: [SidebarComponent, FeedbackComponent],
   imports: [
@@ -54,7 +58,9 @@ import { FeedbackComponent } from './components/feedback/feedback.component';
     MatFormFieldModule,
     MatChipsModule,
     FontAwesomeModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatButtonToggleModule,
+    MatTableModule
   ]
 })
 export class LayoutModule {}

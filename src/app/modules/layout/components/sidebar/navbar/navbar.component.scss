@@ -11,7 +11,7 @@
 }
 
 .nav-list mat-list-item:hover {
-  background: var(--active-background2);
+  background: var(--active-background3);
 }
 
 .nav-list mat-list-item:hover h2 {
@@ -53,73 +53,21 @@
   margin: 2px 10px 0 -10px;
 }
 
-.nav-list-title {
-  align-self: center;
-  font-size: 0.9em;
-  margin: -3px 0 0 0;
-  font-weight: normal;
-  color: var(--dimmed);
-  padding: 0;
+.tags-container {
+  overflow-y: scroll!important;
+  height: 55%;
+  opacity: 1;
+  margin-bottom: 5px;
+  transition: all 0.2s linear;
 }
 
-mat-accordion{
-  height: auto;
-  margin: 6px 0 0 -10px;
-  overflow-y: scroll;
-}
-
-mat-expansion-panel {
-  padding: 0 0 0 6.5px!important;
-  margin: 0!important;
-  width: 96%;
-  box-shadow: none!important;
-  border-radius: 0!important;
-}
-
-mat-expansion-panel-header{
+.tags-header {
   display: flex;
-  padding: 7px 10px 7px 10px;
-  transition: all 0.25s linear;
-}
-
-mat-expansion-panel-header:hover {
-  background: var(--active-background2) !important;
-}
-
-mat-expansion-panel-header:hover h2 {
-  color: var(--white) !important;
-}
-
-::ng-deep mat-expansion-panel-header:hover .mat-expansion-indicator:after {
-  color: var(--white) !important;
-}
-
-mat-expansion-panel-header mat-icon {
-  align-self: center;
-}
-
-mat-expansion-panel-header.mat-expanded {
-  margin-bottom: 0;
-  margin-top: 0;
-}
-
-::ng-deep mat-expansion-panel-header .mat-expansion-indicator:after {
-  margin-top: -45%;
-  color: var(--dimmed)!important;
-  height: 0.1px;
-  width: 0.1px;
-}
-
-::ng-deep {
-  mat-expansion-panel {
-    .mat-expansion-panel-body {
-      padding: 3% 0 0 0;
-    }
-  }
+  flex-direction: row;
 }
 
 .tags {
-  margin: -5px 0 10px 14px!important;
+  margin: -5px 0 10px 9px!important;
   border-left: 1px solid var(--lighter-border);
 }
 

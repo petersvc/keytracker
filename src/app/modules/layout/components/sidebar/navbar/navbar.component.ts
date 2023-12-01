@@ -34,4 +34,16 @@ export class NavbarComponent {
   isTheActiveRoute(route: string): boolean {
     return this.router.url.includes(route);
   }
+
+  expandTags() {
+    const tags = document.querySelector('.tags-container') as HTMLElement;
+
+    if (tags.clientHeight === 0) {
+      tags.style.height = '55%';
+      tags.style.opacity = '1';
+    } else {
+      tags.style.height = '0';
+      tags.style.opacity = '0';
+    }
+  }
 }

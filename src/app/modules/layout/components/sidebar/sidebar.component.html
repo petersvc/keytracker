@@ -1,4 +1,4 @@
-<div *ngIf='user$ | async as user' class='container'>
+<div class='container'>
     <mat-toolbar class='header'>
         <div class='header-logo'>
             <mat-icon class='header-logo-icon'>fingerprint</mat-icon>
@@ -13,20 +13,8 @@
 
     <app-navbar />
 
-    <button mat-raised-button class='addPasswordButton' (click)='toggleNewPasswordForm()'>
-        <span>
-            Nova Senha
-            <span>+</span>
-        </span>
-    </button>
+
 
     <app-new-password-form *ngIf='showPasswordFormFlag | async' />
 
-    <mat-toolbar class='sidebar-footer' *ngIf='user'>
-        <div class='user-profile'>
-            <img src="assets/eu.jpg" alt="avatarImg"/>
-            <span>{{user.name}}</span>
-        </div>
-        <mat-icon>settings</mat-icon>
-    </mat-toolbar>
 </div>
