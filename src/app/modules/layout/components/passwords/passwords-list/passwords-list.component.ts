@@ -18,7 +18,7 @@ export class PasswordsListComponent {
     'username',
     'passphrase',
     'tags',
-    'more'
+    'actions'
   ];
   readonly icons = fab;
 
@@ -35,6 +35,25 @@ export class PasswordsListComponent {
   }
 
   search(value: string) {}
+
+  expandElement(
+    elementClass: string,
+    height: string,
+    initialHeight: number,
+    transitionTime: number
+  ) {
+    const element = document.querySelector(elementClass) as HTMLElement;
+
+    if (element.clientHeight === initialHeight) {
+      element.style.opacity = '1';
+      element.style.height = height;
+    } else {
+      element.style.opacity = '0';
+      setTimeout(() => {
+        element.style.height = '0';
+      }, transitionTime);
+    }
+  }
 
   togglePasswordVisibility(td: HTMLElement, passphrase: string) {
     const tdValue = td.textContent as string;
@@ -139,5 +158,31 @@ export class PasswordsListComponent {
         (matchingCharacters - transpositions) / matchingCharacters) /
       3
     );
+  }
+
+  toggleMenu() {}
+  expandActions(
+    elementClass: string,
+    height: string,
+    initialHeight: number,
+    transitionTime: number,
+    actions: HTMLElement
+  ) {
+    const element = document.querySelector(elementClass) as HTMLElement;
+    const actionsCoordinates = this.getBoundingBoxCoordinates(actions);
+
+    if (element.clientHeight === initialHeight) {
+      element.style.top = `${actionsCoordinates.top + actionsCoordinates.height + 5}px`;
+      element.style.left = `${actionsCoordinates.left - actionsCoordinates.width * 6 + 5}px`;
+      setTimeout(() => {
+        element.style.opacity = '1';
+        element.style.height = height;
+      }, transitionTime);
+    } else {
+      element.style.opacity = '0';
+      setTimeout(() => {
+        element.style.height = '0';
+      }, transitionTime);
+    }
   }
 }

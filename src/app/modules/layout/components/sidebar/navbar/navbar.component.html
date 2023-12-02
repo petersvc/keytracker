@@ -20,7 +20,7 @@
     </mat-list-item>
   </a>
 
-  <mat-list-item [ngClass]="{'selected': isTheActiveRoute('/trash')}" (click)="expandTags()">
+  <mat-list-item [ngClass]="{'selected': isTheActiveRoute('/trash')}" (click)="expandElement('.tags-container', '75%')">
     <div class="tags-header">
       <mat-icon>tag</mat-icon>
       <h2 >Tags</h2>
@@ -38,28 +38,17 @@
       </mat-nav-list>
   </div>
 
-  <a routerLink='/passwords'>
-    <mat-list-item [ngClass]="{'selected': isTheActiveRoute('/trash')}">
-      <mat-icon matListItemIcon>factory</mat-icon>
-      <h2 matListItemTitle>Gerador de senhas</h2>
-    </mat-list-item>
-  </a>
-
-  <a routerLink='/passwords'>
-    <mat-list-item [ngClass]="{'selected': isTheActiveRoute('/trash')}">
-      <mat-icon matListItemIcon>gamepad</mat-icon>
-      <h2 matListItemTitle>Playground</h2>
-    </mat-list-item>
-  </a>
-
-  <a routerLink='/passwords'>
-    <mat-list-item [ngClass]="{'selected': isTheActiveRoute('/trash')}">
+  <a routerLink='/passwords' class="nav-settings">
+    <mat-list-item [ngClass]="{'selected': isTheActiveRoute('/trash')}" [style.margin-top]="'auto!important'">
       <mat-icon matListItemIcon>settings</mat-icon>
       <h2 matListItemTitle>Configurações</h2>
     </mat-list-item>
   </a>
+
+  <a routerLink='/passwords'>
+    <mat-list-item [ngClass]="{'selected': isTheActiveRoute('/trash')}">
+      <mat-icon matListItemIcon>logout</mat-icon>
+      <h2 matListItemTitle>Sair</h2>
+    </mat-list-item>
+  </a>
 </mat-nav-list>
-
-
-
-

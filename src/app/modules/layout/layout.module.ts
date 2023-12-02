@@ -27,6 +27,7 @@ import { FeedbackComponent } from './components/feedback/feedback.component';
 import { PasswordsHeaderComponent } from './components/passwords/passwords-header/passwords-header.component';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatTableModule } from '@angular/material/table';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { MatTableModule } from '@angular/material/table';
     FontAwesomeModule,
     MatBadgeModule,
     MatButtonToggleModule,
-    MatTableModule
+    MatTableModule,
+    MatMenuModule
   ]
 })
 export class LayoutModule {}
