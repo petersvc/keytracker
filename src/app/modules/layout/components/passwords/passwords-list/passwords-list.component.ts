@@ -4,6 +4,8 @@ import { PasswordService } from 'src/app/shared/models/PasswordService';
 import { fab } from '@fortawesome/free-brands-svg-icons';
 import { BehaviorSubject } from 'rxjs';
 
+// import * as passwords from 'src/passwordsjson';
+
 @Component({
   selector: 'app-passwords-list',
   templateUrl: './passwords-list.component.html',
@@ -18,7 +20,7 @@ export class PasswordsListComponent {
     'username',
     'passphrase',
     'tags',
-    'more'
+    'actions'
   ];
   readonly icons = fab;
 
@@ -35,6 +37,25 @@ export class PasswordsListComponent {
   }
 
   search(value: string) {}
+
+  expandElement(
+    elementClass: string,
+    height: string,
+    initialHeight: number,
+    transitionTime: number
+  ) {
+    const element = document.querySelector(elementClass) as HTMLElement;
+
+    if (element.clientHeight === initialHeight) {
+      element.style.opacity = '1';
+      element.style.height = height;
+    } else {
+      element.style.opacity = '0';
+      setTimeout(() => {
+        element.style.height = '0';
+      }, transitionTime);
+    }
+  }
 
   togglePasswordVisibility(td: HTMLElement, passphrase: string) {
     const tdValue = td.textContent as string;
@@ -63,8 +84,6 @@ export class PasswordsListComponent {
 
   selectPassword(password: Password, item: HTMLElement) {
     this.passwordService.selectedPassword.next(password);
-
-    // Elements ref
   }
 
   getBoundingBoxCoordinates(element: HTMLElement): {
@@ -139,5 +158,23 @@ export class PasswordsListComponent {
         (matchingCharacters - transpositions) / matchingCharacters) /
       3
     );
+  }
+
+  expandActions(elementClass: string, actions: HTMLElement) {
+    const element = document.querySelector(elementClass) as HTMLElement;
+    const actionsCoordinates = this.getBoundingBoxCoordinates(actions);
+    if (element.clientHeight === 0) {
+      element.style.top = `${actionsCoordinates.top + actionsCoordinates.height + 5}px`;
+      element.style.left = `${actionsCoordinates.left - actionsCoordinates.width * 6 + 5}px`;
+      element.style.display = 'flex';
+    } else {
+      element.style.display = 'none';
+    }
+  }
+
+  savePassword() {
+    // passwords.passwords.passwords.forEach(password => {
+    //   this.passwordService.create(password);
+    // });
   }
 }

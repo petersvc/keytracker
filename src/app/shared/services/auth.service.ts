@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { UserService } from '../models/UserService';
 import { Router } from '@angular/router';
 import { PasswordService } from '../models/PasswordService';
+import { environment } from 'src/environments/environment';
+import { RestUserService } from './rest-user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -18,9 +20,19 @@ export class AuthService {
     return this._isAuthenticated;
   }
 
-  login(username: string, password: string): void {
-    this.userService.read(username).subscribe(user => {
-      if (user.masterPassword === password) {
+  login(username: string, masterPassword: string): void {
+    if (environment.SERVICE_TYPE === 'rest') {
+      (this.userService as RestUserService).login(username, masterPassword).subscribe(userData => {
+        this._isAuthenticated = true;
+        console.log('User authenticated!');
+        this.userService.user.next(userData.user);
+        this.passwordService.passwords.next(userData.passwords);
+        this.passwordService.selectedPassword.next(userData.passwords[0]);
+        const route = 'passwords/';
+        this.router.navigate([route]).then(() => console.log('Redirecting...'));
+      });
+    } else {
+      this.userService.read(username, masterPassword).subscribe(user => {
         this._isAuthenticated = true;
         console.log('User authenticated!');
         this.userService.user.next(user);
@@ -30,7 +42,7 @@ export class AuthService {
           const route = 'passwords/';
           this.router.navigate([route]).then(() => console.log('Redirecting...'));
         });
-      }
-    });
+      });
+    }
   }
 }

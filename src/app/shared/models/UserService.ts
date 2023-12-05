@@ -15,7 +15,7 @@ export abstract class UserService {
   }
 
   abstract create(newUser: User): void;
-  abstract read(username: string): Observable<User>;
+  abstract read(username: string, masterPassword: string): Observable<User>;
   abstract update(id: string, data: User): void;
   abstract delete(id: string): void;
 }

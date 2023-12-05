@@ -5,12 +5,12 @@
 @include mat.core();
 
 :root {
-  --primary: rgb(76, 147, 219); // rgb(0, 112, 243);
+  --primary: rgb(129, 134, 255); // rgb(76, 147, 219); // rgb(0, 112, 243);
   --accent: rgb(140, 164, 134);
   --black: rgb(11, 11, 13);
   --black-soft: rgb(80, 80, 80);
   --white: rgb(255,255,255);
-  --active-content: rgb(76, 147, 219);
+  //--primary: rgb(76, 147, 219);
   --active-background: rgb(16, 16, 16);
   --active-background2: rgb(21, 21, 21);
   --active-background3: rgb(25, 25, 25);

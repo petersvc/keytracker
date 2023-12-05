@@ -1,0 +1,34 @@
+<mat-toolbar class="container" *ngIf='user$ | async as user'>
+
+  <section class="container__left">
+    <div class="container__left__logo">
+      <mat-icon class="container__left__icon">fingerprint</mat-icon>
+    </div>
+
+    <div class="container__left__typo">
+      <h1 class='logotype'>Keytracker</h1>
+<!--      <span class='description'>Gerenciador de senhas</span>-->
+    </div>
+  </section>
+
+
+  <section class="container__right">
+    <mat-toolbar class='container__user' *ngIf='user'>
+      <div class='user-profile'>
+        <span>{{user.name}}</span>
+        <img src="../../../../../assets/eu.jpg" alt="avatarImg"/>
+      </div>
+    </mat-toolbar>
+
+    <button class="container__notifications">
+      <mat-icon class="container__theme-light material-icons-outlined">notifications</mat-icon>
+    </button>
+
+    <mat-button-toggle-group class="container__theme" name="theme" aria-label="theme">
+      <mat-button-toggle *ngFor="let theme of themeOptions" [value]="theme"  [checked]="theme === selectedThemeOption">
+        <mat-icon class="container__theme-option material-icons-outlined">{{theme}}</mat-icon>
+      </mat-button-toggle>
+    </mat-button-toggle-group>
+  </section>
+
+</mat-toolbar>

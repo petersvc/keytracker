@@ -35,15 +35,15 @@ export class NavbarComponent {
     return this.router.url.includes(route);
   }
 
-  expandTags() {
-    const tags = document.querySelector('.tags-container') as HTMLElement;
+  expandElement(elementClass: string, height: string) {
+    const element = document.querySelector(elementClass) as HTMLElement;
 
-    if (tags.clientHeight === 0) {
-      tags.style.height = '55%';
-      tags.style.opacity = '1';
+    if (element.clientHeight === 0) {
+      element.style.height = height;
+      element.style.opacity = '1';
     } else {
-      tags.style.height = '0';
-      tags.style.opacity = '0';
+      element.style.height = '0';
+      element.style.opacity = '0';
     }
   }
 }

@@ -3,7 +3,7 @@
   flex-direction: column;
   margin: 0 0 3% 7%;
   width: 93%;
-  height: 84%;
+  height: 91.5%;
 }
 
 .nav-list mat-list-item {
@@ -44,9 +44,14 @@
 }
 
 .top-list {
+  display: flex;
+  flex-direction: column;
   padding: 0;
   margin: 13px 0 0 0;
+  height: 100%;
+  overflow-y: scroll;
 }
+
 
 .top-list mat-list-item {
   padding: 7px 10px 7px 10px;
@@ -54,10 +59,10 @@
 }
 
 .tags-container {
-  overflow-y: scroll!important;
-  height: 55%;
+  overflow-y: scroll;
+  height: 75%;
   opacity: 1;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   transition: all 0.2s linear;
 }
 
@@ -105,10 +110,13 @@
 }
 
 .selected {
-  //background: var(--active-background);
   transition: 0.35s all linear;
 }
 
 .selected mat-icon, .selected h2 {
   color: var(--white) !important;
+}
+
+.nav-settings {
+  //margin-top: auto;
 }
