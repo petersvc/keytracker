@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { User } from 'src/app/shared/interfaces/user';
-import { UserService } from '../../../../../shared/models/UserService';
+import { UserService } from '../../../../shared/models/UserService';
 
 @Component({
-  selector: 'app-passwords-header',
-  templateUrl: './passwords-header.component.html',
-  styleUrls: ['./passwords-header.component.scss']
+  selector: 'app-header',
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.scss']
 })
-export class PasswordsHeaderComponent {
+export class HeaderComponent {
   user$: BehaviorSubject<User>;
   themeOptions = ['light_mode', 'dark_mode'];
   selectedThemeOption = 'dark_mode';

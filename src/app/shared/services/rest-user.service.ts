@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { User } from '../interfaces/user';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { catchError, EMPTY, map, Observable } from 'rxjs';
+import { catchError, EMPTY, Observable } from 'rxjs';
 import { UserService } from '../models/UserService';
 import { FeedbackService } from './feedback.service';
+import { UserData } from '../interfaces/userData';
 
 @Injectable({
   providedIn: 'root'
@@ -31,17 +32,50 @@ export class RestUserService extends UserService {
     );
   }
 
-  read(username: string): Observable<User> {
-    const url = `${this.endpoint}?username=${username}`;
+  read(username: string, masterPassword: string): Observable<User> {
+    const url = `${this.endpoint}/login`;
+    const params = new HttpParams({
+      fromString: `username=${username}&masterPassword=${masterPassword}`
+    });
 
-    return this.http.get<User[]>(url).pipe(
-      map(users => users[0]),
+    return this.http.post<User>(url, params).pipe(
       catchError(err => {
         console.error(err);
         this.feedbackService.errorMessage(err.message);
         return EMPTY;
       })
     );
+
+    // return this.http.post<User>(url, params).pipe(
+    //   catchError(err => {
+    //     console.error(err);
+    //     this.feedbackService.errorMessage(err.message);
+    //     return EMPTY;
+    //   })
+    // );
+  }
+
+  login(username: string, masterPassword: string): Observable<UserData> {
+    const url = `${this.endpoint}/login`;
+    const params = new HttpParams({
+      fromString: `username=${username}&masterPassword=${masterPassword}`
+    });
+
+    return this.http.post<UserData>(url, params).pipe(
+      catchError(err => {
+        console.error(err);
+        this.feedbackService.errorMessage(err.message);
+        return EMPTY;
+      })
+    );
+
+    // return this.http.post<User>(url, params).pipe(
+    //   catchError(err => {
+    //     console.error(err);
+    //     this.feedbackService.errorMessage(err.message);
+    //     return EMPTY;
+    //   })
+    // );
   }
 
   update(id: string, data: User) {}

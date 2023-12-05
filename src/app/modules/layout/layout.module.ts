@@ -24,7 +24,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NewPasswordFormComponent } from './components/passwords/new-password-form/new-password-form.component';
 import { MatBadgeModule } from '@angular/material/badge';
 import { FeedbackComponent } from './components/feedback/feedback.component';
-import { PasswordsHeaderComponent } from './components/passwords/passwords-header/passwords-header.component';
+import { HeaderComponent } from './components/header/header.component';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatTableModule } from '@angular/material/table';
 import { MatMenuModule } from '@angular/material/menu';
@@ -38,9 +38,9 @@ import { MatMenuModule } from '@angular/material/menu';
     NavbarComponent,
     NewPasswordFormComponent,
     FeedbackComponent,
-    PasswordsHeaderComponent
+    HeaderComponent
   ],
-  exports: [SidebarComponent, FeedbackComponent],
+  exports: [SidebarComponent, FeedbackComponent, HeaderComponent],
   imports: [
     CommonModule,
     MatIconModule,

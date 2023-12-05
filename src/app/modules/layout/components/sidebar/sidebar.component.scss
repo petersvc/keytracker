@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   width: 15%;
-  height: 100%;
+  height: 92.5%;
   padding: 0;
   margin: 0;
 }
@@ -12,53 +12,6 @@
   flex-direction: column;
   width: 100%;
   height: 100%;
-}
-
-.header {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  height: 7.38%;
-  border-bottom: 1px solid var(--light-border);
-}
-
-.header mat-icon {
-  color: var(--white)!important;
-  font-size: 2em!important;
-  padding: 0 15px 0 0!important;
-  border-radius: 10px;
-}
-
-.header-logo {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0;
-  border-radius: 6px;
-}
-
-.header__typo {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  // margin: 0 0 0 5%;
-}
-
-.header__typo h1 {
-  padding-left: 15px;
-  font-weight: normal;
-  font-size: 1.1em;
-  color: var(--white);
-  border-left: 1px solid var(--dimmed);
-}
-
-.description {
-  margin-top: 4px;
-  font-size: 0.65em;
-  color: var(--dimmed);
-  opacity: 0.5;
-  text-transform: uppercase;
-  display: none;
 }
 
 .addPasswordButton{

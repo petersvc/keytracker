@@ -1,7 +1,7 @@
 :host {
   display: flex;
   flex-direction: column;
-  height: 7.3%;
+  height: 70px;
   border-bottom: 1px solid var(--light-border);
   background: var(--black);
 }
@@ -9,10 +9,64 @@
 .container {
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
   height: 100%;
   width: 100%;
+}
+
+.container__left {
+  flex:1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.container__right {
+  flex: 5;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.container__left mat-icon {
+  color: var(--white)!important;
+  font-size: 2em!important;
+  padding: 0 15px 0 0!important;
+  border-radius: 10px;
+}
+
+.container__left__logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  border-radius: 6px;
+}
+
+.container__left__typo {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  // margin: 0 0 0 5%;
+}
+
+.container__left__typo h1 {
+  padding-left: 15px;
+  font-weight: normal;
+  font-size: 1.1em;
+  color: var(--white);
+  border-left: 1px solid var(--dimmed);
+}
+
+.description {
+  margin-top: 4px;
+  font-size: 0.65em;
+  color: var(--dimmed);
+  opacity: 0.5;
+  text-transform: uppercase;
+  display: none;
 }
 
 .container__notifications {
