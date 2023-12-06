@@ -24,6 +24,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatTableModule } from '@angular/material/table';
+import { PasswordsHeaderComponent } from './components/passwords/passwords-header/passwords-header.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { MatTableModule } from '@angular/material/table';
     NavbarComponent,
     NewPasswordFormComponent,
     FeedbackComponent,
-    HeaderComponent
+    HeaderComponent,
+    PasswordsHeaderComponent
   ],
   exports: [SidebarComponent, FeedbackComponent, HeaderComponent, PasswordManagementComponent],
   imports: [

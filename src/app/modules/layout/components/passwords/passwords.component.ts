@@ -13,7 +13,6 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class PasswordsComponent {
   passwords$: BehaviorSubject<Password[]>;
-  // selectedPassword = new BehaviorSubject<Password>({} as Password);
   displayedColumns: string[] = [
     'favorite',
     'application',
@@ -24,37 +23,8 @@ export class PasswordsComponent {
   ];
   readonly icons = fab;
 
-  sortOptions = ['A-Z', 'Recente', 'Antigo'];
-  selectedSortOption = 'A-Z';
-
   constructor(private readonly passwordService: PasswordService) {
     this.passwords$ = this.passwordService.passwords;
-    // this.selectedPassword = this.passwordService.selectedPassword;
-  }
-
-  onSortOptionChange(option: string) {
-    this.selectedSortOption = option;
-  }
-
-  search(value: string) {}
-
-  expandElement(
-    elementClass: string,
-    height: string,
-    initialHeight: number,
-    transitionTime: number
-  ) {
-    const element = document.querySelector(elementClass) as HTMLElement;
-
-    if (element.clientHeight === initialHeight) {
-      element.style.opacity = '1';
-      element.style.height = height;
-    } else {
-      element.style.opacity = '0';
-      setTimeout(() => {
-        element.style.height = '0';
-      }, transitionTime);
-    }
   }
 
   togglePasswordVisibility(td: HTMLElement, passphrase: string) {
