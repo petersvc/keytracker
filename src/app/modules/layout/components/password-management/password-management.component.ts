@@ -4,8 +4,7 @@ import { Password } from 'src/app/shared/interfaces/password';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 
 import { MatChipInputEvent } from '@angular/material/chips';
-import { BehaviorSubject } from 'rxjs';
-import { FeedbackService } from 'src/app/shared/services/feedback.service';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ActivatedRoute } from '@angular/router';
 
@@ -19,7 +18,6 @@ import { ActivatedRoute } from '@angular/router';
 export class PasswordManagementComponent {
   password$ = new BehaviorSubject<Password>({} as Password);
   isPasswordVisible = false;
-  editing = false;
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
   temporaryTags: string[] = [];
   favorite!: boolean;
@@ -28,7 +26,6 @@ export class PasswordManagementComponent {
 
   constructor(
     private readonly passwordService: PasswordService,
-    private readonly feedbackService: FeedbackService,
     private readonly activeRoute: ActivatedRoute
   ) {
     this.start();
@@ -37,20 +34,46 @@ export class PasswordManagementComponent {
   start(): void {
     const passwordId = this.activeRoute.snapshot.paramMap.get('id');
     console.log('passwordId: ', passwordId);
+    let passwordToSubscribe: Observable<Password>;
     if (passwordId) {
-      this.passwordService.readOne(passwordId).subscribe(password => {
+      if (passwordId == 'Nova senha') {
+        passwordToSubscribe = new Observable<Password>(subscriber => {
+          const newPassword: Password = {
+            id: '',
+            userId: this.passwordService.passwords.getValue()[0].userId,
+            application: passwordId,
+            favorite: false,
+            username: 'digite o nome do usuário',
+            passphrase: 'digite a senha',
+            website: 'digite a url do website',
+            tags: [],
+            notes: 'digite alguma nota, observação ou comentário sobre a senha cadastrada',
+            inBin: false,
+            createdAt: '',
+            iconName: ''
+          };
+          subscriber.next(newPassword);
+        });
+      } else {
+        passwordToSubscribe = this.passwordService.readOne(passwordId);
+      }
+
+      passwordToSubscribe.subscribe(password => {
         console.log('to no if');
         console.log(password);
         this.password$.next(password);
-        this.isPasswordVisible = false;
-        this.editing = false;
+        if (passwordId === 'Nova senha') {
+          this.lock = false;
+          this.isPasswordVisible = true;
+        } else {
+          this.lock = true;
+          this.isPasswordVisible = false;
+        }
         this.generateTemporaryTags();
         this.favorite = password.favorite;
         this.showFeedback = false;
-        this.lock = true;
       });
     }
-    // this.passwordService.selectedPassword.subscribe(password => {});
   }
 
   toggleFavorite() {
@@ -59,13 +82,6 @@ export class PasswordManagementComponent {
 
   toggleShow() {
     this.isPasswordVisible = !this.isPasswordVisible;
-  }
-
-  toggleEdit() {
-    this.editing = !this.editing;
-    // passwords.passwords.passwords.forEach(password => {
-    //   this.passwordService.create(password);
-    // });
   }
 
   copyPassword(button: HTMLButtonElement) {

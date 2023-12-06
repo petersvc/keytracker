@@ -30,6 +30,25 @@ export class RestPasswordService extends PasswordService {
   }
 
   readOne(id: string): Observable<Password> {
+    // if (id == 'Nova senha') {
+    //   return new Observable<Password>(subscriber => {
+    //     const newPassword: Password = {
+    //       id: '',
+    //       userId: '',
+    //       application: id,
+    //       favorite: false,
+    //       username: '',
+    //       passphrase: '',
+    //       website: '',
+    //       tags: [],
+    //       notes: '',
+    //       inBin: false,
+    //       createdAt: '',
+    //       iconName: ''
+    //     };
+    //     subscriber.next(newPassword);
+    //   });
+    // } else {
     const url = `${this._endpoint}/${id}`;
     return this.http.get<Password>(url).pipe(
       catchError(err => {
@@ -38,6 +57,7 @@ export class RestPasswordService extends PasswordService {
         return EMPTY;
       })
     );
+    // }
   }
 
   create(newPassword: Password): void {
