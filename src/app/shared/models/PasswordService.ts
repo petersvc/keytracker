@@ -10,8 +10,8 @@ export abstract class PasswordService {
   public showPasswordFormSubject = new BehaviorSubject<boolean>(false);
   public showPasswordFormFlag = this.showPasswordFormSubject.asObservable();
 
-  generateId(): string {
-    const id = Math.floor(Math.random() * 100000).toString();
+  generateId(): number {
+    const id = Math.floor(Math.random() * 100000);
     if (this.passwords.getValue().find(p => p.id === id)) {
       return this.generateId();
     } else {
@@ -31,9 +31,9 @@ export abstract class PasswordService {
   }
 
   abstract create(data: Password): void;
-  abstract readAll(id: string): Observable<Password[]>;
-  abstract readOne(id: string): Observable<Password>;
-  abstract update(updatedPassword: Password, oldPassword?: Password): void;
-  abstract delete(id: string): void;
-  abstract getPassphrase(id: string): Observable<string>;
+  abstract readAll(id: number): Observable<Password[]>;
+  abstract readOne(id: number): Observable<Password>;
+  abstract update(updatedPassword: Password): void;
+  abstract delete(id: number): void;
+  abstract getPassphrase(id: number): Observable<string>;
 }

@@ -36,7 +36,7 @@ export class AuthService {
         this._isAuthenticated = true;
         console.log('User authenticated!');
         this.userService.user.next(user);
-        this.passwordService.readAll(user.id).subscribe(passwords => {
+        this.passwordService.readAll(user.id as number).subscribe(passwords => {
           this.passwordService.passwords.next(passwords);
           this.passwordService.selectedPassword.next(passwords[0]);
           const route = 'passwords/';

@@ -33,12 +33,12 @@ export class FirestorePasswordService extends PasswordService {
 
   create(data: Password): void {
     data.id = this.generateId();
-    setDoc(doc(this.passwordsCollection, data.id), data).then(() => {
+    setDoc(doc(this.passwordsCollection, data.id.toString()), data).then(() => {
       this.feedbackService.successMessage('Senha criada com sucesso!');
     });
   }
 
-  readAll(userId: string): Observable<Password[]> {
+  readAll(userId: number): Observable<Password[]> {
     const q = query(
       this.passwordsCollection,
       orderBy('application'),
@@ -62,8 +62,8 @@ export class FirestorePasswordService extends PasswordService {
     );
   }
 
-  readOne(id: string): Observable<Password> {
-    const docRef = doc(this.passwordsCollection, id);
+  readOne(id: number): Observable<Password> {
+    const docRef = doc(this.passwordsCollection, id.toString());
     return from(getDoc(docRef)).pipe(
       map(doc => doc.data() as Password),
       tap(password => {
@@ -80,7 +80,7 @@ export class FirestorePasswordService extends PasswordService {
   }
 
   update(updatedPassword: Password): void {
-    const docRef = doc(this.passwordsCollection, updatedPassword.id);
+    const docRef = doc(this.passwordsCollection, updatedPassword.id?.toString());
     from(
       updateDoc(docRef, {
         ...updatedPassword
@@ -97,14 +97,14 @@ export class FirestorePasswordService extends PasswordService {
     );
   }
 
-  delete(id: string): void {
-    const docRef = doc(this.passwordsCollection, id);
+  delete(id: number): void {
+    const docRef = doc(this.passwordsCollection, id.toString());
     from(deleteDoc(docRef)).subscribe(() => {
       this.feedbackService.successMessage('Senha deletada com sucesso!');
     });
   }
 
-  getPassphrase(id: string): Observable<string> {
+  getPassphrase(id: number): Observable<string> {
     const password = this.readOne(id);
     return password.pipe(
       map(password => password.passphrase),
