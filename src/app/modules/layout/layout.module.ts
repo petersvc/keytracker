@@ -5,7 +5,6 @@ import { RouterLink } from '@angular/router';
 
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { PasswordsComponent } from './components/passwords/passwords.component';
-import { NewPasswordFormComponent } from './components/new-password-form/new-password-form.component';
 import { PasswordManagementComponent } from './components/password-management/password-management.component';
 import { NavbarComponent } from './components/sidebar/navbar/navbar.component';
 import { FeedbackComponent } from './components/feedback/feedback.component';
@@ -32,7 +31,6 @@ import { PasswordsHeaderComponent } from './components/passwords/passwords-heade
     PasswordsComponent,
     PasswordManagementComponent,
     NavbarComponent,
-    NewPasswordFormComponent,
     FeedbackComponent,
     HeaderComponent,
     PasswordsHeaderComponent

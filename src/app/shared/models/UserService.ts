@@ -10,8 +10,8 @@ export abstract class UserService {
     return this._user$;
   }
 
-  generateId(): string {
-    return Math.floor(Math.random() * 10000).toString();
+  generateId(): number {
+    return Math.floor(Math.random() * 10000);
   }
 
   abstract create(newUser: User): void;

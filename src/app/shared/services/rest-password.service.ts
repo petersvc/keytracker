@@ -19,7 +19,7 @@ export class RestPasswordService extends PasswordService {
     super();
   }
 
-  readAll(userId: string): Observable<Password[]> {
+  readAll(userId: number): Observable<Password[]> {
     const url = `${this._endpoint}?userId=${userId}`;
     return this.http.get<Password[]>(url).pipe(
       catchError(err => {
@@ -29,26 +29,7 @@ export class RestPasswordService extends PasswordService {
     );
   }
 
-  readOne(id: string): Observable<Password> {
-    // if (id == 'Nova senha') {
-    //   return new Observable<Password>(subscriber => {
-    //     const newPassword: Password = {
-    //       id: '',
-    //       userId: '',
-    //       application: id,
-    //       favorite: false,
-    //       username: '',
-    //       passphrase: '',
-    //       website: '',
-    //       tags: [],
-    //       notes: '',
-    //       inBin: false,
-    //       createdAt: '',
-    //       iconName: ''
-    //     };
-    //     subscriber.next(newPassword);
-    //   });
-    // } else {
+  readOne(id: number): Observable<Password> {
     const url = `${this._endpoint}/${id}`;
     return this.http.get<Password>(url).pipe(
       catchError(err => {
@@ -57,29 +38,9 @@ export class RestPasswordService extends PasswordService {
         return EMPTY;
       })
     );
-    // }
   }
 
-  create(newPassword: Password): void {
-    newPassword.id = this.generateId();
-    this.http
-      .post<Password>(this._endpoint, newPassword)
-      .pipe(
-        tap(newPassword => {
-          const oldPasswords = this.passwords.getValue();
-          this.passwords.next([...oldPasswords, newPassword]);
-          this.sortPasswordsByName();
-          this.feedbackService.successMessage('Senha criada com sucesso!');
-        }),
-        catchError(err => {
-          this.feedbackService.errorMessage(err.message);
-          return EMPTY;
-        })
-      )
-      .subscribe();
-  }
-
-  delete(passwordId: string): void {
+  delete(passwordId: number): void {
     const url = `${this._endpoint}/${passwordId}`;
     this.http.delete(url).pipe(
       tap(() => {
@@ -95,34 +56,63 @@ export class RestPasswordService extends PasswordService {
     );
   }
 
-  update(oldPassword: Password, updatedPassword: Password): void {
+  create(password: Password): void {
+    this.http
+      .post<Password>(this._endpoint, password)
+      .pipe(
+        tap(newPassword => {
+          const oldPasswords = this.passwords.getValue();
+          console.log('newPassword: ', newPassword);
+          this.passwords.next([...oldPasswords, newPassword]);
+          this.sortPasswordsByName();
+          this.feedbackService.successMessage('Senha criada com sucesso!');
+        }),
+        catchError(err => {
+          this.feedbackService.errorMessage(err.message);
+          return EMPTY;
+        })
+      )
+      .subscribe();
+  }
+
+  update(updatedPassword: Password): void {
     const url = `${this._endpoint}/${updatedPassword.id}`;
-    console.log('estou aqui no update do rest-password.service.ts');
-    console.log('oldPassword: ', oldPassword);
-    console.log('updatedPassword: ', updatedPassword);
+    const id = updatedPassword.id;
     this.http
       .put<Password>(url, updatedPassword)
       .pipe(
-        tap(updatedPassword => {
-          console.log('estou aqui no tap do update do rest-password.service.ts');
-          const passwords = this.passwords.getValue();
-          const indexToUpdate = passwords.indexOf(oldPassword);
-          passwords[indexToUpdate] = updatedPassword;
-          this.passwords.next(passwords);
-          this.feedbackService.successMessage('Senha atualizada com sucesso!');
-        }),
         catchError(err => {
           console.error('Erro ao atualizar senha: ', err);
           this.feedbackService.errorMessage(`Erro ao atualizar senha: ${err.message}`);
           return EMPTY;
         })
       )
-      .subscribe();
-    console.log('estou aqui no final do update do rest-password.service.ts');
+      .subscribe(() => {
+        const oldPasswords = this.passwords.getValue();
+        const indexToUpdate = oldPasswords.findIndex(password => password.id === id);
+        oldPasswords[indexToUpdate] = updatedPassword;
+        this.passwords.next(oldPasswords);
+        this.feedbackService.successMessage('Senha atualizada com sucesso!');
+      });
   }
 
-  getPassphrase(id: string): Observable<string> {
+  getPassphrase(id: number): Observable<string> {
     const password = this.readOne(id);
     return password.pipe(map(password => password.passphrase));
   }
 }
+
+// const passwords = this.passwords.getValue();
+// console.log('antes do find');
+// console.log('updatedPassword: ' + updatedPassword);
+// const oldPassword = passwords.filter(password => password.id === updatedPassword.id)[0];
+// if (oldPassword) {
+//   console.log('oldPassword', oldPassword);
+//   const indexToUpdate = passwords.indexOf(oldPassword);
+//   passwords[indexToUpdate] = updatedPassword;
+//   this.passwords.next(passwords);
+//   this.feedbackService.successMessage('Senha atualizada com sucesso!');
+// } else {
+//   console.error('Senha não encontrada!');
+//   this.feedbackService.errorMessage('Senha antiga não encontrada!');
+// }

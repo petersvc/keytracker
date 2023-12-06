@@ -1,6 +1,6 @@
 export interface Password {
-  id: string;
-  userId: string;
+  id: number | null;
+  userId: number | null;
   application: string;
   favorite: boolean;
   username: string;

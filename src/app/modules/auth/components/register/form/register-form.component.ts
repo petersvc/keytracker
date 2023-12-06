@@ -14,7 +14,7 @@ export class RegisterFormComponent {
   ) {}
 
   register(name: string, username: string, masterPassword: string): void {
-    const data = { id: '', name, username, email: '', masterPassword };
+    const data = { id: null, name, username, email: '', masterPassword };
     this.userService.create(data);
     console.log('autenticando usuário...');
     this.authService.login(username, masterPassword);

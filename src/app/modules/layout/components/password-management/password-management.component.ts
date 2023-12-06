@@ -5,7 +5,6 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 
 import { MatChipInputEvent } from '@angular/material/chips';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
 import { ActivatedRoute } from '@angular/router';
 
 // import * as passwords from 'src/passwordsjson';
@@ -33,21 +32,20 @@ export class PasswordManagementComponent {
 
   start(): void {
     const passwordId = this.activeRoute.snapshot.paramMap.get('id');
-    console.log('passwordId: ', passwordId);
     let passwordToSubscribe: Observable<Password>;
     if (passwordId) {
       if (passwordId == 'Nova senha') {
         passwordToSubscribe = new Observable<Password>(subscriber => {
           const newPassword: Password = {
-            id: '',
+            id: null,
             userId: this.passwordService.passwords.getValue()[0].userId,
             application: passwordId,
             favorite: false,
-            username: 'digite o nome do usuário',
-            passphrase: 'digite a senha',
-            website: 'digite a url do website',
+            username: '',
+            passphrase: '',
+            website: '',
             tags: [],
-            notes: 'digite alguma nota, observação ou comentário sobre a senha cadastrada',
+            notes: '',
             inBin: false,
             createdAt: '',
             iconName: ''
@@ -55,12 +53,10 @@ export class PasswordManagementComponent {
           subscriber.next(newPassword);
         });
       } else {
-        passwordToSubscribe = this.passwordService.readOne(passwordId);
+        passwordToSubscribe = this.passwordService.readOne(Number(passwordId));
       }
 
       passwordToSubscribe.subscribe(password => {
-        console.log('to no if');
-        console.log(password);
         this.password$.next(password);
         if (passwordId === 'Nova senha') {
           this.lock = false;
@@ -97,11 +93,11 @@ export class PasswordManagementComponent {
     );
   }
 
-  deletePassword(id: string) {
+  deletePassword(id: number) {
     this.passwordService.delete(id);
   }
 
-  updatePassword(
+  updateOrSavePassword(
     oldPassword: Password,
     application: string,
     username: string,
@@ -130,13 +126,20 @@ export class PasswordManagementComponent {
 
     console.log('updatedPassword: ', updatedPassword);
 
+    // Verifica se a senha é nova
+    if (updatedPassword.id === null) {
+      this.passwordService.create(updatedPassword);
+    } else {
+      this.passwordService.update(updatedPassword);
+    }
+
     // if (environment.SERVICE_TYPE === 'firestore') {
     //   this.passwordService.update(updatedPassword);
     // } else {
     //   this.passwordService.update(oldPassword, updatedPassword);
     // }
     //
-    // this.editing = false;
+    this.lock = true;
   }
 
   add(event: MatChipInputEvent): void {
