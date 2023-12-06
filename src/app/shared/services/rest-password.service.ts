@@ -33,6 +33,7 @@ export class RestPasswordService extends PasswordService {
     const url = `${this._endpoint}/${id}`;
     return this.http.get<Password>(url).pipe(
       catchError(err => {
+        console.error(err);
         this.feedbackService.errorMessage(err.message);
         return EMPTY;
       })

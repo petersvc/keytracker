@@ -1,6 +1,7 @@
 <app-header *ngIf="authService.isAuthenticated()"/>
 <section class="core">
   <app-sidebar *ngIf="authService.isAuthenticated()" />
-  <router-outlet></router-outlet>
+  <router-outlet />
+<!--  <app-password-management />-->
 </section>
 <app-feedback *ngIf="this.feedbackService.show"/>
