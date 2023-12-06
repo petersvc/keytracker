@@ -1,6 +1,6 @@
-<mat-toolbar class="container" *ngIf='user$ | async as user'>
+<section class="container" *ngIf='user$ | async as user'>
 
-  <section class="container__left">
+  <div class="container__left">
     <div class="container__left__logo">
       <mat-icon class="container__left__icon">fingerprint</mat-icon>
     </div>
@@ -9,10 +9,10 @@
       <h1 class='logotype'>Keytracker</h1>
 <!--      <span class='description'>Gerenciador de senhas</span>-->
     </div>
-  </section>
+  </div>
 
 
-  <section class="container__right">
+  <div class="container__right">
     <mat-toolbar class='container__user' *ngIf='user'>
       <div class='user-profile'>
         <span>{{user.name}}</span>
@@ -29,6 +29,6 @@
         <mat-icon class="container__theme-option material-icons-outlined">{{theme}}</mat-icon>
       </mat-button-toggle>
     </mat-button-toggle-group>
-  </section>
+  </div>
 
-</mat-toolbar>
+</section>

@@ -1,46 +1,41 @@
 import { NgModule } from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
+
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { PasswordsComponent } from './components/passwords/passwords.component';
-import { PasswordsListComponent } from './components/passwords/passwords-list/passwords-list.component';
-import { PasswordDetailsComponent } from './components/passwords/password-details/password-details.component';
+import { NewPasswordFormComponent } from './components/new-password-form/new-password-form.component';
+import { PasswordManagementComponent } from './components/password-management/password-management.component';
 import { NavbarComponent } from './components/sidebar/navbar/navbar.component';
+import { FeedbackComponent } from './components/feedback/feedback.component';
+import { HeaderComponent } from './components/header/header.component';
+
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
-import { MatExpansionModule } from '@angular/material/expansion';
-
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
-
 import { MatInputModule } from '@angular/material/input';
 import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatChipsModule } from '@angular/material/chips';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { NewPasswordFormComponent } from './components/passwords/new-password-form/new-password-form.component';
-import { MatBadgeModule } from '@angular/material/badge';
-import { FeedbackComponent } from './components/feedback/feedback.component';
-import { HeaderComponent } from './components/header/header.component';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatTableModule } from '@angular/material/table';
-import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   declarations: [
     SidebarComponent,
     PasswordsComponent,
-    PasswordsListComponent,
-    PasswordDetailsComponent,
+    PasswordManagementComponent,
     NavbarComponent,
     NewPasswordFormComponent,
     FeedbackComponent,
     HeaderComponent
   ],
-  exports: [SidebarComponent, FeedbackComponent, HeaderComponent],
+  exports: [SidebarComponent, FeedbackComponent, HeaderComponent, PasswordManagementComponent],
   imports: [
     CommonModule,
     MatIconModule,
@@ -48,7 +43,6 @@ import { MatMenuModule } from '@angular/material/menu';
     MatSidenavModule,
     MatButtonModule,
     MatListModule,
-    MatExpansionModule,
     NgOptimizedImage,
     FormsModule,
     ReactiveFormsModule,
@@ -59,10 +53,8 @@ import { MatMenuModule } from '@angular/material/menu';
     MatFormFieldModule,
     MatChipsModule,
     FontAwesomeModule,
-    MatBadgeModule,
     MatButtonToggleModule,
-    MatTableModule,
-    MatMenuModule
+    MatTableModule
   ]
 })
 export class LayoutModule {}

@@ -7,15 +7,16 @@ import { MatChipInputEvent } from '@angular/material/chips';
 import { BehaviorSubject } from 'rxjs';
 import { FeedbackService } from 'src/app/shared/services/feedback.service';
 import { environment } from 'src/environments/environment';
+import { ActivatedRoute } from '@angular/router';
 
 // import * as passwords from 'src/passwordsjson';
 
 @Component({
-  selector: 'app-password-details',
-  templateUrl: './password-details.component.html',
-  styleUrls: ['./password-details.component.scss']
+  selector: 'app-password-management',
+  templateUrl: './password-management.component.html',
+  styleUrls: ['./password-management.component.scss']
 })
-export class PasswordDetailsComponent {
+export class PasswordManagementComponent {
   password$ = new BehaviorSubject<Password>({} as Password);
   isPasswordVisible = false;
   editing = false;
@@ -23,23 +24,33 @@ export class PasswordDetailsComponent {
   temporaryTags: string[] = [];
   favorite!: boolean;
   showFeedback!: boolean;
+  lock = true;
 
   constructor(
     private readonly passwordService: PasswordService,
-    private readonly feedbackService: FeedbackService
+    private readonly feedbackService: FeedbackService,
+    private readonly activeRoute: ActivatedRoute
   ) {
     this.start();
   }
 
   start(): void {
-    this.passwordService.selectedPassword.subscribe(password => {
-      this.isPasswordVisible = false;
-      this.editing = false;
-      this.password$.next(password);
-      this.generateTemporaryTags();
-      this.favorite = password.favorite;
-      this.showFeedback = false;
-    });
+    const passwordId = this.activeRoute.snapshot.paramMap.get('id');
+    console.log('passwordId: ', passwordId);
+    if (passwordId) {
+      this.passwordService.readOne(passwordId).subscribe(password => {
+        console.log('to no if');
+        console.log(password);
+        this.password$.next(password);
+        this.isPasswordVisible = false;
+        this.editing = false;
+        this.generateTemporaryTags();
+        this.favorite = password.favorite;
+        this.showFeedback = false;
+        this.lock = true;
+      });
+    }
+    // this.passwordService.selectedPassword.subscribe(password => {});
   }
 
   toggleFavorite() {
@@ -101,13 +112,15 @@ export class PasswordDetailsComponent {
       notes
     };
 
-    if (environment.SERVICE_TYPE === 'firestore') {
-      this.passwordService.update(updatedPassword);
-    } else {
-      this.passwordService.update(oldPassword, updatedPassword);
-    }
+    console.log('updatedPassword: ', updatedPassword);
 
-    this.editing = false;
+    // if (environment.SERVICE_TYPE === 'firestore') {
+    //   this.passwordService.update(updatedPassword);
+    // } else {
+    //   this.passwordService.update(oldPassword, updatedPassword);
+    // }
+    //
+    // this.editing = false;
   }
 
   add(event: MatChipInputEvent): void {
@@ -126,5 +139,9 @@ export class PasswordDetailsComponent {
 
   generateTemporaryTags() {
     this.temporaryTags = [...this.password$.getValue().tags];
+  }
+
+  toggleLock() {
+    this.lock = !this.lock;
   }
 }

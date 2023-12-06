@@ -39,13 +39,13 @@
   </div>
 
   <a routerLink='/passwords' class="nav-settings">
-    <mat-list-item [ngClass]="{'selected': isTheActiveRoute('/trash')}" [style.margin-top]="'auto!important'">
+    <mat-list-item [ngClass]="{'selected': isTheActiveRoute('/trash')}">
       <mat-icon matListItemIcon class="material-icons-outlined">settings</mat-icon>
       <h2 matListItemTitle>Configurações</h2>
     </mat-list-item>
   </a>
 
-  <a routerLink='/passwords'>
+  <a routerLink='/login'>
     <mat-list-item [ngClass]="{'selected': isTheActiveRoute('/trash')}">
       <mat-icon matListItemIcon>logout</mat-icon>
       <h2 matListItemTitle>Sair</h2>

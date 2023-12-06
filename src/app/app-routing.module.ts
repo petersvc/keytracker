@@ -4,6 +4,7 @@ import { authGuard } from './modules/auth/auth.guard';
 import { LoginComponent } from './modules/auth/components/login/login.component';
 import { RegisterComponent } from './modules/auth/components/register/register.component';
 import { PasswordsComponent } from './modules/layout/components/passwords/passwords.component';
+import { PasswordManagementComponent } from './modules/layout/components/password-management/password-management.component';
 
 const routes: Routes = [
   {
@@ -28,12 +29,12 @@ const routes: Routes = [
     path: 'passwords',
     canActivate: [authGuard],
     component: PasswordsComponent
+  },
+  {
+    path: 'passwords/:id', // Rota dinâmica com um parâmetro "id"
+    canActivate: [authGuard],
+    component: PasswordManagementComponent
   }
-  // {
-  //   path: 'passwords/:id', // Rota dinâmica com um parâmetro de ID
-  //   canActivate: [authGuard],
-  //   component: PasswordsComponent
-  // }
 ];
 
 @NgModule({
