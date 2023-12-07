@@ -25,7 +25,7 @@
     </button>
 
     <mat-button-toggle-group class="container__theme" name="theme" aria-label="theme">
-      <mat-button-toggle *ngFor="let theme of themeOptions" [value]="theme"  [checked]="theme === selectedThemeOption">
+      <mat-button-toggle *ngFor="let theme of themeOptions" [value]="theme"  [checked]="theme === selectedThemeOption" (click)="onThemeOptionChange(theme)">
         <mat-icon class="container__theme-option material-icons-outlined">{{theme}}</mat-icon>
       </mat-button-toggle>
     </mat-button-toggle-group>

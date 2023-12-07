@@ -6,19 +6,22 @@
 
 :root {
   --primary: rgb(129, 134, 255); // rgb(76, 147, 219); // rgb(0, 112, 243);
-  --accent: rgb(140, 164, 134);
-  --black: rgb(11, 11, 13);
-  --black-soft: rgb(80, 80, 80);
-  --white: rgb(255,255,255);
-  //--primary: rgb(76, 147, 219);
+  --accent: rgb(35, 36, 61); // rgb(232, 244, 228); // rgb(140, 164, 134);
+  --accent2: rgb(48, 50, 73);
+  --success: rgb(72, 115, 69);
+  --error: rgb(200, 162, 158);
+  --background: rgb(11, 11, 13);
+  --background-soft: rgb(80, 80, 80);
+  --font-color: rgb(255,255,255);
   --active-background: rgb(16, 16, 16);
   --active-background2: rgb(21, 21, 21);
   --active-background3: rgb(25, 25, 25);
    --active-border: rgb(1, 58, 109);
   --dimmed: rgb(150, 150, 150);
   --ultra-dimmed: rgb(42, 51, 60);
-  --light-border: rgb(30, 30, 30);
-  --lighter-border: rgb(37, 37, 37);
+  --light-border: rgb(24, 24, 24);
+  --lightest-border: rgb(37, 37, 37);
+  --lighter-border: rgb(30, 30, 30);
   --radius-lg: 10px;
   --radius-md: 8px;
   --radius-sm: 6px;
@@ -30,7 +33,7 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
   font-size: 0.95em;
-  background: var(--black);
+  background: var(--background);
   overflow: hidden;
 }
 
@@ -41,17 +44,17 @@ mat-icon {
   height: auto!important;
   width: auto!important;
   line-height: 1!important;
-  color: var(--white)!important;
+  color: var(--font-color)!important;
 }
 
 fa-icon {
-  color: var(--white);
+  color: var(--font-color);
   font-size: 1.2em;
 }
 
 h1, h2, h3, h4, h5, h6, p, a, label, input, textarea {
   font-family: Roboto, "Helvetica Neue", sans-serif;
-  color: var(--white);
+  color: var(--font-color);
   text-decoration: none;
 }
 

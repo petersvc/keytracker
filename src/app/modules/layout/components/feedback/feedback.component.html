@@ -1,6 +1,6 @@
 <div class="container" [ngClass]="{'animate': feedback.animate}">
     <div class="feedbackDiv">
-        <mat-icon>{{feedback.success ? 'mood' : 'sentiment_very_dissatisfied'}}</mat-icon>
+        <mat-icon [style.color]="feedback.success ? 'var(--success) !important' : 'var(--error) !important' ">{{feedback.success ? 'mood' : 'sentiment_very_dissatisfied'}}</mat-icon>
         <div class="feedbackDiv__message">
             <h2>{{feedback.success ? 'Sucesso' : 'Erro' }}</h2>
             <p>{{feedback.message}}</p>
