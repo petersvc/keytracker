@@ -35,8 +35,9 @@ export class HeaderComponent {
        --active-border: rgb(1, 58, 109);
       --dimmed: rgb(150, 150, 150);
       --ultra-dimmed: rgb(42, 51, 60);
-      --light-border: rgb(30, 30, 30);
-      --lighter-border: rgb(37, 37, 37);
+      --light-border: rgb(24, 24, 24);
+      --lightest-border: rgb(37, 37, 37);
+      --lighter-border: rgb(30, 30, 30);
     `;
     } else {
       root.style.cssText = `

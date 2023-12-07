@@ -18,6 +18,7 @@ import { fab } from '@fortawesome/free-brands-svg-icons';
 })
 export class PasswordManagementComponent {
   password$ = new BehaviorSubject<Password>({} as Password);
+  isLoading = true;
   routePasswordId!: string | null;
   isPasswordVisible = false;
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
@@ -72,6 +73,7 @@ export class PasswordManagementComponent {
         this.generateTemporaryTags();
         this.favorite = password.favorite;
         this.showFeedback = false;
+        this.isLoading = false;
       });
     }
   }

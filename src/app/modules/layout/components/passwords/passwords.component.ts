@@ -12,6 +12,7 @@ import { FontAwesomeService } from 'src/app/shared/services/font-awesome.service
   styleUrls: ['./passwords.component.scss']
 })
 export class PasswordsComponent {
+  isLoading = true;
   passwords$: BehaviorSubject<Password[]>;
   passwordId: number | null = null;
   displayedColumns: string[] = [
@@ -28,6 +29,9 @@ export class PasswordsComponent {
     public readonly fontAwesomeService: FontAwesomeService
   ) {
     this.passwords$ = this.passwordService.passwords;
+    this.passwords$.subscribe(() => {
+      this.isLoading = false;
+    });
   }
 
   togglePasswordVisibility(td: HTMLElement, passphrase: string) {
@@ -52,13 +56,6 @@ export class PasswordsComponent {
       err => console.error('Erro ao copiar texto: ', err)
     );
   }
-
-  // copyPassword(senha: string) {
-  //   navigator.clipboard.writeText(senha).then(
-  //     () => console.log('Texto copiado com sucesso!'),
-  //     err => console.error('Erro ao copiar texto: ', err)
-  //   );
-  // }
 
   getBoundingBoxCoordinates(element: HTMLElement): {
     top: number;

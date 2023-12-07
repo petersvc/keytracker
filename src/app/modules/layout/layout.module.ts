@@ -24,6 +24,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatTableModule } from '@angular/material/table';
 import { PasswordsHeaderComponent } from './components/passwords/passwords-header/passwords-header.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { PasswordsHeaderComponent } from './components/passwords/passwords-heade
     MatChipsModule,
     FontAwesomeModule,
     MatButtonToggleModule,
-    MatTableModule
+    MatTableModule,
+    MatProgressSpinnerModule
   ]
 })
 export class LayoutModule {}
