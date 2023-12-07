@@ -3,6 +3,7 @@ import { Password } from 'src/app/shared/interfaces/password';
 import { PasswordService } from 'src/app/shared/models/PasswordService';
 import { BehaviorSubject } from 'rxjs';
 import { FontAwesomeService } from 'src/app/shared/services/font-awesome.service';
+import { ActivatedRoute } from '@angular/router';
 
 // import * as passwords from 'src/passwordsjson';
 
@@ -13,7 +14,7 @@ import { FontAwesomeService } from 'src/app/shared/services/font-awesome.service
 })
 export class PasswordsComponent {
   isLoading = true;
-  passwords$: BehaviorSubject<Password[]>;
+  passwords$ = new BehaviorSubject<Password[]>([] as Password[]);
   passwordId: number | null = null;
   displayedColumns: string[] = [
     'favorite',
@@ -23,13 +24,43 @@ export class PasswordsComponent {
     'tags',
     'actions'
   ];
+  headerTitle = 'Senhas';
+  passwordsLength = 0;
 
   constructor(
     private readonly passwordService: PasswordService,
-    public readonly fontAwesomeService: FontAwesomeService
+    public readonly fontAwesomeService: FontAwesomeService,
+    private readonly activeRoute: ActivatedRoute
   ) {
-    this.passwords$ = this.passwordService.passwords;
-    this.passwords$.subscribe(() => {
+    const headerTitlesStrategy = {
+      favorite: 'Favoritas',
+      inBin: 'Lixeira'
+    };
+
+    this.activeRoute.params.subscribe(params => {
+      const property = params['query'] as keyof Password;
+      if (property && (property as string) !== '') {
+        if (headerTitlesStrategy[property as keyof typeof headerTitlesStrategy]) {
+          const filteredPasswords = this.passwordService.passwords
+            .getValue()
+            .filter(password => password[property]);
+          this.passwords$.next(filteredPasswords);
+          this.headerTitle = headerTitlesStrategy[property as keyof typeof headerTitlesStrategy];
+          this.passwordsLength = filteredPasswords.length;
+        } else {
+          const tagToSearch = property.toLowerCase();
+          const allPasswords = this.passwordService.passwords.getValue();
+          const filteredPasswords = allPasswords.filter(password =>
+            password.tags.some(tag => tag.toLowerCase().includes(tagToSearch))
+          );
+          this.passwords$.next(filteredPasswords);
+          this.headerTitle = 'Tag: ' + property;
+          this.passwordsLength = filteredPasswords.length;
+        }
+      } else {
+        this.passwords$.next(this.passwordService.passwords.getValue());
+        this.passwordsLength = this.passwords$.getValue().length;
+      }
       this.isLoading = false;
     });
   }

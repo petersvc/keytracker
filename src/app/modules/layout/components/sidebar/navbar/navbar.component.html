@@ -6,36 +6,38 @@
     </mat-list-item>
   </a>
 
-  <a routerLink='/passwords'>
-    <mat-list-item [ngClass]="{'selected': isTheActiveRoute('/favorites')}">
+  <a [routerLink]="['/search/', 'favorite']">
+    <mat-list-item [ngClass]="{'selected': isTheActiveRoute('/search/favorite')}">
       <mat-icon matListItemIcon>star_outline</mat-icon>
       <h2 matListItemTitle>Favoritas</h2>
     </mat-list-item>
   </a>
 
-  <a routerLink='/passwords'>
-    <mat-list-item [ngClass]="{'selected': isTheActiveRoute('/trash')}">
+  <a [routerLink]="['/search/', 'inBin']">
+    <mat-list-item [ngClass]="{'selected': isTheActiveRoute('/search/inBin')}">
       <mat-icon matListItemIcon>delete_outline</mat-icon>
       <h2 matListItemTitle>Lixeira</h2>
     </mat-list-item>
   </a>
 
-  <mat-list-item [ngClass]="{'selected': isTheActiveRoute('/trash')}" (click)="expandElement('.tags-container', '75%')">
+  <mat-list-item [ngClass]="{'selected': isTheActiveRoute('/trash')}" (click)="expandElement('.tags-container', '77%')">
     <div class="tags-header">
       <mat-icon>tag</mat-icon>
-      <h2 >Tags</h2>
+      <h2>Tags</h2>
     </div>
   </mat-list-item>
 
   <div class="tags-container" *ngIf="tags$ | async as tags">
       <mat-nav-list class="nav-list bottom-list tags">
         <mat-list-item class="nav-list-item tag" *ngFor='let tag of tags'>
-          <div class="mat-list-item-content">
-            <div class="line">
+          <a [routerLink]="['/search/', tag]">
+            <div class="mat-list-item-content">
+              <div class="line">
+              </div>
+              <div class="line2"></div>
+              <h2>{{tag | titlecase}}</h2>
             </div>
-            <div class="line2"></div>
-            <h2>{{tag | titlecase}}</h2>
-          </div>
+          </a>
         </mat-list-item>
       </mat-nav-list>
   </div>

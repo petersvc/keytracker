@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Password } from '../../../../../shared/interfaces/password';
 import { PasswordService } from '../../../../../shared/models/PasswordService';
@@ -9,6 +9,8 @@ import { PasswordService } from '../../../../../shared/models/PasswordService';
   styleUrls: ['./passwords-header.component.scss']
 })
 export class PasswordsHeaderComponent {
+  @Input() headerTitle = '';
+  @Input() passwordsLength = 0;
   passwords$: BehaviorSubject<Password[]>;
   sortOptions = ['A-Z', 'Recente', 'Antigo'];
   selectedSortOption = 'A-Z';
