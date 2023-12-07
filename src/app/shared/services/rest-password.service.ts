@@ -21,12 +21,21 @@ export class RestPasswordService extends PasswordService {
 
   readAll(userId: number): Observable<Password[]> {
     const url = `${this._endpoint}?userId=${userId}`;
-    return this.http.get<Password[]>(url).pipe(
-      catchError(err => {
-        this.feedbackService.errorMessage(err.message);
-        return EMPTY;
-      })
-    );
+
+    return new Observable(subscriber => {
+      this.http
+        .get<Password[]>(url)
+        .pipe(
+          catchError(err => {
+            console.error(err);
+            this.feedbackService.errorMessage(err.message);
+            return EMPTY;
+          })
+        )
+        .subscribe(passwords => {
+          subscriber.next(passwords);
+        });
+    });
   }
 
   readOne(id: number): Observable<Password> {
@@ -42,18 +51,31 @@ export class RestPasswordService extends PasswordService {
 
   delete(passwordId: number): void {
     const url = `${this._endpoint}/${passwordId}`;
-    this.http.delete(url).pipe(
-      tap(() => {
-        const passwords = this.passwords.getValue();
-        const passwordToDelete = passwords.find(password => password.id === passwordId);
-        if (passwordToDelete) {
-          const indexToRemove = passwords.indexOf(passwordToDelete);
-          passwords.splice(indexToRemove, 1);
-        }
+    console.log('url: ', url);
+    console.log('passwordId: ' + passwordId);
+    this.http
+      .delete(url)
+      .pipe(
+        tap(() => {
+          const passwords = this.passwords.getValue();
+          const passwordToDelete = passwords.find(password => password.id === passwordId);
+          if (passwordToDelete) {
+            const indexToRemove = passwords.indexOf(passwordToDelete);
+            passwords.splice(indexToRemove, 1);
+          }
 
-        this.passwords.next(passwords);
-      })
-    );
+          this.passwords.next(passwords);
+        }),
+        catchError(err => {
+          console.error(err);
+          this.feedbackService.errorMessage(err.message);
+          return EMPTY;
+        })
+      )
+      .subscribe(deleted => {
+        console.log('deleted: ', deleted);
+        this.feedbackService.successMessage('Senha deletada com sucesso!');
+      });
   }
 
   create(password: Password): void {
@@ -101,18 +123,3 @@ export class RestPasswordService extends PasswordService {
     return password.pipe(map(password => password.passphrase));
   }
 }
-
-// const passwords = this.passwords.getValue();
-// console.log('antes do find');
-// console.log('updatedPassword: ' + updatedPassword);
-// const oldPassword = passwords.filter(password => password.id === updatedPassword.id)[0];
-// if (oldPassword) {
-//   console.log('oldPassword', oldPassword);
-//   const indexToUpdate = passwords.indexOf(oldPassword);
-//   passwords[indexToUpdate] = updatedPassword;
-//   this.passwords.next(passwords);
-//   this.feedbackService.successMessage('Senha atualizada com sucesso!');
-// } else {
-//   console.error('Senha não encontrada!');
-//   this.feedbackService.errorMessage('Senha antiga não encontrada!');
-// }

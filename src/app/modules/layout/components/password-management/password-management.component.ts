@@ -6,6 +6,8 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
+import { FontAwesomeService } from '../../../../shared/services/font-awesome.service';
+import { fab } from '@fortawesome/free-brands-svg-icons';
 
 // import * as passwords from 'src/passwordsjson';
 
@@ -16,6 +18,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class PasswordManagementComponent {
   password$ = new BehaviorSubject<Password>({} as Password);
+  routePasswordId!: string | null;
   isPasswordVisible = false;
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
   temporaryTags: string[] = [];
@@ -25,21 +28,22 @@ export class PasswordManagementComponent {
 
   constructor(
     private readonly passwordService: PasswordService,
+    public readonly fontAwesomeService: FontAwesomeService,
     private readonly activeRoute: ActivatedRoute
   ) {
     this.start();
   }
 
   start(): void {
-    const passwordId = this.activeRoute.snapshot.paramMap.get('id');
+    this.routePasswordId = this.activeRoute.snapshot.paramMap.get('id');
     let passwordToSubscribe: Observable<Password>;
-    if (passwordId) {
-      if (passwordId == 'Nova senha') {
+    if (this.routePasswordId) {
+      if (this.routePasswordId == 'Nova senha') {
         passwordToSubscribe = new Observable<Password>(subscriber => {
           const newPassword: Password = {
             id: null,
             userId: this.passwordService.passwords.getValue()[0].userId,
-            application: passwordId,
+            application: this.routePasswordId as string,
             favorite: false,
             username: '',
             passphrase: '',
@@ -53,12 +57,12 @@ export class PasswordManagementComponent {
           subscriber.next(newPassword);
         });
       } else {
-        passwordToSubscribe = this.passwordService.readOne(Number(passwordId));
+        passwordToSubscribe = this.passwordService.readOne(Number(this.routePasswordId));
       }
 
       passwordToSubscribe.subscribe(password => {
         this.password$.next(password);
-        if (passwordId === 'Nova senha') {
+        if (this.routePasswordId === 'Nova senha') {
           this.lock = false;
           this.isPasswordVisible = true;
         } else {
@@ -163,4 +167,6 @@ export class PasswordManagementComponent {
   toggleLock() {
     this.lock = !this.lock;
   }
+
+  protected readonly fab = fab;
 }

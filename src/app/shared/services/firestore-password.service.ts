@@ -51,9 +51,6 @@ export class FirestorePasswordService extends PasswordService {
         subscriber.next(passwords);
       });
     }).pipe(
-      tap(() => {
-        this.feedbackService.successMessage('Senhas encontradas!');
-      }),
       catchError(err => {
         console.error(err);
         this.feedbackService.errorMessage(err.message);
@@ -66,11 +63,6 @@ export class FirestorePasswordService extends PasswordService {
     const docRef = doc(this.passwordsCollection, id.toString());
     return from(getDoc(docRef)).pipe(
       map(doc => doc.data() as Password),
-      tap(password => {
-        if (password) {
-          this.feedbackService.successMessage(`Senha ${password.application} encontrada!`);
-        }
-      }),
       catchError(err => {
         console.error(err);
         this.feedbackService.errorMessage(err.message);

@@ -3,9 +3,9 @@
   bottom: 2%;
   right: 1%;
   padding: 6px 14px;
-  border: 1px solid var(--lighter-border);
+  border: 1px solid var(--lightest-border);
   box-shadow: rgb(35,35,35) 0 2px 5px 0;
-  background: var(--active-background2);
+  background: var(--active-background3);
   border-radius: 20px;
   animation-name: slideLeft;
   animation-duration: 4s;
@@ -47,7 +47,7 @@
 
 .feedbackDiv mat-icon {
   font-size: 1.6em!important;
-  color: var(--accent)!important;
+  // color: var(--accent)!important;
 }
 
 .feedbackDiv__message {
@@ -60,7 +60,7 @@
 .feedbackDiv__message h2 {
   font-size: 1em;
   font-weight: 500;
-  color: var(--white);
+  color: var(--font-color);
 }
 
 .feedbackDiv__message p {
