@@ -2,7 +2,7 @@
   display: flex;
   align-self: center;
   width: 65%;
-  margin-top: 12%;
+  margin-top: 1%;
 }
 
 .welcome {
@@ -11,10 +11,8 @@
 }
 
 .subtitle {
-  margin-top: 10px;
   font-size: 0.8em;
-  padding-bottom: 15%;
-  margin-bottom: 5%;
+  padding-bottom: 9%;
   width: 100%;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   font-weight: normal;
@@ -23,7 +21,7 @@
 .formGroup {
   display: flex;
   flex-direction: column;
-  flex:1;
+  flex: 1;
 }
 
 .formGroup Label {

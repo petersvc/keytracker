@@ -3,9 +3,15 @@
 .user-password {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   margin-top: 29px;
 }
+
 .user-password input {
   color: var(--font-color);
   margin-top: 10px;
+}
+
+.password {
+  margin-left: 15%;
 }

@@ -36,7 +36,12 @@ const routes: Routes = [
     component: PasswordManagementComponent
   },
   {
-    path: 'search/:query', // Rota dinâmica com um parâmetro "query"
+    path: 'filterBy/:filter', // Rota dinâmica com um parâmetro "query"
+    canActivate: [authGuard],
+    component: PasswordsComponent
+  },
+  {
+    path: 'search/:applicationName', // Rota dinâmica com um parâmetro "query"
     canActivate: [authGuard],
     component: PasswordsComponent
   }

@@ -2,10 +2,11 @@ import { Injectable } from '@angular/core';
 import { User } from '../interfaces/user';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { catchError, EMPTY, Observable } from 'rxjs';
+import { catchError, EMPTY, Observable, tap } from 'rxjs';
 import { UserService } from '../models/UserService';
 import { FeedbackService } from './feedback.service';
 import { UserData } from '../interfaces/userData';
+import { UserPostDTO } from '../interfaces/userPostDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -20,10 +21,10 @@ export class RestUserService extends UserService {
     super();
   }
 
-  create(newUser: User): void {
-    newUser.id = this.generateId();
-
-    this.http.post<User>(this.endpoint, newUser).pipe(
+  create(newUser: UserPostDTO): Observable<User> {
+    console.log('restUserService' + newUser);
+    return this.http.post<User>(this.endpoint, newUser).pipe(
+      tap(() => this.feedbackService.successMessage('Usuário criado!')),
       catchError(err => {
         console.error(err);
         this.feedbackService.errorMessage(err.message);
@@ -45,14 +46,6 @@ export class RestUserService extends UserService {
         return EMPTY;
       })
     );
-
-    // return this.http.post<User>(url, params).pipe(
-    //   catchError(err => {
-    //     console.error(err);
-    //     this.feedbackService.errorMessage(err.message);
-    //     return EMPTY;
-    //   })
-    // );
   }
 
   login(username: string, masterPassword: string): Observable<UserData> {

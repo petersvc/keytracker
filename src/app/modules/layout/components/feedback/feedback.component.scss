@@ -4,13 +4,15 @@
   right: 1%;
   padding: 6px 14px;
   border: 1px solid var(--lightest-border);
-  box-shadow: rgb(35,35,35) 0 2px 5px 0;
+  box-shadow: rgb(35, 35, 35) 0 2px 5px 0;
   background: var(--active-background3);
   border-radius: 20px;
   animation-name: slideLeft;
   animation-duration: 4s;
   animation-fill-mode: both;
   animation-play-state: paused;
+  z-index: 1000;
+
   h2, p {
     margin: 0;
     padding: 0;
@@ -46,7 +48,7 @@
 }
 
 .feedbackDiv mat-icon {
-  font-size: 1.6em!important;
+  font-size: 1.6em !important;
   // color: var(--accent)!important;
 }
 
@@ -64,10 +66,10 @@
 }
 
 .feedbackDiv__message p {
-    margin-top: 5px;
-    font-size: 0.9em;
-    font-weight: 400;
-    color: var(--dimmed);
+  margin-top: 5px;
+  font-size: 0.9em;
+  font-weight: 400;
+  color: var(--dimmed);
 }
 
 

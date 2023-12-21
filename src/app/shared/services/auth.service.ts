@@ -10,6 +10,7 @@ import { RestUserService } from './rest-user.service';
 })
 export class AuthService {
   private _isAuthenticated = false;
+
   constructor(
     private readonly userService: UserService,
     private readonly passwordService: PasswordService,
@@ -28,6 +29,7 @@ export class AuthService {
         this.userService.user.next(userData.user);
         this.passwordService.passwords.next(userData.passwords);
         this.passwordService.selectedPassword.next(userData.passwords[0]);
+        this.passwordService.sortPasswords('A-Z');
         const route = 'passwords/';
         this.router.navigate([route]).then(() => console.log('Redirecting...'));
       });
@@ -44,5 +46,12 @@ export class AuthService {
         });
       });
     }
+  }
+
+  logout(): void {
+    this._isAuthenticated = false;
+    console.log('User logged out!');
+    this.userService.logout();
+    this.passwordService.passwords.next([]);
   }
 }

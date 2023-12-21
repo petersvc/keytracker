@@ -5,7 +5,7 @@ import { BehaviorSubject } from 'rxjs';
 import { FontAwesomeService } from 'src/app/shared/services/font-awesome.service';
 import { ActivatedRoute } from '@angular/router';
 
-// import * as passwords from 'src/passwordsjson';
+// import * as passwordsjson from 'src/passwordsjson';
 
 @Component({
   selector: 'app-passwords',
@@ -14,6 +14,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class PasswordsComponent {
   isLoading = true;
+  showPasswordComponent = false;
   passwords$ = new BehaviorSubject<Password[]>([] as Password[]);
   passwordId: number | null = null;
   displayedColumns: string[] = [
@@ -37,48 +38,65 @@ export class PasswordsComponent {
       inBin: 'Lixeira'
     };
 
-    this.activeRoute.params.subscribe(params => {
-      const property = params['query'] as keyof Password;
-      if (property && (property as string) !== '') {
-        if (headerTitlesStrategy[property as keyof typeof headerTitlesStrategy]) {
-          const filteredPasswords = this.passwordService.passwords
-            .getValue()
-            .filter(password => password[property]);
-          this.passwords$.next(filteredPasswords);
-          this.headerTitle = headerTitlesStrategy[property as keyof typeof headerTitlesStrategy];
-          this.passwordsLength = filteredPasswords.length;
+    this.passwordService.passwords.subscribe(passwords => {
+      const allPasswords = passwords;
+
+      this.activeRoute.params.subscribe(params => {
+        const property = params['filter'] as keyof Password;
+
+        if (property && (property as string) !== '') {
+          if (headerTitlesStrategy[property as keyof typeof headerTitlesStrategy]) {
+            const filteredPasswords = this.passwordService.passwords
+              .getValue()
+              .filter(password => password[property]);
+            this.passwords$.next(filteredPasswords);
+            this.headerTitle = headerTitlesStrategy[property as keyof typeof headerTitlesStrategy];
+          } else {
+            this.filterPasswordsByTag(property, allPasswords);
+          }
+        } else if (params['applicationName']) {
+          this.filterPasswordsByApplicationName(params['applicationName'], allPasswords);
+        } else if (!params['id']) {
+          this.passwords$.next(this.passwordService.passwords.getValue());
         } else {
-          const tagToSearch = property.toLowerCase();
-          const allPasswords = this.passwordService.passwords.getValue();
-          const filteredPasswords = allPasswords.filter(password =>
-            password.tags.some(tag => tag.toLowerCase().includes(tagToSearch))
-          );
-          this.passwords$.next(filteredPasswords);
-          this.headerTitle = 'Tag: ' + property;
-          this.passwordsLength = filteredPasswords.length;
+          this.showPasswordComponent = true;
         }
-      } else {
-        this.passwords$.next(this.passwordService.passwords.getValue());
+        this.isLoading = false;
         this.passwordsLength = this.passwords$.getValue().length;
-      }
-      this.isLoading = false;
+      });
     });
   }
 
-  togglePasswordVisibility(td: HTMLElement, passphrase: string) {
-    const tdValue = td.textContent as string;
-    const checkPassphrase = Array.from(tdValue).some(char => char !== '*');
+  filterPasswordsByTag(tag: string, allPasswords: Password[]) {
+    const tagToSearch = tag.toLowerCase();
+    const filteredPasswords = allPasswords.filter(password =>
+      password.tags.some(tag => tag.toLowerCase().includes(tagToSearch))
+    );
+    this.passwords$.next(filteredPasswords);
+    this.headerTitle = 'Tag: ' + tag;
+  }
+
+  filterPasswordsByApplicationName(applicationName: string, allPasswords: Password[]) {
+    const filteredPasswords = allPasswords.filter(password =>
+      password.application.toLowerCase().includes(applicationName.toLowerCase())
+    );
+    this.passwords$.next(filteredPasswords);
+  }
+
+  togglePasswordVisibility(td: HTMLElement, passwordId: string) {
+    const checkPassphrase = Array.from(td.textContent as string).some(char => char !== '*');
     if (checkPassphrase) {
-      td.textContent = tdValue.replace(/./g, '*');
+      td.textContent = '*'.repeat(8); // tdValue.replace(/./g, '*');
     } else {
-      td.textContent = passphrase;
+      this.passwordService.getPassphrase(Number(passwordId)).subscribe(passphrase => {
+        td.textContent = passphrase;
+      });
     }
   }
 
-  copyPassword(button: HTMLButtonElement, passphrase: string) {
-    navigator.clipboard.writeText(passphrase).then(
+  copyUsername(button: HTMLButtonElement, username: string) {
+    navigator.clipboard.writeText(username).then(
       () => {
-        console.log('Texto copiado com sucesso!');
         button.classList.add('active');
         setTimeout(() => {
           button.classList.remove('active');
@@ -86,6 +104,20 @@ export class PasswordsComponent {
       },
       err => console.error('Erro ao copiar texto: ', err)
     );
+  }
+
+  copyPassword(button: HTMLButtonElement, passwordId: string) {
+    this.passwordService.getPassphrase(Number(passwordId)).subscribe(passphrase => {
+      navigator.clipboard.writeText(passphrase).then(
+        () => {
+          button.classList.add('active');
+          setTimeout(() => {
+            button.classList.remove('active');
+          }, 1000);
+        },
+        err => console.error('Erro ao copiar texto: ', err)
+      );
+    });
   }
 
   getBoundingBoxCoordinates(element: HTMLElement): {
@@ -123,8 +155,10 @@ export class PasswordsComponent {
     const element = document.querySelector('.sortBy__menu2') as HTMLElement;
     element.style.display = 'none';
   }
-  savePassword() {
-    // passwords.passwords.passwords.forEach(password => {
+
+  savePasswords() {
+    // passwordsjson.passwords.forEach(password => {
+    //   password.userId = <number>this.passwords$.getValue()[0].userId;
     //   this.passwordService.create(password);
     // });
   }

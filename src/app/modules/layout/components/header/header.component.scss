@@ -1,9 +1,8 @@
 :host {
   display: flex;
   flex-direction: column;
-  height: 70px;
+  height: 7%;
   border-bottom: 2px solid var(--light-border);
-  // background: var(--black);
 }
 
 .container {
@@ -16,7 +15,8 @@
 }
 
 .container__left {
-  flex:1;
+  flex: 1;
+  height: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -25,6 +25,7 @@
 
 .container__right {
   flex: 5;
+  height: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -33,9 +34,9 @@
 }
 
 .container__left mat-icon {
-  color: var(--font-color)!important;
-  font-size: 2em!important;
-  padding: 0 15px 0 0!important;
+  color: var(--font-color) !important;
+  font-size: 2em !important;
+  padding: 0 15px 0 0 !important;
   border-radius: 10px;
 }
 
@@ -58,7 +59,7 @@
   font-weight: normal;
   font-size: 1.1em;
   color: var(--font-color);
-  border-left: 1px solid var(--dimmed);
+  border-left: 2px solid var(--dimmed);
 }
 
 .description {
@@ -78,8 +79,8 @@
   border: 1px solid var(--lighter-border) !important;
   height: 36px !important;
   width: 36px !important;
-  padding: 0!important;
-  border-radius: 100px!important;
+  padding: 0 !important;
+  border-radius: 100px !important;
   outline: none;
   background: transparent;
   transition: all 0.25s linear;
@@ -126,36 +127,41 @@
 }
 
 .container__theme {
-  display: flex!important;
-  flex-direction: row!important;
-  align-items: center!important;
-  justify-content: space-between!important;
-  border: 1px solid var(--lighter-border)!important;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  border: 1px solid var(--lighter-border) !important;
   border-radius: var(--radius-sm);
   padding: 3px;
   margin: 0 0 0 20px;
+  transition: all 0.2s linear;
+}
+
+.container__theme:hover {
+  border: 1px solid var(--font-color) !important;
 }
 
 .container__theme mat-button-toggle {
   flex: 1;
-  margin: 0!important;
+  margin: 0 !important;
   padding: 4px 2px 6px 2px !important;
   transition: all 0.2s linear;
 }
 
 .container__theme mat-button-toggle mat-icon {
   transition: all 0.2s linear;
-  color: var(--dimmed)!important;
+  color: var(--dimmed) !important;
 }
 
 .container__theme mat-button-toggle.mat-button-toggle-checked {
-  background: var(--active-background3)!important;
+  background: var(--active-background3) !important;
 }
 
 .container__theme mat-button-toggle.mat-button-toggle-checked mat-icon {
-  color: var(--primary)!important;
+  color: var(--primary) !important;
 }
 
 .container__theme mat-button-toggle mat-icon:hover {
-  color: var(--font-color)!important;
+  color: var(--font-color) !important;
 }

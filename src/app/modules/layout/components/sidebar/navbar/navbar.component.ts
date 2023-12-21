@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { PasswordService } from 'src/app/shared/models/PasswordService';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
+import { UserService } from '../../../../../shared/models/UserService';
+import { AuthService } from '../../../../../shared/services/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -14,6 +16,8 @@ export class NavbarComponent {
 
   constructor(
     private readonly passwordService: PasswordService,
+    private readonly userService: UserService,
+    private readonly authService: AuthService,
     private readonly router: Router
   ) {
     this.generateTemporaryTags();
@@ -45,5 +49,10 @@ export class NavbarComponent {
       element.style.height = '0';
       element.style.opacity = '0';
     }
+  }
+
+  logout(): void {
+    this.authService.logout();
+    this.router.navigate(['login']).then(() => 'logging out');
   }
 }

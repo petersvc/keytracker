@@ -8,21 +8,33 @@
   <label for="name">Nome</label>
   <input #name id="name" placeholder='digite seu nome'>
 
-  <div class='user-password'>
-    <div class='user'>
-      <label for="username">Usuário</label>
-      <input #username id="username" placeholder='digite seu usuário'>
-    </div>
+  <label for="email">email</label>
+  <input #email id="email" placeholder='digite seu email'>
 
-    <div class='password'>
-      <label for="password">Senha</label>
-      <input type='password' #password id="password" placeholder='min 8 caracteres'>
-      <h1 class="passwordTip">Crie uma senha forte</h1>
-    </div>
-  </div>
+  <label for="username">Usuário</label>
+  <input #username id="username" placeholder='digite seu usuário'>
+
+  <label for="password">Senha</label>
+  <input type='password' #password id="password" placeholder='min 8 caracteres'>
+  <h1 class="passwordTip">Crie uma senha forte</h1>
+
+  <!--  <div class='user-password'>-->
+  <!--    <div class='user'>-->
+  <!--      <label for="username">Usuário</label>-->
+  <!--      <input #username id="username" placeholder='digite seu usuário'>-->
+  <!--    </div>-->
+
+  <!--    <div class='password'>-->
+  <!--      <label for="password">Senha</label>-->
+  <!--      <input type='password' #password id="password" placeholder='min 8 caracteres'>-->
+  <!--      <h1 class="passwordTip">Crie uma senha forte</h1>-->
+  <!--    </div>-->
+  <!--  </div>-->
 
 
-  <button type='submit' class="formGroup-button" (click)="register(name.value, username.value, password.value)">Registrar</button>
+  <button type='submit' class="formGroup-button"
+          (click)="register(name.value, email.value, username.value, password.value)">Registrar
+  </button>
 
   <div class="switchForm">
     <h1 class="switchForm-title">Possui uma conta?</h1>

@@ -5,6 +5,8 @@ import { catchError, EMPTY, map, Observable, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { FeedbackService } from './feedback.service';
 import { PasswordService } from '../models/PasswordService';
+import { PasswordPostDTO } from '../interfaces/passwordPostDTO';
+import { PasswordUpdateDTO } from '../interfaces/passwordUpdateDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -51,8 +53,6 @@ export class RestPasswordService extends PasswordService {
 
   delete(passwordId: number): void {
     const url = `${this._endpoint}/${passwordId}`;
-    console.log('url: ', url);
-    console.log('passwordId: ' + passwordId);
     this.http
       .delete(url)
       .pipe(
@@ -78,7 +78,7 @@ export class RestPasswordService extends PasswordService {
       });
   }
 
-  create(password: Password): void {
+  create(password: PasswordPostDTO): void {
     this.http
       .post<Password>(this._endpoint, password)
       .pipe(
@@ -86,7 +86,7 @@ export class RestPasswordService extends PasswordService {
           const oldPasswords = this.passwords.getValue();
           console.log('newPassword: ', newPassword);
           this.passwords.next([...oldPasswords, newPassword]);
-          this.sortPasswordsByName();
+          // this.sortPasswords('A-Z');
           this.feedbackService.successMessage('Senha criada com sucesso!');
         }),
         catchError(err => {
@@ -97,7 +97,7 @@ export class RestPasswordService extends PasswordService {
       .subscribe();
   }
 
-  update(updatedPassword: Password): void {
+  update(updatedPassword: PasswordUpdateDTO): void {
     const url = `${this._endpoint}/${updatedPassword.id}`;
     const id = updatedPassword.id;
     this.http
@@ -119,7 +119,33 @@ export class RestPasswordService extends PasswordService {
   }
 
   getPassphrase(id: number): Observable<string> {
-    const password = this.readOne(id);
-    return password.pipe(map(password => password.passphrase));
+    const url = `${this._endpoint}/${id}/passphrase`;
+    return this.http.get<{ passphrase: string }>(url).pipe(
+      map(pass => pass.passphrase),
+      catchError(err => {
+        console.error(err);
+        this.feedbackService.errorMessage(err.message);
+        return EMPTY;
+      })
+    );
+  }
+
+  sortPasswords(option: string): void {
+    const passwords = this.passwords.getValue();
+    switch (option) {
+      case 'A-Z':
+        passwords.sort((a, b) => a.application.localeCompare(b.application));
+        break;
+      case 'Z-A':
+        passwords.sort((a, b) => b.application.localeCompare(a.application));
+        break;
+      case 'Recente':
+        passwords.sort((a, b) => b.createdAt.localeCompare(a.createdAt));
+        break;
+      case 'Antigo':
+        passwords.sort((a, b) => a.createdAt.localeCompare(b.createdAt));
+        break;
+    }
+    this.passwords.next(passwords);
   }
 }

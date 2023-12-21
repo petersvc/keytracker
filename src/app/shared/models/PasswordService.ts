@@ -1,5 +1,7 @@
 import { Password } from '../interfaces/password';
-import { BehaviorSubject, map, Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { PasswordPostDTO } from '../interfaces/passwordPostDTO';
+import { PasswordUpdateDTO } from '../interfaces/passwordUpdateDTO';
 
 // classe usada para implementar o padrão de projeto Strategy
 // no appModule é definido qual estratégia será usada através do provider
@@ -24,16 +26,24 @@ export abstract class PasswordService {
     this.showPasswordFormSubject.next(flag);
   }
 
-  sortPasswordsByName(): void {
-    this.passwords.pipe(
-      map(passwords => passwords.sort((a, b) => a.application.localeCompare(b.application)))
-    );
-  }
+  //
+  // sortPasswordsByName(): void {
+  //   this.passwords.pipe(
+  //     map(passwords => passwords.sort((a, b) => a.application.localeCompare(b.application)))
+  //   );
+  // }
 
-  abstract create(data: Password): void;
+  abstract create(data: PasswordPostDTO): void;
+
   abstract readAll(id: number): Observable<Password[]>;
+
   abstract readOne(id: number): Observable<Password>;
-  abstract update(updatedPassword: Password): void;
+
+  abstract update(updatedPassword: PasswordUpdateDTO): void;
+
   abstract delete(id: number): void;
+
   abstract getPassphrase(id: number): Observable<string>;
+
+  abstract sortPasswords(option: string): void;
 }

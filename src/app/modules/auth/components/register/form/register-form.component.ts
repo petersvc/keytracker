@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { FirestoreUserService } from 'src/app/shared/services/firestore-user.service';
 import { AuthService } from 'src/app/shared/services/auth.service';
+import { UserPostDTO } from '../../../../../shared/interfaces/userPostDTO';
+import { UserService } from '../../../../../shared/models/UserService';
 
 @Component({
   selector: 'app-register-form',
@@ -9,14 +10,14 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 })
 export class RegisterFormComponent {
   constructor(
-    private readonly userService: FirestoreUserService,
+    private readonly userService: UserService,
     private readonly authService: AuthService
   ) {}
 
-  register(name: string, username: string, masterPassword: string): void {
-    const data = { id: null, name, username, email: '', masterPassword };
-    this.userService.create(data);
-    console.log('autenticando usuário...');
-    this.authService.login(username, masterPassword);
+  register(name: string, email: string, username: string, masterPassword: string): void {
+    const data = { name, username, email, masterPassword } as UserPostDTO;
+    this.userService.create(data).subscribe(() => {
+      this.authService.login(username, masterPassword);
+    });
   }
 }

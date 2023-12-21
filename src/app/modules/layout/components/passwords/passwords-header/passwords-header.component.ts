@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Password } from '../../../../../shared/interfaces/password';
 import { PasswordService } from '../../../../../shared/models/PasswordService';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-passwords-header',
@@ -12,10 +13,13 @@ export class PasswordsHeaderComponent {
   @Input() headerTitle = '';
   @Input() passwordsLength = 0;
   passwords$: BehaviorSubject<Password[]>;
-  sortOptions = ['A-Z', 'Recente', 'Antigo'];
+  sortOptions = ['A-Z', 'Z-A', 'Recente', 'Antigo'];
   selectedSortOption = 'A-Z';
 
-  constructor(private readonly passwordService: PasswordService) {
+  constructor(
+    private readonly passwordService: PasswordService,
+    public router: Router
+  ) {
     this.passwords$ = this.passwordService.passwords;
   }
 
@@ -38,5 +42,12 @@ export class PasswordsHeaderComponent {
     }
   }
 
-  search(value: string) {}
+  search(value: string) {
+    this.router.navigate(['/search', value]).then(r => r);
+  }
+
+  sortPasswords(option: string): void {
+    this.passwordService.sortPasswords(option);
+    this.selectedSortOption = option;
+  }
 }

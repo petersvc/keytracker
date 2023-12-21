@@ -1,9 +1,9 @@
-export interface Password {
-  id: number | null;
+export interface PasswordPostDTO {
   userId: number | null;
   application: string;
   favorite: boolean;
   username: string;
+  passphrase: string;
   website: string;
   tags: string[];
   notes: string;

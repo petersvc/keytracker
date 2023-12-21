@@ -4,6 +4,7 @@ import { catchError, EMPTY, map, Observable, tap } from 'rxjs';
 import { UserService } from '../models/UserService';
 import { collection, collectionData, Firestore } from '@angular/fire/firestore';
 import { FeedbackService } from './feedback.service';
+import { UserPostDTO } from '../interfaces/userPostDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,10 @@ export class FirestoreUserService extends UserService {
     super();
   }
 
-  create(newUser: User): void {}
+  create(newUser: UserPostDTO): Observable<User> {
+    console.log('firestoreUserService' + newUser);
+    return new Observable<User>();
+  }
 
   read(username: string): Observable<User> {
     return (collectionData(this.usersCollection) as Observable<User[]>).pipe(

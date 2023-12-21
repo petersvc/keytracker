@@ -16,6 +16,7 @@ import {
   updateDoc,
   where
 } from '@angular/fire/firestore';
+import { PasswordPostDTO } from '../interfaces/passwordPostDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -31,9 +32,8 @@ export class FirestorePasswordService extends PasswordService {
     super();
   }
 
-  create(data: Password): void {
-    data.id = this.generateId();
-    setDoc(doc(this.passwordsCollection, data.id.toString()), data).then(() => {
+  create(data: PasswordPostDTO): void {
+    setDoc(doc(this.passwordsCollection, this.generateId().toString()), data).then(() => {
       this.feedbackService.successMessage('Senha criada com sucesso!');
     });
   }
@@ -97,14 +97,17 @@ export class FirestorePasswordService extends PasswordService {
   }
 
   getPassphrase(id: number): Observable<string> {
-    const password = this.readOne(id);
-    return password.pipe(
-      map(password => password.passphrase),
-      catchError(err => {
-        console.error(err);
-        this.feedbackService.errorMessage(err.message);
-        return EMPTY;
-      })
-    );
+    // const password = this.readOne(id);
+    // return password.pipe(
+    //   map(password => password.passphrase),
+    //   catchError(err => {
+    //     console.error(err);
+    //     this.feedbackService.errorMessage(err.message);
+    //     return EMPTY;
+    //   })
+    // );
+    return new Observable<string>();
   }
+
+  sortPasswords(option: string): void {}
 }

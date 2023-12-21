@@ -1,9 +1,9 @@
 :host {
   display: flex;
   flex-direction: column;
-  margin: 0 0 0 0;
+  margin: 0;
   width: 99.8%;
-  height: 100%;
+  height: 98%;
 }
 
 .nav-list mat-list-item {
@@ -31,7 +31,7 @@
 }
 
 .nav-list mat-icon {
-  font-size: 1.2em !important;
+  font-size: 1.3em !important;
   color: var(--dimmed) !important;
 }
 
@@ -49,7 +49,7 @@
   flex-direction: column;
   padding: 0;
   margin-top: 13px;
-  height: 97%;
+  height: 100%;
   overflow-y: scroll;
 }
 
@@ -62,10 +62,11 @@
 .tags-container {
   display: flex;
   overflow-y: scroll;
-  height: 77%;
+  height: 74%;
   opacity: 1;
   margin-bottom: 10px;
   transition: all 0.2s linear;
+  // display: none;
 }
 
 .tags-header {
@@ -74,7 +75,7 @@
 }
 
 .tags {
-  margin: -5px 0 10px 35px!important;
+  margin: -5px 0 10px 35px !important;
   width: 75%;
 }
 
@@ -86,8 +87,8 @@
 }
 
 .tags mat-list-item {
-  padding: 0!important;
-  margin: 0!important;
+  padding: 0 !important;
+  margin: 0 !important;
   width: 95%;
   border-top-right-radius: var(--radius-sm);
   border-bottom-right-radius: var(--radius-sm);
@@ -108,9 +109,9 @@
 
 
 .folder mat-icon, .tag mat-icon {
-  font-size: 1em!important;
+  font-size: 1em !important;
   color: var(--dimmed) !important;
-  margin-left: 12%!important;
+  margin-left: 12% !important;
 }
 
 .tag h2 {
@@ -122,14 +123,13 @@
   transition: 0.35s all linear;
   background: var(--accent);
   opacity: 1;
-  border-top-right-radius: 100px !important;
-  border-bottom-right-radius: 100px !important;
+  border-top-right-radius: var(--radius-md) !important;
+  border-bottom-right-radius: var(--radius-md) !important;
   // padding-left: 0px !important;
 }
 
 .selected mat-icon, .selected h2 {
   color: var(--font-color) !important;
-  font-size: 1em !important;
 }
 
 .nav-settings {

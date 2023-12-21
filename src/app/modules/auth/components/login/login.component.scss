@@ -1,16 +1,22 @@
 :host {
+  position: absolute;
+  top: 5%;
+  left: 15%;
   display: flex;
   flex-direction: row;
-  height: 80%;
-  width: 60%;
-  background: var(--background);
+  height: 90%;
+  width: 70%;
+  background: var(--active-background);
   border-radius: 20px;
-  align-self: center;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--lighter-border);
 }
 
 .container {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   width: 53%;
   height: 100%;
 }
@@ -18,12 +24,11 @@
 .logo {
   display: flex;
   align-items: center;
-  margin-top: 8%;
   margin-left: 8%;
 }
 
 mat-icon.logo-image {
-  font-size: 2.2em!important;
+  font-size: 2.2em !important;
 }
 
 .logo-typo {
